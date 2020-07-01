@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "12443302030",
+    "firebase_url": "https://lets-get-knotty.firebaseio.com",
+    "project_id": "lets-get-knotty",
+    "storage_bucket": "lets-get-knotty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12443302030:android:87f37eaf5bde290be271df",
+        "android_client_info": {
+          "package_name": "edu.rosehulman.samuelma.letsgetknotty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12443302030-nemlub2nk5svdntmb3qed8la0n8s0n4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj63MEfsjXn6oVUdv7OC6leWDxVldY5Ok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12443302030-nemlub2nk5svdntmb3qed8la0n8s0n4r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
