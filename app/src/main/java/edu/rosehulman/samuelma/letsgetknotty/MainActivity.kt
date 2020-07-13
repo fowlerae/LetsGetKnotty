@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),
     SplashFragment.OnLoginButtonPressedListener,
-    ProjectFragment.OnPatternSelectedListener,
+    PatternFragment.OnPatternSelectedListener,
     ProjectListFragment.OnProjectSelectedListener{
 
     val auth = FirebaseAuth.getInstance()

@@ -9,12 +9,12 @@ import com.google.firebase.firestore.*
 import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
+import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternFragment
 import edu.rosehulman.samuelma.letsgetknotty.project.PatternViewHolder
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
-import edu.rosehulman.samuelma.letsgetknotty.project.ProjectFragment
 
 
-class PatternAdapter(val context: Context, uid: String, var listener: ProjectFragment.OnPatternSelectedListener?) : RecyclerView.Adapter<PatternViewHolder>() {
+class PatternAdapter(val context: Context, uid: String, var listener: PatternFragment.OnPatternSelectedListener?) : RecyclerView.Adapter<PatternViewHolder>() {
     private val patterns = ArrayList<Pattern>()
     private val patternsRef = FirebaseFirestore
         .getInstance()
@@ -85,9 +85,6 @@ class PatternAdapter(val context: Context, uid: String, var listener: ProjectFra
     }
 
     fun selectPattern(position: Int) {
-//        val mq =pictures[position]
-//        mq.showDark = !mq.showDark
-//        picturesRef.document(mq.id).set(mq)
         listener?.onPatternSelected(patterns[position])
     }
 

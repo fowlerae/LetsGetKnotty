@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
+import edu.rosehulman.samuelma.letsgetknotty.projectlist.ProjectListFragment
 import java.lang.RuntimeException
 
 
@@ -18,7 +19,7 @@ private const val ARG_PIC = "pic"
 
 class ProjectFragment : Fragment() {
     private var project: Project? = null
-    private var listener: OnPatternSelectedListener? = null
+    private var listener: ProjectListFragment.OnProjectSelectedListener? = null
 
     companion object {
         @JvmStatic
@@ -51,13 +52,14 @@ class ProjectFragment : Fragment() {
         return view
     }
 
+
     interface OnPatternSelectedListener {
         fun onPatternSelected(pattern: Pattern)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is OnPatternSelectedListener) {
+        if(context is ProjectListFragment.OnProjectSelectedListener) {
             listener = context
         } else {
             throw RuntimeException(context.toString() + "must implement OnPicSelected" )

@@ -9,9 +9,5 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
 
-        <include layout="@layout/fragment_pattern_list"></include>
-
-
-
 
 </RelativeLayout>
