@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "12443302030",
-    "firebase_url": "https://lets-get-knotty.firebaseio.com",
-    "project_id": "lets-get-knotty",
-    "storage_bucket": "lets-get-knotty.appspot.com"
+    "project_number": "431141426463",
+    "firebase_url": "https://let-s-get-knotty-296d2.firebaseio.com",
+    "project_id": "let-s-get-knotty-296d2",
+    "storage_bucket": "let-s-get-knotty-296d2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:12443302030:android:87f37eaf5bde290be271df",
+        "mobilesdk_app_id": "1:431141426463:android:8e2d74d67538e9e468cc2a",
         "android_client_info": {
           "package_name": "edu.rosehulman.samuelma.letsgetknotty"
         }
       },
       "oauth_client": [
         {
-          "client_id": "12443302030-nemlub2nk5svdntmb3qed8la0n8s0n4r.apps.googleusercontent.com",
+          "client_id": "431141426463-nrl2utlhcb7grj87j9c2lcik7s03pil5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.rosehulman.samuelma.letsgetknotty",
+            "certificate_hash": "c9959410214525a88e7ea516e8e3bae848d9b922"
+          }
+        },
+        {
+          "client_id": "431141426463-6hmrh5fgq7knm7ddb9f58g28at1bbrrm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBj63MEfsjXn6oVUdv7OC6leWDxVldY5Ok"
+          "current_key": "AIzaSyAkKbddYQm29L0M1he8v0QhkUrRBMGYaeY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "12443302030-nemlub2nk5svdntmb3qed8la0n8s0n4r.apps.googleusercontent.com",
+              "client_id": "431141426463-6hmrh5fgq7knm7ddb9f58g28at1bbrrm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

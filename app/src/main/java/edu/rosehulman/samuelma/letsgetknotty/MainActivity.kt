@@ -11,21 +11,27 @@ import android.view.Menu
 import android.view.MenuItem
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
+import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
+import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternFragment
+import edu.rosehulman.samuelma.letsgetknotty.project.Project
+import edu.rosehulman.samuelma.letsgetknotty.project.ProjectFragment
+import edu.rosehulman.samuelma.letsgetknotty.projectlist.ProjectListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),
     SplashFragment.OnLoginButtonPressedListener,
-    ProjectFragment.OnProjectSelectedListener{
+    ProjectFragment.OnPatternSelectedListener,
+    ProjectListFragment.OnProjectSelectedListener{
 
     val auth = FirebaseAuth.getInstance()
-    private var listener: ProjectFragment.OnProjectSelectedListener? = null
+    private var listener: ProjectListFragment.OnProjectSelectedListener? = null
     lateinit var authListener: FirebaseAuth.AuthStateListener
     private val RC_SIGN_IN = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+  //      setSupportActionBar(toolbar)
         initializeListeners()
     }
 
@@ -69,7 +75,7 @@ class MainActivity : AppCompatActivity(),
 
     private fun switchToMovieQuoteFragment(uid: String) {
         val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.fragment_container, ProjectFragment.newInstance(uid))
+        ft.replace(R.id.fragment_container, ProjectListFragment.newInstance(uid))
         ft.commit()
     }
 
@@ -171,7 +177,16 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onProjectSelected(pro: Project) {
-        val fragment = PictureFragment.newInstance(pro)
+        val fragment = ProjectFragment.newInstance(pro)
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.fragment_container, fragment)
+        ft.addToBackStack("picture")
+        ft.commit()
+    }
+
+
+    override fun onPatternSelected(pattern: Pattern) {
+        val fragment = PatternFragment.newInstance(pattern)
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.fragment_container, fragment)
         ft.addToBackStack("picture")

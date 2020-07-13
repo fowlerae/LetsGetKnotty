@@ -1,4 +1,5 @@
-package edu.rosehulman.samuelma.letsgetknotty
+package edu.rosehulman.samuelma.letsgetknotty.projectlist
+
 
 import android.content.Context
 import android.os.Bundle
@@ -8,35 +9,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import edu.rosehulman.samuelma.letsgetknotty.MainActivity
+import edu.rosehulman.samuelma.letsgetknotty.project.Project
+import edu.rosehulman.samuelma.letsgetknotty.R
 import java.lang.RuntimeException
 
 private const val ARG_UID = "UID"
 
-class ProjectFragment : Fragment() {
+class ProjectListFragment : Fragment() {
     private var listener: OnProjectSelectedListener? = null
     private var uid: String? = null
-    private lateinit var adapter: ProjectAdapter
+    private lateinit var listAdapter: ProjectListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             uid = it.getString(ARG_UID)
         }
-    }
+   }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val recyclerView = inflater.inflate(R.layout.fragment_projects, container, false) as RecyclerView
-        adapter = ProjectAdapter(context!!, uid!!,listener)
+        val recyclerView = inflater.inflate(R.layout.fragment_project_list, container, false) as RecyclerView
+        listAdapter = ProjectListAdapter(
+            context!!,
+            uid!!,
+            listener
+        )
         recyclerView.layoutManager =
             GridLayoutManager(context,2)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = adapter
-        adapter.addSnapshotListener()
+        recyclerView.adapter = listAdapter
+        listAdapter.addSnapshotListener()
         (context as MainActivity).getFab().setOnClickListener {
-            adapter.showAddEditDialog()
+            listAdapter.showAddEditDialog()
         }
         return recyclerView
     }
@@ -44,7 +52,8 @@ class ProjectFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance(uid: String) =
-            ProjectFragment().apply {
+            ProjectListFragment()
+                .apply {
                 arguments = Bundle().apply {
                     putString(ARG_UID, uid)
                 }

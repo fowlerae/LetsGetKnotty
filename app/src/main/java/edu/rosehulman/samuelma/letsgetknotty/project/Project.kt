@@ -1,4 +1,4 @@
-package edu.rosehulman.samuelma.letsgetknotty
+package edu.rosehulman.samuelma.letsgetknotty.project
 
 import android.os.Parcelable
 import com.google.firebase.Timestamp

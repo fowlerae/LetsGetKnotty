@@ -1,5 +1,4 @@
-package edu.rosehulman.samuelma.letsgetknotty
-
+package edu.rosehulman.samuelma.letsgetknotty.projectlist
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,9 +8,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.google.firebase.firestore.*
+import edu.rosehulman.samuelma.letsgetknotty.project.Project
+import edu.rosehulman.samuelma.letsgetknotty.Constants
+import edu.rosehulman.samuelma.letsgetknotty.R
 import kotlinx.android.synthetic.main.dialog_add_edit_image.view.*
 
-class ProjectAdapter(val context: Context, uid: String,     var listener: ProjectFragment.OnProjectSelectedListener?) : RecyclerView.Adapter<ProjectViewHolder>() {
+class ProjectListAdapter(val context: Context, uid: String, var listener: ProjectListFragment.OnProjectSelectedListener?) : RecyclerView.Adapter<ProjectListViewHolder>() {
     private val pictures = ArrayList<Project>()
     private val picturesRef = FirebaseFirestore
         .getInstance()
@@ -36,39 +38,39 @@ class ProjectAdapter(val context: Context, uid: String,     var listener: Projec
         // Snapshots has documents and documentChanges which are flagged by type,
         // so we can handle C,U,D differently.
         for (documentChange in querySnapshot.documentChanges) {
-            val movieQuote = Project.fromSnapshot(documentChange.document)
+            val project = Project.fromSnapshot(documentChange.document)
             when (documentChange.type) {
                 DocumentChange.Type.ADDED -> {
-                    Log.d(Constants.TAG, "Adding $movieQuote")
-                    pictures.add(0, movieQuote)
+                    Log.d(Constants.TAG, "Adding $project")
+                    pictures.add(0, project)
                     notifyItemInserted(0)
                 }
                 DocumentChange.Type.REMOVED -> {
-                    Log.d(Constants.TAG, "Removing $movieQuote")
-                    val index = pictures.indexOfFirst { it.id == movieQuote.id }
+                    Log.d(Constants.TAG, "Removing $project")
+                    val index = pictures.indexOfFirst { it.id == project.id }
                     pictures.removeAt(index)
                     notifyItemRemoved(index)
                 }
                 DocumentChange.Type.MODIFIED -> {
-                    Log.d(Constants.TAG, "Modifying $movieQuote")
-                    val index = pictures.indexOfFirst { it.id == movieQuote.id }
-                    pictures[index] = movieQuote
+                    Log.d(Constants.TAG, "Modifying $project")
+                    val index = pictures.indexOfFirst { it.id == project.id }
+                    pictures[index] = project
                     notifyItemChanged(index)
                 }
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, index: Int): ProjectViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.row_view, parent, false)
-        return ProjectViewHolder(view, this)
+    override fun onCreateViewHolder(parent: ViewGroup, index: Int): ProjectListViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.grid_view, parent, false)
+        return ProjectListViewHolder(view, this)
     }
 
     override fun onBindViewHolder(
-        viewHolder: ProjectViewHolder,
+        listViewHolder: ProjectListViewHolder,
         index: Int
     ) {
-        viewHolder.bind(pictures[index])
+        listViewHolder.bind(pictures[index])
     }
 
     override fun getItemCount() = pictures.size
