@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/row_counter_decrease_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src = "@drawable/ic_baseline_arrow_drop_down_24"/>
+
+    <TextView
+        android:id="@+id/current_row_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Row">
+    </TextView>
+
+    <ImageButton
+        android:id="@+id/row_counter_increase_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src = "@drawable/ic_baseline_arrow_drop_down_24"/>
+
+
+</LinearLayout>

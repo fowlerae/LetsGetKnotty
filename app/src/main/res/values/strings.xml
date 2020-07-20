@@ -25,4 +25,6 @@
     <string name="login">Login</string>
     <string name="project_name">Project Name</string>
     <string name="add_pattern">Add Pattern</string>
+    <string name="add_row_counter">Add Row Counter</string>
+    <string name="row_counter">Row Counter</string>
 </resources>

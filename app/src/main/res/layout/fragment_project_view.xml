@@ -10,7 +10,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_marginVertical="10dp"
+            android:layout_margin="10dp"
             android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/project_title_text_view"
@@ -36,15 +36,36 @@
             android:orientation="horizontal"
             android:id="@+id/pattern_recycler_view"
             android:scrollbars="horizontal"
-            android:layout_above="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/row_counter_name_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/row_counter">
+                </TextView>
+
+                <Button
+                    android:id="@+id/add_row_counter_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_row_counter"/>
+        </LinearLayout>
+
+        <include layout="@layout/row_counter" />
 
         <ImageView
             android:id="@+id/image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
+
 
 
 
