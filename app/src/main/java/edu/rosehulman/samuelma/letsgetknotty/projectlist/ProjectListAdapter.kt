@@ -13,9 +13,9 @@ import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import kotlinx.android.synthetic.main.dialog_add_edit_image.view.*
 
-class ProjectListAdapter(val context: Context, uid: String, var listener: ProjectListFragment.OnProjectSelectedListener?) : RecyclerView.Adapter<ProjectListViewHolder>() {
-    private val pictures = ArrayList<Project>()
-    private val picturesRef = FirebaseFirestore
+class ProjectListAdapter(val context: Context, uid: String, var listener: OnProjectSelectedListener?) : RecyclerView.Adapter<ProjectListViewHolder>() {
+    private val projects = ArrayList<Project>()
+    private val projectsRef = FirebaseFirestore
         .getInstance()
         .collection(Constants.USERS_COLLECTION)
         .document(uid)
@@ -23,7 +23,7 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: Projec
     private lateinit var listenerRegistration: ListenerRegistration
 
     fun addSnapshotListener() {
-        listenerRegistration = picturesRef
+        listenerRegistration = projectsRef
             .orderBy(Project.LAST_TOUCHED_KEY, Query.Direction.ASCENDING)
             .addSnapshotListener { querySnapshot, e ->
                 if (e != null) {
@@ -42,19 +42,19 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: Projec
             when (documentChange.type) {
                 DocumentChange.Type.ADDED -> {
                     Log.d(Constants.TAG, "Adding $project")
-                    pictures.add(0, project)
+                    projects.add(0, project)
                     notifyItemInserted(0)
                 }
                 DocumentChange.Type.REMOVED -> {
                     Log.d(Constants.TAG, "Removing $project")
-                    val index = pictures.indexOfFirst { it.id == project.id }
-                    pictures.removeAt(index)
+                    val index = projects.indexOfFirst { it.id == project.id }
+                    projects.removeAt(index)
                     notifyItemRemoved(index)
                 }
                 DocumentChange.Type.MODIFIED -> {
                     Log.d(Constants.TAG, "Modifying $project")
-                    val index = pictures.indexOfFirst { it.id == project.id }
-                    pictures[index] = project
+                    val index = projects.indexOfFirst { it.id == project.id }
+                    projects[index] = project
                     notifyItemChanged(index)
                 }
             }
@@ -70,10 +70,10 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: Projec
         listViewHolder: ProjectListViewHolder,
         index: Int
     ) {
-        listViewHolder.bind(pictures[index])
+        listViewHolder.bind(projects[index])
     }
 
-    override fun getItemCount() = pictures.size
+    override fun getItemCount() = projects.size
 
     @SuppressLint("InflateParams")
     fun showAddEditDialog(position: Int = -1) {
@@ -85,8 +85,8 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: Projec
         builder.setView(view)
         builder.setIcon(android.R.drawable.ic_input_add)
         if (position >= 0) {
-            view.dialog_edit_text_name.setText(pictures[position].name)
-            view.dialog_edit_text_image.setText(pictures[position].imageUrl)
+            view.dialog_edit_text_name.setText(projects[position].name)
+            view.dialog_edit_text_image.setText(projects[position].imageUrl)
         }
 
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
@@ -107,23 +107,27 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: Projec
     }
 
     private fun add(project: Project) {
-        picturesRef.add(project)
+        projectsRef.add(project)
     }
 
     private fun edit(position: Int, quote: String, movie: String) {
-        pictures[position].name = quote
-        pictures[position].imageUrl = movie
-        picturesRef.document(pictures[position].id).set(pictures[position])
+        projects[position].name = quote
+        projects[position].imageUrl = movie
+        projectsRef.document(projects[position].id).set(projects[position])
     }
 
     private fun remove(position: Int) {
-        picturesRef.document(pictures[position].id).delete()
+        projectsRef.document(projects[position].id).delete()
     }
 
-    fun selectMovieQuote(position: Int) {
+    fun selectProject(position: Int) {
 //        val mq =pictures[position]
 //        mq.showDark = !mq.showDark
 //        picturesRef.document(mq.id).set(mq)
-        listener?.onProjectSelected(pictures[position])
+        listener?.onProjectSelected(projects[position])
+    }
+
+    interface OnProjectSelectedListener {
+        fun onProjectSelected(pic: Project)
     }
 }

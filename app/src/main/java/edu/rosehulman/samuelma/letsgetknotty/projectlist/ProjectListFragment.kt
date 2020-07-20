@@ -3,21 +3,24 @@ package edu.rosehulman.samuelma.letsgetknotty.projectlist
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
 import edu.rosehulman.samuelma.letsgetknotty.MainActivity
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 import edu.rosehulman.samuelma.letsgetknotty.R
+import edu.rosehulman.samuelma.letsgetknotty.project.ProjectFragment
 import java.lang.RuntimeException
 
 private const val ARG_UID = "UID"
 
-class ProjectListFragment : Fragment() {
-    private var listener: OnProjectSelectedListener? = null
+class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedListener {
+    private var listener: ProjectListAdapter.OnProjectSelectedListener? = null
     private var uid: String? = null
     private lateinit var listAdapter: ProjectListAdapter
 
@@ -60,16 +63,25 @@ class ProjectListFragment : Fragment() {
             }
     }
 
-    interface OnProjectSelectedListener {
-        fun onProjectSelected(pic: Project)
-    }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is OnProjectSelectedListener) {
-            listener = context
+        if(context is ProjectListAdapter.OnProjectSelectedListener) {
+            listener = this
         } else {
             throw RuntimeException(context.toString() + "must implement OnPicSelected" )
+        }
+    }
+
+    override fun onProjectSelected(pro: Project) {
+        val fragment = ProjectFragment.newInstance(pro)
+        val fm = fragmentManager
+        val ft = fm?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.fragment_container, fragment)
+            ft.addToBackStack("project")
+            ft.commit()
         }
     }
 

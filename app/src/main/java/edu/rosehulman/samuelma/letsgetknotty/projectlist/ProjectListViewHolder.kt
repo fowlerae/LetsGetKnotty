@@ -10,7 +10,6 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
-import edu.rosehulman.samuelma.letsgetknotty.projectlist.ProjectListAdapter
 import jp.wasabeef.picasso.transformations.CropSquareTransformation
 import kotlinx.android.synthetic.main.grid_view.view.*
 
@@ -21,7 +20,7 @@ class ProjectListViewHolder(itemView: View, private val listAdapter: ProjectList
 
     init {
         itemView.setOnClickListener {
-            listAdapter.selectMovieQuote(adapterPosition)
+            listAdapter.selectProject(adapterPosition)
 
         }
         itemView.setOnLongClickListener {

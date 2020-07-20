@@ -20,8 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),
     SplashFragment.OnLoginButtonPressedListener,
-    PatternFragment.OnPatternSelectedListener,
-    ProjectListFragment.OnProjectSelectedListener{
+    PatternFragment.OnPatternSelectedListener {
 
     val auth = FirebaseAuth.getInstance()
     private var listener: ProjectListFragment.OnProjectSelectedListener? = null
@@ -176,13 +175,7 @@ class MainActivity : AppCompatActivity(),
         builder.create().show()
     }
 
-    override fun onProjectSelected(pro: Project) {
-        val fragment = ProjectFragment.newInstance(pro)
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.fragment_container, fragment)
-        ft.addToBackStack("picture")
-        ft.commit()
-    }
+
 
 
     override fun onPatternSelected(pattern: Pattern) {
