@@ -62,9 +62,10 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         Picasso.get().load(project?.imageUrl).into(ivBasicImage)
         val recyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
         adapter = PatternAdapter(context!!, uid!!, listener)
-        recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
         recyclerView.adapter = adapter
         adapter.addSnapshotListener()
+        recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
+
         return view
     }
 
