@@ -70,7 +70,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         if(context is ProjectListAdapter.OnProjectSelectedListener) {
             listener = this
         } else {
-            throw RuntimeException(context.toString() + "must implement OnPicSelected" )
+            throw RuntimeException(context.toString() + "must implement OnProjectSelected" )
         }
     }
 

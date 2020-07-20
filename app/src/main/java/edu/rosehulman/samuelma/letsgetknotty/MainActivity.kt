@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity(),
     PatternFragment.OnPatternSelectedListener {
 
     val auth = FirebaseAuth.getInstance()
-    private var listener: ProjectListFragment.OnProjectSelectedListener? = null
     lateinit var authListener: FirebaseAuth.AuthStateListener
     private val RC_SIGN_IN = 1
 
