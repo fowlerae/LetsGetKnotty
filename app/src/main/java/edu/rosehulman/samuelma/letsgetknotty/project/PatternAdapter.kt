@@ -14,12 +14,14 @@ import edu.rosehulman.samuelma.letsgetknotty.project.PatternViewHolder
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
 
-class PatternAdapter(val context: Context, uid: String, var listener: OnPatternSelectedListener?) : RecyclerView.Adapter<PatternViewHolder>() {
+class PatternAdapter(val context: Context, uid: String, projectId: String, var listener: OnPatternSelectedListener?) : RecyclerView.Adapter<PatternViewHolder>() {
     private val patterns = ArrayList<Pattern>()
     private val patternsRef = FirebaseFirestore
         .getInstance()
         .collection(Constants.USERS_COLLECTION)
         .document(uid)
+        .collection(Constants.PROJECTS_COLLECTION)
+        .document(projectId)
         .collection(Constants.PATTERNS_COLLECTION)
     private lateinit var listenerRegistration: ListenerRegistration
 
