@@ -7,13 +7,12 @@
     android:layout_gravity="center"
     android:orientation="horizontal">
 
-    <ImageButton
+    <Image
         android:id="@+id/row_counter_decrease_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src = "@drawable/ic_baseline_arrow_drop_down_24"
-        android:layout_gravity="center"
-        android:background="@color/white"/>
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/current_row_text_view"
@@ -23,13 +22,12 @@
         android:text="0">
     </TextView>
 
-    <ImageButton
+    <Image
         android:id="@+id/row_counter_increase_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src = "@drawable/ic_baseline_arrow_drop_up_24"
-        android:background="@color/white"/>
+        android:src = "@drawable/ic_baseline_arrow_drop_up_24" />
 
 
 </LinearLayout>
