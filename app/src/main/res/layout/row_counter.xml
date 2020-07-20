@@ -9,7 +9,8 @@
         android:id="@+id/row_counter_decrease_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src = "@drawable/ic_baseline_arrow_drop_down_24"/>
+        android:src = "@drawable/ic_baseline_arrow_drop_down_24"
+        android:background="@color/white"/>
 
     <TextView
         android:id="@+id/current_row_text_view"
