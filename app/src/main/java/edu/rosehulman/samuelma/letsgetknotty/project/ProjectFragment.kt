@@ -16,6 +16,7 @@ import edu.rosehulman.samuelma.letsgetknotty.MainActivity
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternFragment
+import jp.wasabeef.picasso.transformations.CropSquareTransformation
 
 
 private const val ARG_PROJECT = "project"
@@ -60,7 +61,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         val view = inflater.inflate(R.layout.fragment_project_view, container, false)
         val ivBasicImage =
             view.findViewById(R.id.image) as ImageView
-        Picasso.get().load(project?.imageUrl).into(ivBasicImage)
+        Picasso.get().load(project?.imageUrl).transform(CropSquareTransformation()).into(ivBasicImage)
         val recyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
         adapter = project?.id?.let { PatternAdapter(context!!, uid!!, it, listener) }!!
         recyclerView.adapter = adapter
@@ -68,7 +69,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
         (context as MainActivity).getFab().setOnClickListener {
             adapter.add(Pattern("front","https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489",false))
-            adapter.notifyItemInserted(0)
+            adapter.notifyDataSetChanged()
         }
         return view
     }
