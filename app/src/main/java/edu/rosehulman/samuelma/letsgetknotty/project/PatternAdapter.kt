@@ -91,4 +91,8 @@ class PatternAdapter(val context: Context, uid: String, var listener: PatternFra
     override fun onBindViewHolder(holder: PatternViewHolder, position: Int) {
         holder.bind(patterns[position])
     }
+
+    interface OnPatternSelectedListener {
+        fun onPatternSelected(pattern: Pattern)
+    }
 }

@@ -67,11 +67,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is ProjectListAdapter.OnProjectSelectedListener) {
-            listener = this
-        } else {
-            throw RuntimeException(context.toString() + "must implement OnProjectSelected" )
-        }
+        listener = this
     }
 
     override fun onProjectSelected(pro: Project) {

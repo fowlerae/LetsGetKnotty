@@ -19,8 +19,7 @@ import edu.rosehulman.samuelma.letsgetknotty.projectlist.ProjectListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),
-    SplashFragment.OnLoginButtonPressedListener,
-    PatternFragment.OnPatternSelectedListener {
+    SplashFragment.OnLoginButtonPressedListener {
 
     val auth = FirebaseAuth.getInstance()
     lateinit var authListener: FirebaseAuth.AuthStateListener
@@ -175,13 +174,4 @@ class MainActivity : AppCompatActivity(),
     }
 
 
-
-
-    override fun onPatternSelected(pattern: Pattern) {
-        val fragment = PatternFragment.newInstance(pattern)
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.fragment_container, fragment)
-        ft.addToBackStack("picture")
-        ft.commit()
-    }
 }
