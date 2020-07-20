@@ -26,6 +26,7 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_height="wrap_content">
 
                         <ImageView
@@ -37,8 +38,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/add_pattern"
-                            android:layout_gravity="right"
-                            android:background="@color/white"/>
+                            android:layout_gravity="right" />
 
                 </LinearLayout>
 
@@ -67,6 +67,7 @@
 
                 <LinearLayout
                     android:orientation="horizontal"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -79,8 +80,7 @@
                             android:id="@+id/add_row_counter_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/add_row_counter"
-                            android:background="@color/white"/>
+                            android:text="@string/add_row_counter" />
 
 
                 </LinearLayout>

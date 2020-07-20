@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 import jp.wasabeef.picasso.transformations.CropSquareTransformation
-import kotlinx.android.synthetic.main.grid_view.view.*
+import kotlinx.android.synthetic.main.project_list_grid_card_view.view.*
 
 class ProjectListViewHolder(itemView: View, private val listAdapter: ProjectListAdapter): RecyclerView.ViewHolder(itemView) {
     private val nameTextView: TextView = itemView.findViewById(R.id.name_text_view)

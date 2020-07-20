@@ -62,7 +62,7 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, index: Int): ProjectListViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.grid_view, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.project_list_grid_card_view, parent, false)
         return ProjectListViewHolder(view, this)
     }
 

@@ -13,7 +13,7 @@ import edu.rosehulman.fowlerae.letsgetknotty.project.PatternAdapter
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import jp.wasabeef.picasso.transformations.CropSquareTransformation
-import kotlinx.android.synthetic.main.grid_view.view.*
+import kotlinx.android.synthetic.main.project_list_grid_card_view.view.*
 
 class PatternViewHolder(itemView: View, private val adapter: PatternAdapter): RecyclerView.ViewHolder(itemView) {
     private val nameTextView: TextView = itemView.findViewById(R.id.name_text_view)
