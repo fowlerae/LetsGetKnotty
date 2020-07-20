@@ -8,8 +8,7 @@
     android:id="@+id/row_card_view"
     android:layout_margin="4dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".pattern.PatternFragment"
-    tools:showIn="@layout/fragment_pattern_list">
+    tools:context=".pattern.PatternFragment">
 
     <LinearLayout
         android:layout_width="wrap_content"

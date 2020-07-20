@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src = "@drawable/ic_baseline_arrow_drop_down_24"
-        android:background="@color/colorAccent"/>
+        android:background="@color/white"/>
 
     <TextView
         android:id="@+id/current_row_text_view"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src = "@drawable/ic_baseline_arrow_drop_up_24"
-        android:background="@color/colorAccent"/>
+        android:background="@color/white"/>
 
 
 </LinearLayout>
