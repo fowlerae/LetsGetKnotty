@@ -2,16 +2,12 @@ package edu.rosehulman.samuelma.letsgetknotty.project
 
 
 import android.content.Context
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.HorizontalScrollView
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
@@ -19,10 +15,9 @@ import edu.rosehulman.fowlerae.letsgetknotty.project.PatternAdapter
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternFragment
-import edu.rosehulman.samuelma.letsgetknotty.projectlist.ProjectListAdapter
 
 
-private const val ARG_PIC = "pic"
+private const val ARG_PROJECT = "project"
 
 class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     private var project: Project? = null
@@ -36,7 +31,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         fun newInstance(pro: Project, u: String?) =
             ProjectFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(ARG_PIC, pro)
+                    putParcelable(ARG_PROJECT, pro)
                     uid = u
                     project = pro
                 }
@@ -46,9 +41,9 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        project = arguments?.getParcelable(ARG_PIC)
+        project = arguments?.getParcelable(ARG_PROJECT)
         arguments?.let {
-            project = it.getParcelable(ARG_PIC)
+            project = it.getParcelable(ARG_PROJECT)
         }
     }
 
@@ -65,7 +60,6 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         val ivBasicImage =
             view.findViewById(R.id.image) as ImageView
         Picasso.get().load(project?.imageUrl).into(ivBasicImage)
-        //view.image_caption.text = project?.caption ?: ""
         val recyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
         adapter = PatternAdapter(context!!, uid!!, listener)
         recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)

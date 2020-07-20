@@ -33,6 +33,8 @@ class PatternAdapter(val context: Context, uid: String, var listener: OnPatternS
                     processSnapshotChanges(querySnapshot!!)
                 }
             }
+
+        Log.d(Constants.TAG, "added snapshot listner to pattern adapter")
     }
 
     private fun processSnapshotChanges(querySnapshot: QuerySnapshot) {
