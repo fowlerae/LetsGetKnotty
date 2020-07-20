@@ -23,12 +23,7 @@ class PatternViewHolder(itemView: View, private val adapter: PatternAdapter): Re
     init {
         itemView.setOnClickListener {
             adapter.selectPattern(adapterPosition)
-
         }
-//        itemView.setOnLongClickListener {
-//            listAdapter.showAddEditDialog(adapterPosition)
-//            true
-//        }
         cardView = itemView.row_card_view
     }
 

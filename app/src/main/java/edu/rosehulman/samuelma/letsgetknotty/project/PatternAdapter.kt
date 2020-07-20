@@ -72,7 +72,7 @@ class PatternAdapter(val context: Context, uid: String, var listener: OnPatternS
     override fun getItemCount() = patterns.size
 
 
-    private fun add(pattern: Pattern) {
+    fun add(pattern: Pattern) {
         patternsRef.add(pattern)
     }
 

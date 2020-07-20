@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import edu.rosehulman.fowlerae.letsgetknotty.project.PatternAdapter
+import edu.rosehulman.samuelma.letsgetknotty.MainActivity
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternFragment
@@ -65,6 +66,10 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         recyclerView.adapter = adapter
         adapter.addSnapshotListener()
         recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
+        (context as MainActivity).getFab().setOnClickListener {
+            adapter.add(Pattern("front","https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489",false))
+            adapter.notifyItemInserted(0)
+        }
         return view
     }
 
