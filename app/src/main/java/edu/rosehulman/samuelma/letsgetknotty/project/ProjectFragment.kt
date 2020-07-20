@@ -2,13 +2,17 @@ package edu.rosehulman.samuelma.letsgetknotty.project
 
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import edu.rosehulman.fowlerae.letsgetknotty.project.PatternAdapter
@@ -63,13 +67,8 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         Picasso.get().load(project?.imageUrl).into(ivBasicImage)
         //view.image_caption.text = project?.caption ?: ""
         val recyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
-        adapter = PatternAdapter(
-            context!!,
-            uid!!,
-            listener
-        )
-        recyclerView.layoutManager =
-            GridLayoutManager(context,2)
+        adapter = PatternAdapter(context!!, uid!!, listener)
+        recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
         adapter.addSnapshotListener()
