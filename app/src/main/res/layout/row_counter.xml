@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
     android:orientation="horizontal">
 
     <ImageButton
@@ -17,7 +18,6 @@
         android:id="@+id/current_row_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
         android:textSize="40sp"
         android:text="0">
     </TextView>
