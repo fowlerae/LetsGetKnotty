@@ -5,12 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
+
         <TextView
             android:id="@+id/project_title_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/project_name"
             android:layout_above="@+id/pattern_recycler_view"
+            android:layout_alignParentLeft="true"
             android:textSize="12dp">
 
         </TextView>
@@ -20,6 +22,7 @@
             android:layout_height="wrap_content"
             android:text="Add Pattern"
             android:layout_alignParentRight="true"
+            android:layout_above="@+id/pattern_recycler_view"
             android:layout_alignBaseline="@+id/project_title_text_view"/>
 
         <ImageView
