@@ -65,7 +65,6 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         recyclerView.adapter = adapter
         adapter.addSnapshotListener()
         recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
-
         return view
     }
 
