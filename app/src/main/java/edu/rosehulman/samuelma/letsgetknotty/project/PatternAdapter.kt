@@ -67,7 +67,7 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, index: Int): PatternViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.grid_view, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.pattern_grid_view, parent, false)
         return PatternViewHolder(view, this)
     }
 

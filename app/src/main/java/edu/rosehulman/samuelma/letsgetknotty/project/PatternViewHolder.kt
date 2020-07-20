@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.grid_view.view.*
 
 class PatternViewHolder(itemView: View, private val adapter: PatternAdapter): RecyclerView.ViewHolder(itemView) {
     private val nameTextView: TextView = itemView.findViewById(R.id.name_text_view)
-    private val imageView: ImageView = itemView.findViewById(R.id.image_text_view)
+    private val imageView: ImageView = itemView.findViewById(R.id.pattern_thumnail_image_view)
     private var cardView: CardView
 
     init {

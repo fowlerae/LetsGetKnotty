@@ -12,13 +12,13 @@
     tools:showIn="@layout/fragment_pattern_list">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/image_text_view"
+            android:id="@+id/pattern_thumnail_image_view"
             android:layout_width="190dp"
             android:layout_height="190dp" />
 
