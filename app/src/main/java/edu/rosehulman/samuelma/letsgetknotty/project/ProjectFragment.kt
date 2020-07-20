@@ -61,9 +61,9 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_project_view, container, false)
-        val ivBasicImage =
-            view.findViewById(R.id.image) as ImageView
-        Picasso.get().load(project?.imageUrl).into(ivBasicImage)
+//        val ivBasicImage =
+//            view.findViewById(R.id.image) as ImageView
+//        Picasso.get().load(project?.imageUrl).into(ivBasicImage)
         val textView : TextView = view.findViewById(R.id.project_title_text_view)
         textView.text = project?.name
         val recyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
