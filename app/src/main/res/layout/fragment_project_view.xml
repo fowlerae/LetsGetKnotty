@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/add_pattern"
                     android:layout_gravity="right"
-                    android:background="@color/white"/>
+                    android:background="@color/colorAccent"/>
 
         </LinearLayout>
 
@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/add_row_counter"
-                    android:background="@color/white"/>
+                    android:background="@color/colorAccent"/>
         </LinearLayout>
 
         <include layout="@layout/row_counter" />
