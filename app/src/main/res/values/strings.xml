@@ -24,4 +24,5 @@
     <string name="name">Name</string>
     <string name="login">Login</string>
     <string name="project_name">Project Name</string>
+    <string name="add_pattern">Add Pattern</string>
 </resources>
