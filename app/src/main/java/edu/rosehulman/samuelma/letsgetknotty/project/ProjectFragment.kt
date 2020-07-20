@@ -73,6 +73,9 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         }
 
         val rowCounterView: View = inflater.inflate(R.layout.row_counter, container, false)
+        val array : ArrayList<View> = ArrayList<View>()
+        array.add(rowCounterView)
+        view.addTouchables(array)
         return view
     }
 
