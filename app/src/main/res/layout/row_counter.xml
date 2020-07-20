@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:orientation="horizontal">
 
-    <Image
+    <ButtonImage
         android:id="@+id/row_counter_decrease_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:text="0">
     </TextView>
 
-    <Image
+    <ButtonImage
         android:id="@+id/row_counter_increase_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
