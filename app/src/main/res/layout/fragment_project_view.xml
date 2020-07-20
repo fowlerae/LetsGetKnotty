@@ -13,6 +13,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:orientation="horizontal"
             android:id="@+id/pattern_recycler_view"
+            android:layout_above="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
