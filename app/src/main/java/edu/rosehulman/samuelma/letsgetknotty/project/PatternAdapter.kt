@@ -14,7 +14,7 @@ import edu.rosehulman.samuelma.letsgetknotty.project.PatternViewHolder
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
 
-class PatternAdapter(val context: Context, uid: String, var listener: PatternFragment.OnPatternSelectedListener?) : RecyclerView.Adapter<PatternViewHolder>() {
+class PatternAdapter(val context: Context, uid: String, var listener: OnPatternSelectedListener?) : RecyclerView.Adapter<PatternViewHolder>() {
     private val patterns = ArrayList<Pattern>()
     private val patternsRef = FirebaseFirestore
         .getInstance()

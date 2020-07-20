@@ -10,5 +10,11 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:orientation="horizontal"
+            android:id="@+id/pattern_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
 
 </RelativeLayout>

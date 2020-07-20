@@ -3,19 +3,16 @@ package edu.rosehulman.samuelma.letsgetknotty.projectlist
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
 import edu.rosehulman.samuelma.letsgetknotty.MainActivity
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.project.ProjectFragment
-import java.lang.RuntimeException
 
 private const val ARG_UID = "UID"
 
@@ -71,7 +68,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
     }
 
     override fun onProjectSelected(pro: Project) {
-        val fragment = ProjectFragment.newInstance(pro)
+        val fragment = ProjectFragment.newInstance(pro,uid)
         val fm = fragmentManager
         val ft = fm?.beginTransaction()
         if (ft != null) {
