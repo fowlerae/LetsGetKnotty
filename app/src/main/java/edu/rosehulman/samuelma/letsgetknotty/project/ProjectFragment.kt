@@ -63,7 +63,6 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         val recyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
         adapter = PatternAdapter(context!!, uid!!, listener)
         recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
-        recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
         adapter.addSnapshotListener()
         return view
