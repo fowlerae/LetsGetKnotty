@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternFragment
 import jp.wasabeef.picasso.transformations.CropSquareTransformation
+import org.w3c.dom.Text
 
 
 private const val ARG_PROJECT = "project"
@@ -62,6 +64,8 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         val ivBasicImage =
             view.findViewById(R.id.image) as ImageView
         Picasso.get().load(project?.imageUrl).into(ivBasicImage)
+        val textView : TextView = view.findViewById(R.id.project_title_text_view)
+        textView.text = project.name
         val recyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
         adapter = project?.id?.let { PatternAdapter(context!!, uid!!, it, listener) }!!
         recyclerView.adapter = adapter
