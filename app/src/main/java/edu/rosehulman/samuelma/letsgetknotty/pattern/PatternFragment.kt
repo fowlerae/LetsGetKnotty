@@ -6,14 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import edu.rosehulman.fowlerae.letsgetknotty.project.PatternAdapter
-import edu.rosehulman.samuelma.letsgetknotty.project.Project
 import edu.rosehulman.samuelma.letsgetknotty.R
 
 
-private const val ARG_PIC = "pic"
+private const val ARG_PATTERN = "pattern"
 
 class PatternFragment : Fragment() {
-    private var project: Project? = null
+    private var pattern: Pattern? = null
     private var uid: String? = null
     private lateinit var adapter: PatternAdapter
     companion object {
@@ -21,7 +20,7 @@ class PatternFragment : Fragment() {
         fun newInstance(pattern: Pattern) =
             PatternFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(ARG_PIC, pattern)
+                    putParcelable(ARG_PATTERN, pattern)
                 }
             }
 
@@ -29,9 +28,9 @@ class PatternFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        project = arguments?.getParcelable(ARG_PIC)
+        pattern = arguments?.getParcelable(ARG_PATTERN)
         arguments?.let {
-            project = it.getParcelable(ARG_PIC)
+            pattern = it.getParcelable(ARG_PATTERN)
         }
 
     }
