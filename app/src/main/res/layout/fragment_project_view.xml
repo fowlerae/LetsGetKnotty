@@ -90,7 +90,7 @@
 
         </LinearLayout>
 
-<!--        <include layout="@layout/row_counter" />-->
+        <include layout="@layout/row_counter" />
 
         <ImageView
             android:id="@+id/image"

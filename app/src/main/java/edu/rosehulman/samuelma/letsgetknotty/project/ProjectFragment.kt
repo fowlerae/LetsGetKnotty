@@ -72,10 +72,10 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
             adapter.notifyDataSetChanged()
         }
 
-        val rowCounterView: View = inflater.inflate(R.layout.row_counter, container, false)
-        val array : ArrayList<View> = ArrayList<View>()
-        array.add(rowCounterView)
-        view.addTouchables(array)
+//        val rowCounterView: View = inflater.inflate(R.layout.row_counter, container, false)
+//        val array : ArrayList<View> = ArrayList<View>()
+//        array.add(rowCounterView)
+//        view.addTouchables(array)
         return view
     }
 
