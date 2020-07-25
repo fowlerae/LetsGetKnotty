@@ -57,9 +57,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_project_view, container, false)
-//        val ivBasicImage =
-//            view.findViewById(R.id.image) as ImageView
-//        Picasso.get().load(project?.imageUrl).into(ivBasicImage)
+
         val textView : TextView = view.findViewById(R.id.project_title_text_view)
         textView.text = project?.name
         val recyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
@@ -67,15 +65,11 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         recyclerView.adapter = adapter
         adapter.addSnapshotListener()
         recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
-        (context as MainActivity).getFab().setOnClickListener {
+        val addPattern = view.findViewById<LinearLayout>(R.id.add_pattern_button)
+        addPattern.setOnClickListener {
             adapter.add(Pattern("front","https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489",false))
             adapter.notifyDataSetChanged()
         }
-
-//        val rowCounterView: View = inflater.inflate(R.layout.row_counter, container, false)
-//        val array : ArrayList<View> = ArrayList<View>()
-//        array.add(rowCounterView)
-//        view.addTouchables(array)
         return view
     }
 
