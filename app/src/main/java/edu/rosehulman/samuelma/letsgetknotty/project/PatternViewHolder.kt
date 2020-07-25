@@ -24,6 +24,10 @@ class PatternViewHolder(itemView: View, private val adapter: PatternAdapter): Re
         itemView.setOnClickListener {
             adapter.selectPattern(adapterPosition)
         }
+        itemView.setOnLongClickListener{
+            this.adapter.showAddEditDialog(adapterPosition)
+            true
+        }
         cardView = itemView.row_card_view
     }
 
@@ -32,7 +36,6 @@ class PatternViewHolder(itemView: View, private val adapter: PatternAdapter): Re
         Picasso.get().load(pattern?.imageUrl)
             .transform(CropSquareTransformation())
             .into(imageView)
-        //  Log.d(Constants.TAG, "IMAGE VIEW SIZE: ${imageView.width}")
         if (pattern.showDark) {
             cardView.setCardBackgroundColor(
                 ContextCompat.getColor(adapter.context, R.color.colorAccent)
