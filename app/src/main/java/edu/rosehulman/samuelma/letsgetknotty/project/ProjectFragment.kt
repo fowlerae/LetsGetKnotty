@@ -67,8 +67,9 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
         val addPattern = view.findViewById<LinearLayout>(R.id.add_pattern_button)
         addPattern.setOnClickListener {
-            adapter.add(Pattern("front","https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489",false))
-            adapter.notifyDataSetChanged()
+//            adapter.add(Pattern("front","https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489",false))
+//            adapter.notifyDataSetChanged()
+            adapter.showAddEditDialog(-1)
         }
         return view
     }
