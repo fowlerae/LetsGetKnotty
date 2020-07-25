@@ -101,7 +101,8 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
             }
 
         }
-
+        builder.setNeutralButton(android.R.string.cancel, null)
+        builder.create().show()
     }
 
     fun add(pattern: Pattern) {
