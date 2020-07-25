@@ -13,6 +13,7 @@ import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.PatternViewHolder
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
+import kotlinx.android.synthetic.main.dialog_add_edit_image.view.*
 import kotlinx.android.synthetic.main.dialog_add_pattern.view.*
 
 
@@ -76,33 +77,63 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
     override fun getItemCount() = patterns.size
 
     fun showAddEditDialog(position: Int) {
-        val builder= AlertDialog.Builder(context)
+        val builder = AlertDialog.Builder(context)
         builder.setTitle((if (position < 0) "Add Pattern" else "Edit Pattern"))
-        val view = LayoutInflater.from(context).inflate(R.layout.dialog_add_pattern,null, false)
+        val view = LayoutInflater.from(context).inflate(
+            R.layout.dialog_add_pattern, null, false
+        )
         builder.setView(view)
-        if(position >= 0) {
-            view.pattern_name_edit_text.setText(patterns[position]?.name)
+        if (position >= 0) {
+            view.pattern_name_edit_text.setText(patterns[position].name)
             view.number_of_rows_in_repeat_edit_text.setText(patterns[position]?.rowsInRepeat)
             view.number_of_stitches_in_repeat_edit_text.setText(patterns[position]?.stitchesInRepeat)
             view.total_number_of_rows_edit_text.setText(patterns[position]?.totalRows)
             view.total_number_of_stitches_edit_text.setText(patterns[position]?.totalStitches)
         }
-        builder.setPositiveButton(android.R.string.ok) {_ : DialogInterface?, _ : Int ->
-            val name = view.pattern_name_edit_text.text.toString()
-            val rowsInRepeat = view.number_of_rows_in_repeat_edit_text.text.toString().toInt()
-            val stitchesInRepeat = view.number_of_stitches_in_repeat_edit_text.text.toString().toInt()
-            val totalRows = view.total_number_of_rows_edit_text.text.toString().toInt()
-            val totalStitches = view.total_number_of_stitches_edit_text.text.toString().toInt()
-            val pattern = Pattern(name,"",rowsInRepeat,stitchesInRepeat,totalRows,totalStitches,false)
-            if(position < 0) {
-                add(pattern)
-            } else {
-                edit(position, name, rowsInRepeat,stitchesInRepeat,totalRows,totalStitches)
-            }
+
+        builder.setPositiveButton(android.R.string.ok) { _, _ ->
+//            val quote = view.dialog_edit_text_name.text.toString()
+//            val movie = view.dialog_edit_text_image.text.toString()
+//            if (position < 0) {
+//                add(Project(quote, movie))
+//            } else {
+//                edit(position, quote, movie)
+//            }
 
         }
-        builder.setNeutralButton(android.R.string.cancel, null)
-        builder.create().show()
+        builder.setNegativeButton(android.R.string.cancel, null)
+        builder.setNeutralButton("Remove") { _, _ ->
+            remove(position)
+        }
+        builder.show()
+
+
+
+//        val view = LayoutInflater.from(context).inflate(R.layout.dialog_add_pattern,null, false)
+//        builder.setView(view)
+//        if(position >= 0) {
+//            view.pattern_name_edit_text.setText(patterns[position]?.name)
+//            view.number_of_rows_in_repeat_edit_text.setText(patterns[position]?.rowsInRepeat)
+//            view.number_of_stitches_in_repeat_edit_text.setText(patterns[position]?.stitchesInRepeat)
+//            view.total_number_of_rows_edit_text.setText(patterns[position]?.totalRows)
+//            view.total_number_of_stitches_edit_text.setText(patterns[position]?.totalStitches)
+//        }
+//        builder.setPositiveButton(android.R.string.ok) {_ : DialogInterface?, _ : Int ->
+//            val name = view.pattern_name_edit_text.text.toString()
+//            val rowsInRepeat = view.number_of_rows_in_repeat_edit_text.text.toString().toInt()
+//            val stitchesInRepeat = view.number_of_stitches_in_repeat_edit_text.text.toString().toInt()
+//            val totalRows = view.total_number_of_rows_edit_text.text.toString().toInt()
+//            val totalStitches = view.total_number_of_stitches_edit_text.text.toString().toInt()
+//            val pattern = Pattern(name,"",rowsInRepeat,stitchesInRepeat,totalRows,totalStitches,false)
+//            if(position < 0) {
+//                add(pattern)
+//            } else {
+//                edit(position, name, rowsInRepeat,stitchesInRepeat,totalRows,totalStitches)
+//            }
+//
+//        }
+//        builder.setNeutralButton(android.R.string.cancel, null)
+//        builder.create().show()
     }
 
     fun add(pattern: Pattern) {

@@ -83,7 +83,6 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
             R.layout.dialog_add_edit_image, null, false
         )
         builder.setView(view)
-        builder.setIcon(android.R.drawable.ic_input_add)
         if (position >= 0) {
             view.dialog_edit_text_name.setText(projects[position].name)
             view.dialog_edit_text_image.setText(projects[position].imageUrl)
