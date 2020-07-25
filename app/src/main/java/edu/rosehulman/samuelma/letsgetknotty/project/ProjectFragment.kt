@@ -84,5 +84,9 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         }
     }
 
+    fun editDialog(position : Int) {
+        adapter?.showAddEditDialog(position)
+    }
+
 
 }

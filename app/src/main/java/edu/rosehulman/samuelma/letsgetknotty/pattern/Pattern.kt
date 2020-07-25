@@ -13,6 +13,10 @@ import kotlinx.android.parcel.Parcelize
 data class Pattern(
     var name: String = "",
     var imageUrl: String = "",
+    var rowsInRepeat : Int = 0,
+    var stitchesInRepeat : Int = 0,
+    var totalRows : Int = 0,
+    var totalStitches : Int =0,
     var showDark: Boolean = false) : Parcelable {
     @get:Exclude
     var id = ""
