@@ -29,7 +29,7 @@
                     android:id="@+id/add_pattern_button"
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_marginLeft="250dp"
+                    android:layout_marginLeft="230dp"
                     android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content">
 
@@ -74,7 +74,7 @@
                     android:orientation="horizontal"
                     android:layout_gravity="center"
                     android:id="@+id/add_row_counter_button"
-                    android:layout_marginLeft="125dp"
+                    android:layout_marginLeft="95dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
