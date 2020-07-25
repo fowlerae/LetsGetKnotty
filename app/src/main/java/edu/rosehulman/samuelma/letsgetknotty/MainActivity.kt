@@ -11,10 +11,6 @@ import android.view.Menu
 import android.view.MenuItem
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
-import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
-import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternFragment
-import edu.rosehulman.samuelma.letsgetknotty.project.Project
-import edu.rosehulman.samuelma.letsgetknotty.project.ProjectFragment
 import edu.rosehulman.samuelma.letsgetknotty.projectlist.ProjectListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -57,7 +53,7 @@ class MainActivity : AppCompatActivity(),
                 Log.d(Constants.TAG, "Email: ${user.email}")
                 Log.d(Constants.TAG, "Photo: ${user.photoUrl}")
                 Log.d(Constants.TAG, "Phone: ${user.phoneNumber}")
-                switchToMovieQuoteFragment(user.uid)
+                switchToProjectListFragment(user.uid)
             } else {
                 switchToSplashFragment()
             }
@@ -70,7 +66,7 @@ class MainActivity : AppCompatActivity(),
         ft.commit()
     }
 
-    private fun switchToMovieQuoteFragment(uid: String) {
+    private fun switchToProjectListFragment(uid: String) {
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.fragment_container, ProjectListFragment.newInstance(uid))
         ft.commit()

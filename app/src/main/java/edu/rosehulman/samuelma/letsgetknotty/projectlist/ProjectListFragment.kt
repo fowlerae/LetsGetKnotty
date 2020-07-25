@@ -44,7 +44,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         recyclerView.adapter = listAdapter
         listAdapter.addSnapshotListener()
         (context as MainActivity).getFab().setOnClickListener {
-            listAdapter.showAddEditDialog()
+            listAdapter.showAddEditDialog(-1)
         }
         return recyclerView
     }

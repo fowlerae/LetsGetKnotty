@@ -76,9 +76,9 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
     override fun getItemCount() = projects.size
 
     @SuppressLint("InflateParams")
-    fun showAddEditDialog(position: Int = -1) {
+    fun showAddEditDialog(position: Int) {
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("Add a quote")
+        builder.setTitle((if (position < 0) "Add Project Name and Thumbnail" else "Edit Project Name and Thumbnail"))
         val view = LayoutInflater.from(context).inflate(
             R.layout.dialog_add_edit_image, null, false
         )
