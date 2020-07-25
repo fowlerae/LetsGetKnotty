@@ -85,10 +85,10 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
         builder.setView(view)
         if (position >= 0) {
             view.pattern_name_edit_text.setText(patterns[position].name)
-            view.number_of_rows_in_repeat_edit_text.setText(patterns[position]?.rowsInRepeat)
-            view.number_of_stitches_in_repeat_edit_text.setText(patterns[position]?.stitchesInRepeat)
-            view.total_number_of_rows_edit_text.setText(patterns[position]?.totalRows)
-            view.total_number_of_stitches_edit_text.setText(patterns[position]?.totalStitches)
+//            view.number_of_rows_in_repeat_edit_text.setText(patterns[position]?.rowsInRepeat)
+//            view.number_of_stitches_in_repeat_edit_text.setText(patterns[position]?.stitchesInRepeat)
+//            view.total_number_of_rows_edit_text.setText(patterns[position]?.totalRows)
+//            view.total_number_of_stitches_edit_text.setText(patterns[position]?.totalStitches)
         }
 
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
