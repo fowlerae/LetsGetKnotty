@@ -28,8 +28,8 @@
                     android:id="@+id/add_pattern_button"
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_marginLeft="150dp"
-                    android:layout_gravity="center"
+                    android:layout_marginLeft="220dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content">
 
                         <ImageView
