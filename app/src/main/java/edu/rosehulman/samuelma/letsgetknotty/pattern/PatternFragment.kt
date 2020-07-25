@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import edu.rosehulman.fowlerae.letsgetknotty.project.PatternAdapter
+import edu.rosehulman.samuelma.letsgetknotty.project.PatternAdapter
 import edu.rosehulman.samuelma.letsgetknotty.R
 
 

@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
-import edu.rosehulman.fowlerae.letsgetknotty.project.PatternAdapter
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import jp.wasabeef.picasso.transformations.CropSquareTransformation
