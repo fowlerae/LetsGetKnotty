@@ -81,11 +81,11 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
         val view = LayoutInflater.from(context).inflate(R.layout.dialog_add_pattern,null, false)
         builder.setView(view)
         if(position >= 0) {
-            view.pattern_name_edit_text.setText(patterns[position].name)
-            view.number_of_rows_in_repeat_edit_text.setText(patterns[position].rowsInRepeat)
-            view.number_of_stitches_in_repeat_edit_text.setText(patterns[position].stitchesInRepeat)
-            view.total_number_of_rows_edit_text.setText(patterns[position].totalRows)
-            view.total_number_of_stitches_edit_text.setText(patterns[position].totalStitches)
+            view.pattern_name_edit_text.setText(patterns[position]?.name)
+            view.number_of_rows_in_repeat_edit_text.setText(patterns[position]?.rowsInRepeat)
+            view.number_of_stitches_in_repeat_edit_text.setText(patterns[position]?.stitchesInRepeat)
+            view.total_number_of_rows_edit_text.setText(patterns[position]?.totalRows)
+            view.total_number_of_stitches_edit_text.setText(patterns[position]?.totalStitches)
         }
         builder.setPositiveButton(android.R.string.ok) {_ : DialogInterface?, _ : Int ->
             val name = view.pattern_name_edit_text.text.toString()
