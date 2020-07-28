@@ -25,6 +25,7 @@ data class Note(
             val note = snapshot.toObject(Note::class.java)!!
             Log.d(Constants.TAG, "Pattern: $note")
             note.id = snapshot.id
+            Log.d(Constants.TAG , "Note: $note")
             return note
         }
     }
