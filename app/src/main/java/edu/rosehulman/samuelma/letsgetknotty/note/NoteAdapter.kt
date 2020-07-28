@@ -26,7 +26,7 @@ class NoteAdapter(val context: Context, uid: String, projectId: String) : Recycl
 
     fun addSnapshotListener() {
         listenerRegistration = notesRef
-            .orderBy(Project.LAST_TOUCHED_KEY, Query.Direction.ASCENDING)
+            .orderBy(Note.CREATED_KEY, Query.Direction.ASCENDING)
             .addSnapshotListener { querySnapshot, e ->
                 if (e != null) {
                     Log.w(Constants.TAG, "listen error", e)
