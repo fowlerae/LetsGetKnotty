@@ -86,7 +86,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
         val rowCounterRecyclerView : RecyclerView = view.findViewById(R.id.row_counter_recycler_view)
         rowCounterAdapter = project?.id?.let { RowCounterAdapter(context!!, uid!!, it) }!!
-        noteRecyclerView.adapter = rowCounterAdapter
+        rowCounterRecyclerView.adapter = rowCounterAdapter
         rowCounterAdapter.addSnapshotListener()
         rowCounterRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL ,false)
 
