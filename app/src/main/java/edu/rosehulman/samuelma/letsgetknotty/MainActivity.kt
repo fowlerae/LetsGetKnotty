@@ -94,9 +94,9 @@ class MainActivity : AppCompatActivity(),
         startActivityForResult(loginIntent, RC_SIGN_IN)
     }
 
-    fun getFab(): FloatingActionButton {
-        return fab
-    }
+//    fun getFab(): FloatingActionButton {
+//        return fab
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
