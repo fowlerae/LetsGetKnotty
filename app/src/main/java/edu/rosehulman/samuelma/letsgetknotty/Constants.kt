@@ -7,4 +7,5 @@ object Constants {
     const val USERS_COLLECTION = "users"
     const val PROJECTS_COLLECTION = "projects"
     const val NOTES_COLLECTION = "notes"
+    const val ROW_COUNTER_COLLECTION = "rowCounters"
 }

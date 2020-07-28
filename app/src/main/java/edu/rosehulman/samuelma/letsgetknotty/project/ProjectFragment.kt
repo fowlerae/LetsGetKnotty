@@ -13,12 +13,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.rosehulman.samuelma.letsgetknotty.R
-import edu.rosehulman.samuelma.letsgetknotty.RowCounter
+import edu.rosehulman.samuelma.letsgetknotty.rowCounter.RowCounter
 import edu.rosehulman.samuelma.letsgetknotty.note.NoteAdapter
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternFragment
+import edu.rosehulman.samuelma.letsgetknotty.rowCounter.RowCounterAdapter
 import kotlinx.android.synthetic.main.dialog_add_gauge.view.*
 import kotlinx.android.synthetic.main.dialog_add_row_counter.view.*
+import kotlinx.android.synthetic.main.row_counter_card_view.view.*
 
 
 private const val ARG_PROJECT = "project"
@@ -27,6 +29,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     private var project: Project? = null
     lateinit var patternAdapter : PatternAdapter
     lateinit var noteAdapter : NoteAdapter
+    lateinit var rowCounterAdapter : RowCounterAdapter
     lateinit var listener: PatternAdapter.OnPatternSelectedListener
     private var uid : String? = null
     companion object {
@@ -79,6 +82,14 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         noteAdapter.addSnapshotListener()
         noteRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL ,false)
 
+        // row counter recycler
+
+        val rowCounterRecyclerView : RecyclerView = view.findViewById(R.id.row_counter_recycler_view)
+        rowCounterAdapter = project?.id?.let { RowCounterAdapter(context!!, uid!!, it) }!!
+        noteRecyclerView.adapter = rowCounterAdapter
+        rowCounterAdapter.addSnapshotListener()
+        rowCounterRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL ,false)
+
         val addPattern = view.findViewById<LinearLayout>(R.id.add_pattern_button)
         addPattern.setOnClickListener {
 //            adapter.add(Pattern("front","https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489",false))
@@ -92,10 +103,6 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         val addGauge : LinearLayout = view.findViewById(R.id.add_gauge_button)
         addGauge.setOnClickListener {
             showAddGauge()
-            addGauge.visibility = View.INVISIBLE
-            addGauge.setOnClickListener {
-
-            }
         }
 
         return view
@@ -117,7 +124,12 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
                 if(startingValue != "") {
                     num = startingValue.toInt()
                 }
-                val rowCounter = RowCounter(name,num,0)
+                val rowCounter =
+                    RowCounter(
+                        name,
+                        num,
+                        0
+                    )
             }
             builder.setNegativeButton(android.R.string.cancel, null)
             builder.show()
@@ -150,7 +162,35 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
                 if(heightString != "") {
                     height = heightString.toInt()
                 }
-             //   adapter.addGuage(patternName,rowCount,width,height)
+              //  rowCounterAdapter.addGuage(name, rowCount,width,height)
+            }
+            builder.setNegativeButton(android.R.string.cancel, null)
+            builder.show()
+        }
+
+    }
+
+    @SuppressLint("InflateParams")
+    fun showAddRowCounter() {
+        val builder = context?.let { AlertDialog.Builder(it) }
+        if (builder != null) {
+            builder.setTitle("Add Row Counter")
+            val view = LayoutInflater.from(context).inflate(
+                R.layout.dialog_add_edit_image, null, false
+            )
+            builder.setView(view)
+            builder.setPositiveButton(android.R.string.ok) { _, _ ->
+                var name : String = view.row_counter_name_edit_text.text.toString()
+                val rowsCountString = view.current_row_text_view.text.toString()
+                var rowCount = 0
+                if(rowsCountString != "") {
+                    rowCount = rowsCountString.toInt()
+                }
+                if(name == "") {
+                    name = "Row Counter"
+                }
+                val rowCounter = RowCounter(name,rowCount, 0)
+                rowCounterAdapter.add(rowCounter)
             }
             builder.setNegativeButton(android.R.string.cancel, null)
             builder.show()

@@ -64,8 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
-                <LinearLayout
-                    android:orientation="horizontal"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -73,6 +72,7 @@
                             android:id="@+id/row_counter_name_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:text="@string/row_counter"
                             android:textSize="24sp">
                         </TextView>
@@ -81,8 +81,8 @@
                             android:orientation="horizontal"
                             android:layout_gravity="center"
                             android:id="@+id/add_row_counter_button"
-                            android:layout_marginLeft="105dp"
                             android:layout_width="wrap_content"
+                            android:layout_alignParentRight="true"
                             android:layout_height="wrap_content">
 
                                 <ImageView
@@ -99,9 +99,15 @@
                         </LinearLayout>
 
 
-                </LinearLayout>
+                </RelativeLayout>
 
-                <include layout="@layout/row_counter" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:orientation="horizontal"
+                    android:id="@+id/row_counter_recycler_view"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <ImageView
                     android:id="@+id/image"
@@ -117,6 +123,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
+                            android:textSize="24sp"
                             android:text="Gauge (4 in x 4in): "/>
 
                         <TextView

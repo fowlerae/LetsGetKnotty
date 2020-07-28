@@ -1,6 +1,5 @@
-package edu.rosehulman.samuelma.letsgetknotty
+package edu.rosehulman.samuelma.letsgetknotty.rowCounter
 
-import android.os.Bundle
 import android.os.Parcelable
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
