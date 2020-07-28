@@ -65,7 +65,7 @@ class NoteAdapter(val context: Context, uid: String, projectId: String) : Recycl
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.pattern_grid_view, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.note_card_view, parent, false)
         return NoteViewHolder(view, this)
     }
 
