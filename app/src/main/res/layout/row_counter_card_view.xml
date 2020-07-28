@@ -22,8 +22,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_below="@+id/row_counter_name"
+            android:layout_centerHorizontal="true"
+            android:layout_alignBottom="@+id/row_counter_name"
             android:layout_height="wrap_content">
 
             <ImageView
