@@ -73,11 +73,11 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
         // note recycler
 
-        val noteRecyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
+        val noteRecyclerView : RecyclerView = view.findViewById(R.id.note_recycler_view)
         noteAdapter = project?.id?.let { NoteAdapter(context!!, uid!!, it) }!!
         noteRecyclerView.adapter = noteAdapter
         noteAdapter.addSnapshotListener()
-        noteRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
+        noteRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL ,false)
 
         val addPattern = view.findViewById<LinearLayout>(R.id.add_pattern_button)
         addPattern.setOnClickListener {
