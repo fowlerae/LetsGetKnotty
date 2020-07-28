@@ -33,7 +33,8 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val recyclerView = inflater.inflate(R.layout.fragment_project_list, container, false) as RecyclerView
+        val view = inflater.inflate(R.layout.fragment_project_list, container, false)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.project_list_recycler_view)
         listAdapter = ProjectListAdapter(
             context!!,
             uid!!,
@@ -47,7 +48,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         (context as MainActivity).getFab().setOnClickListener {
             listAdapter.showAddEditDialog(-1)
         }
-        return recyclerView
+        return view
     }
 
     companion object {
