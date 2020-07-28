@@ -16,7 +16,7 @@ data class Note(
     @get:Exclude
     var id = ""
     @ServerTimestamp
-    var lastTouched: Timestamp? = null
+    var created: Timestamp? = null
 
     companion object {
         const val CREATED_KEY = "created"
