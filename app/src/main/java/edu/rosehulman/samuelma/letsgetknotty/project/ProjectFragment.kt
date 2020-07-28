@@ -173,9 +173,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         val builder = context?.let { AlertDialog.Builder(it) }
         if (builder != null) {
             builder.setTitle("Add Row Counter")
-            val view = LayoutInflater.from(context).inflate(
-                R.layout.dialog_add_edit_image, null, false
-            )
+            val view = LayoutInflater.from(context).inflate(R.layout.dialog_add_gauge, null, false)
             builder.setView(view)
             builder.setPositiveButton(android.R.string.ok) { _, _ ->
                 val rowsCountString = view.rows_completed_edit_text.text.toString()
