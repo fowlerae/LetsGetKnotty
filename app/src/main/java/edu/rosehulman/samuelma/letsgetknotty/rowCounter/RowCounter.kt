@@ -1,10 +1,12 @@
 package edu.rosehulman.samuelma.letsgetknotty.rowCounter
 
 import android.os.Parcelable
+import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Exclude
 import com.google.firebase.firestore.ServerTimestamp
+import edu.rosehulman.samuelma.letsgetknotty.Constants
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -21,6 +23,7 @@ data class RowCounter(
             fun fromSnapshot(snapshot: DocumentSnapshot): RowCounter {
                 val rowCounter = snapshot.toObject(RowCounter::class.java)!!
                 rowCounter.id = snapshot.id
+                Log.d(Constants.TAG, "Row Counter: $rowCounter")
                 return rowCounter
             }
 
