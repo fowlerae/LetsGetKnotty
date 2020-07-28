@@ -13,13 +13,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.rosehulman.samuelma.letsgetknotty.R
+import edu.rosehulman.samuelma.letsgetknotty.note.Note
 import edu.rosehulman.samuelma.letsgetknotty.rowCounter.RowCounter
 import edu.rosehulman.samuelma.letsgetknotty.note.NoteAdapter
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternFragment
 import edu.rosehulman.samuelma.letsgetknotty.rowCounter.RowCounterAdapter
 import kotlinx.android.synthetic.main.dialog_add_gauge.view.*
+import kotlinx.android.synthetic.main.dialog_add_note.view.*
 import kotlinx.android.synthetic.main.dialog_add_row_counter.view.*
+import kotlinx.android.synthetic.main.note_card_view.view.*
 import kotlinx.android.synthetic.main.row_counter_card_view.view.*
 
 
@@ -90,6 +93,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         rowCounterAdapter.addSnapshotListener()
         rowCounterRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL ,false)
 
+
         val addPattern = view.findViewById<LinearLayout>(R.id.add_pattern_button)
         addPattern.setOnClickListener {
 //            adapter.add(Pattern("front","https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489",false))
@@ -105,6 +109,10 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
             showAddGauge()
         }
 
+        val addNote : LinearLayout = view.findViewById(R.id.add_note_button)
+        addNote.setOnClickListener {
+            showAddNote()
+        }
         return view
     }
 
@@ -130,12 +138,35 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
                         num,
                         0
                     )
+                rowCounterAdapter.add(rowCounter)
             }
             builder.setNegativeButton(android.R.string.cancel, null)
             builder.show()
         }
 
     }
+
+
+    @SuppressLint("InflateParams")
+    fun showAddNote() {
+        val builder = context?.let { AlertDialog.Builder(it) }
+        if (builder != null) {
+            builder.setTitle("Add Note")
+            val view = LayoutInflater.from(context).inflate(
+                R.layout.dialog_add_note, null, false
+            )
+            builder.setView(view)
+            builder.setPositiveButton(android.R.string.ok) { _, _ ->
+                val description = view.note_description_edit_text.text.toString()
+                val note : Note = Note(description)
+                noteAdapter.add(note)
+            }
+            builder.setNegativeButton(android.R.string.cancel, null)
+            builder.show()
+        }
+
+    }
+
 
     @SuppressLint("InflateParams")
     fun showAddGauge() {

@@ -27,4 +27,6 @@
     <string name="add_pattern">Add Pattern</string>
     <string name="add_row_counter">Add Row Counter</string>
     <string name="row_counter">Row Counter</string>
+    <string name="projects">Projects</string>
+    <string name="add_project">Add Project</string>
 </resources>
