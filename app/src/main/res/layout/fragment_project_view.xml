@@ -8,7 +8,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
             android:id="@+id/fragment_project_view"
             tools:context=".MainActivity">
@@ -49,7 +49,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/add_pattern"
-                                    android:layout_gravity="right" />
+                                    android:layout_gravity="end" />
 
                         </LinearLayout>
 
@@ -74,6 +74,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:text="@string/row_counter"
+                            android:textStyle="bold"
                             android:textSize="24sp">
                         </TextView>
 
@@ -124,7 +125,8 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:textSize="24sp"
-                            android:text="Gauge (4 in x 4in): "/>
+                            android:textStyle="bold"
+                            android:text="@string/gauge_4_in_x_4in"/>
 
                         <TextView
                             android:id="@+id/project_gauge"
@@ -151,7 +153,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Add Gauge" />
+                                    android:text="@string/add_gauge" />
                         </LinearLayout>
 
                 </RelativeLayout>
@@ -163,7 +165,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Noted"
+                            android:text="@string/note"
                             android:layout_alignParentStart="true"
                             android:layout_marginVertical="10dp"
                             android:layout_alignParentTop="true"
@@ -190,8 +192,8 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Add Note"
-                                    android:layout_gravity="right" />
+                                    android:text="@string/add_note"
+                                    android:layout_gravity="end" />
 
                         </LinearLayout>
 

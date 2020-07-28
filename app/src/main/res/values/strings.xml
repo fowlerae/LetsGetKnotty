@@ -29,4 +29,8 @@
     <string name="row_counter">Row Counter</string>
     <string name="projects">Projects</string>
     <string name="add_project">Add Project</string>
+    <string name="note">Note</string>
+    <string name="add_note">Add Note</string>
+    <string name="gauge_4_in_x_4in">Gauge (4 in x 4in):</string>
+    <string name="add_gauge">Add Gauge</string>
 </resources>
