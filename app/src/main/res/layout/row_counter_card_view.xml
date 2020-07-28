@@ -5,8 +5,7 @@
     android:layout_margin="5dp"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -16,12 +15,14 @@
             android:textSize="18sp"
             android:layout_marginStart="10dp"
             android:layout_marginVertical="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_height="wrap_content" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:gravity="center"
+            android:layout_centerInParent="true"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -47,6 +48,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
