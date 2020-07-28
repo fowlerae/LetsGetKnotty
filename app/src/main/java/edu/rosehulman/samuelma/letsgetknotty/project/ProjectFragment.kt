@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.RowCounter
+import edu.rosehulman.samuelma.letsgetknotty.note.NoteAdapter
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternFragment
 import kotlinx.android.synthetic.main.dialog_add_gauge.view.*
@@ -24,7 +25,8 @@ private const val ARG_PROJECT = "project"
 
 class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     private var project: Project? = null
-    lateinit var adapter : PatternAdapter
+    lateinit var patternAdapter : PatternAdapter
+    lateinit var noteAdapter : NoteAdapter
     lateinit var listener: PatternAdapter.OnPatternSelectedListener
     private var uid : String? = null
     companion object {
@@ -61,16 +63,27 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
         val textView : TextView = view.findViewById(R.id.project_title_text_view)
         textView.text = project?.name
-        val recyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
-        adapter = project?.id?.let { PatternAdapter(context!!, uid!!, it, listener) }!!
-        recyclerView.adapter = adapter
-        adapter.addSnapshotListener()
-        recyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
+
+        // pattern recycler
+        val patternRecyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
+        patternAdapter = project?.id?.let { PatternAdapter(context!!, uid!!, it, listener) }!!
+        patternRecyclerView.adapter = patternAdapter
+        patternAdapter.addSnapshotListener()
+        patternRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
+
+        // note recycler
+
+        val noteRecyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
+        noteAdapter = project?.id?.let { NoteAdapter(context!!, uid!!, it) }!!
+        noteRecyclerView.adapter = noteAdapter
+        noteAdapter.addSnapshotListener()
+        noteRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
+
         val addPattern = view.findViewById<LinearLayout>(R.id.add_pattern_button)
         addPattern.setOnClickListener {
 //            adapter.add(Pattern("front","https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489",false))
 //            adapter.notifyDataSetChanged()
-            adapter.showAddEditDialog(-1)
+            patternAdapter.showAddEditDialog(-1)
         }
         val addCounter = view.findViewById<LinearLayout>(R.id.add_row_counter_button)
         addCounter.setOnClickListener {
@@ -160,7 +173,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
 
     fun editDialog(position : Int) {
-        adapter?.showAddEditDialog(position)
+        patternAdapter?.showAddEditDialog(position)
     }
 
     fun addRowCounter(rowCounter: RowCounter) {

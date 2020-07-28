@@ -6,4 +6,5 @@ object Constants {
     const val TAG = "LGK"
     const val USERS_COLLECTION = "users"
     const val PROJECTS_COLLECTION = "projects"
+    const val NOTES_COLLECTION = "notes"
 }
