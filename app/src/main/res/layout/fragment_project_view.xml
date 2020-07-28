@@ -106,6 +106,42 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"/>
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gauge (4 in x 4in): "/>
+
+                        <TextView
+                            android:id="@+id/project_gauge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""/>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_gravity="center"
+                            android:id="@+id/add_gauge_button"
+                            android:layout_marginLeft="105dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_baseline_add_24" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Add Gauge" />
+                        </LinearLayout>
+
+                </LinearLayout>
 
         </LinearLayout>
 </ScrollView>

@@ -17,6 +17,7 @@ data class Pattern(
     var stitchesInRepeat : Int = 0,
     var totalRows : Int = 0,
     var totalStitches : Int =0,
+    var gauge : String = "",
     var showDark: Boolean = false) : Parcelable {
     @get:Exclude
     var id = ""

@@ -10,6 +10,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class RowCounter(
+    var name : String = "",
     var currentRow : Int = 1,
     var repetitionCount : Int  = 1) : Parcelable {
         @get:Exclude var id = ""

@@ -23,6 +23,7 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
         .document(projectId)
         .collection(Constants.PATTERNS_COLLECTION)
     private lateinit var listenerRegistration: ListenerRegistration
+    private var gauge : String = ""
 
     fun addSnapshotListener() {
         listenerRegistration = patternsRef
@@ -105,7 +106,7 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
             if(view.total_number_of_stitches_edit_text.text.toString() != "") {
                 totalStitches = view.total_number_of_stitches_edit_text.text.toString().toInt()
             }
-            val pattern = Pattern(name,"",rowsInRepeat,stitchesInRepeat,totalRows,totalStitches,false)
+            val pattern = Pattern(name,"",rowsInRepeat,stitchesInRepeat,totalRows,totalStitches,"",false)
             if(position < 0) {
                 pattern.imageUrl = "https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489"
                 add(pattern)
@@ -132,6 +133,15 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
         patterns[position].totalStitches = totalStitches
         patternsRef.document(patterns[position].id).set(patterns[position])
     }
+
+//    fun addGuage(pattern : Pattern, rowCount : Int, width : Int, height : Int) {
+//        val position : Int= patterns.indexOf(pattern)
+//        val horizontalGauge = (patterns[position].totalStitches / width) * 4
+//        val verticalGauge : Int = (rowCount / height) * 4
+//        val gauge : String = "$horizontalGauge in x $verticalGauge in"
+//        patterns[position].gauge = gauge
+//        patternsRef.document(patterns[position].id).set(patterns[position])
+//    }
 
     private fun remove(position: Int) {
         patternsRef.document(patterns[position].id).delete()

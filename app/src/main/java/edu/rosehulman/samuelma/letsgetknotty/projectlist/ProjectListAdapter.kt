@@ -115,14 +115,12 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         projectsRef.document(projects[position].id).set(projects[position])
     }
 
+
     private fun remove(position: Int) {
         projectsRef.document(projects[position].id).delete()
     }
 
     fun selectProject(position: Int) {
-//        val mq =pictures[position]
-//        mq.showDark = !mq.showDark
-//        picturesRef.document(mq.id).set(mq)
         listener?.onProjectSelected(projects[position])
     }
 

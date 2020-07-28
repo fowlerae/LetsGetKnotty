@@ -13,6 +13,7 @@ import edu.rosehulman.samuelma.letsgetknotty.MainActivity
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.project.ProjectFragment
+import edu.rosehulman.samuelma.letsgetknotty.projectlist.ProjectListFragment.Companion.newInstance
 
 private const val ARG_UID = "UID"
 
@@ -60,8 +61,6 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
             }
     }
 
-
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         listener = this
@@ -77,5 +76,6 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
             ft.commit()
         }
     }
+
 
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Counter name"/>
+
+            <EditText
+                android:id="@+id/row_counter_name_edit_text"
+                android:layout_width="match_parent"
+                android:inputType="textCapWords"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Starting Value"/>
+
+            <EditText
+                android:id="@+id/starting_value_edit_text"
+                android:layout_width="match_parent"
+                android:inputType="number"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <SearchView
+            android:id="@+id/add_row_counter_search_view"
+            android:layout_width="match_parent"
+            android:queryHint="Pattern to Count"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+</ScrollView>
