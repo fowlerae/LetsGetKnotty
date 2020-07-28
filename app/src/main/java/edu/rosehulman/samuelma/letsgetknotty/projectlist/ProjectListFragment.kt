@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import edu.rosehulman.samuelma.letsgetknotty.MainActivity
@@ -46,7 +47,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = listAdapter
         listAdapter.addSnapshotListener()
-        val addProjectButton = view.findViewById<RelativeLayout>(R.id.add_project_button)
+        val addProjectButton = view.findViewById<LinearLayout>(R.id.add_project_button)
         addProjectButton.setOnClickListener {
             listAdapter.showAddEditDialog(-1)
         }
