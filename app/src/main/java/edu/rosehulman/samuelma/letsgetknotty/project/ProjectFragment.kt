@@ -12,6 +12,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.note.Note
 import edu.rosehulman.samuelma.letsgetknotty.rowCounter.RowCounter
@@ -35,6 +38,8 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     lateinit var rowCounterAdapter : RowCounterAdapter
     lateinit var listener: PatternAdapter.OnPatternSelectedListener
     private var uid : String? = null
+    private lateinit var projectRef : DocumentReference
+
     companion object {
         @JvmStatic
         fun newInstance(pro: Project, u: String?) =
@@ -43,6 +48,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
                     putParcelable(ARG_PROJECT, pro)
                     uid = u
                     project = pro
+
                 }
             }
 
@@ -54,6 +60,16 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         arguments?.let {
             project = it.getParcelable(ARG_PROJECT)
         }
+        projectRef = uid?.let {
+            project?.id?.let { it1 ->
+                FirebaseFirestore
+                    .getInstance()
+                    .collection(Constants.USERS_COLLECTION)
+                    .document(it)
+                    .collection(Constants.PROJECTS_COLLECTION)
+                    .document(it1)
+            }
+        }!!
     }
 
     override fun onAttach(context: Context) {
@@ -199,35 +215,6 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
     }
 
-    @SuppressLint("InflateParams")
-    fun showAddRowCounter() {
-        val builder = context?.let { AlertDialog.Builder(it) }
-        if (builder != null) {
-            builder.setTitle("Add Row Counter")
-            val view = LayoutInflater.from(context).inflate(
-                R.layout.dialog_add_edit_image, null, false
-            )
-            builder.setView(view)
-            builder.setPositiveButton(android.R.string.ok) { _, _ ->
-                var name : String = view.row_counter_name_edit_text.text.toString()
-                val rowsCountString = view.current_row_text_view.text.toString()
-                var rowCount = 0
-                if(rowsCountString != "") {
-                    rowCount = rowsCountString.toInt()
-                }
-                if(name == "") {
-                    name = "Row Counter"
-                }
-                val rowCounter = RowCounter(name,rowCount, 0)
-                rowCounterAdapter.add(rowCounter)
-            }
-            builder.setNegativeButton(android.R.string.cancel, null)
-            builder.show()
-        }
-
-    }
-
-
 
     override fun onPatternSelected(pattern: Pattern) {
         val fragment = PatternFragment.newInstance(pattern)
@@ -247,6 +234,16 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
     fun addRowCounter(rowCounter: RowCounter) {
         //rowCounterRef.add(rowCounter)
+    }
+
+    fun addGuage(pattern : Pattern, rowCount : Int, width : Int, height : Int) {
+//        val position : Int= patterns.indexOf(pattern)
+//        val horizontalGauge = (patterns[position].totalStitches / width) * 4
+//        val verticalGauge : Int = (rowCount / height) * 4
+//        val gauge : String = "$horizontalGauge in x $verticalGauge in"
+//        patterns[position].gauge = gauge
+//        patternsRef.document(patterns[position].id).set(patterns[position])
+
     }
 
 }

@@ -123,6 +123,8 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
 
     fun add(pattern: Pattern) {
         patternsRef.add(pattern)
+
+        // call method to do fragment transaction for the create pattern
     }
 
     private fun edit(position: Int, name: String, rowsInRepeat: Int, stitchesInRepeat: Int, totalRows: Int, totalStitches: Int) {
@@ -134,14 +136,7 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
         patternsRef.document(patterns[position].id).set(patterns[position])
     }
 
-//    fun addGuage(pattern : Pattern, rowCount : Int, width : Int, height : Int) {
-//        val position : Int= patterns.indexOf(pattern)
-//        val horizontalGauge = (patterns[position].totalStitches / width) * 4
-//        val verticalGauge : Int = (rowCount / height) * 4
-//        val gauge : String = "$horizontalGauge in x $verticalGauge in"
-//        patterns[position].gauge = gauge
-//        patternsRef.document(patterns[position].id).set(patterns[position])
-//    }
+
 
     private fun remove(position: Int) {
         patternsRef.document(patterns[position].id).delete()

@@ -94,10 +94,6 @@ class MainActivity : AppCompatActivity(),
         startActivityForResult(loginIntent, RC_SIGN_IN)
     }
 
-//    fun getFab(): FloatingActionButton {
-//        return fab
-//    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -114,44 +110,12 @@ class MainActivity : AppCompatActivity(),
                 auth.signOut()
                 true
             }
-            R.id.action_increase_font_size -> {
-                changeFontSize(4)
-                true
-            }
-            R.id.action_decrease_font_size -> {
-                changeFontSize(-4)
-                true
-            }
             R.id.action_settings -> {
                 getWhichSettings()
                 true
             }
-            R.id.action_clear -> {
-                confirmClear()
-                true
-            }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-
-    private fun changeFontSize(delta: Int) {
-        // Increase the font size by delta sp
-//        var currentSize = quote_text_view.textSize / resources.displayMetrics.scaledDensity
-//        currentSize += delta
-//        quote_text_view.textSize = currentSize
-//        movie_text_view.textSize = currentSize
-    }
-
-    private fun confirmClear() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(getString(R.string.confirm_delete_title))
-        builder.setMessage(getString(R.string.confirm_delete_message))
-        builder.setPositiveButton(android.R.string.ok) { _, _ ->
-            // updateQuote(defaultMovieQuote)
-        }
-        builder.setNegativeButton(android.R.string.cancel, null)
-        builder.create().show()
     }
 
     private fun getWhichSettings() {
