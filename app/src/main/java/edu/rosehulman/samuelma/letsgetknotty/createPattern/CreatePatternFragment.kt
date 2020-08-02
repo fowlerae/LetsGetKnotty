@@ -66,12 +66,7 @@ class CreatePatternFragment: Fragment() {
     }
 
     fun createGrid(view : RecyclerView) {
-        val lparams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        val view1 = View(context)
-        view1.layoutParams = lparams
-        view1.setBackgroundColor(resources.getColor(R.color.colorAccent))
-        view.addView(view)
+        adapter.add(Grid(R.color.colorAccent))
     }
-
 
 }

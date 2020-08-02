@@ -79,15 +79,15 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
     override fun getItemCount() = rectangle.size
 
 
-    private fun add(project: Project) {
-        gridRef.add(project)
+    fun add(grid: Grid) {
+        gridRef.add(grid)
     }
 
-    private fun edit(position: Int, quote: String, movie: String) {
-        rectangle[position].name = quote
-        rectangle[position].imageUrl = movie
-        gridRef.document(rectangle[position].id).set(rectangle[position])
-    }
+//    private fun edit(position: Int, quote: String, movie: String) {
+//        rectangle[position].name = quote
+//        rectangle[position].imageUrl = movie
+//        gridRef.document(rectangle[position].id).set(rectangle[position])
+//    }
 
 
     private fun remove(position: Int) {

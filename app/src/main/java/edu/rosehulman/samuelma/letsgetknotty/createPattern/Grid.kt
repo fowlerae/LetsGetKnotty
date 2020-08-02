@@ -8,10 +8,7 @@ import com.google.firebase.firestore.ServerTimestamp
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Grid(
-    var name: String = "",
-    var imageUrl: String = "",
-    var showDark: Boolean = false) : Parcelable {
+data class Grid(var color: Int = 0) : Parcelable {
     @get:Exclude
     var id = ""
     @ServerTimestamp
