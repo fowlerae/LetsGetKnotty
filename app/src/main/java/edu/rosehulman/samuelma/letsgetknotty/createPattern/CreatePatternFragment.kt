@@ -65,8 +65,12 @@ class CreatePatternFragment: Fragment() {
         return view
     }
 
-    fun createGrid(view : RecyclerView) {
-        adapter.add(Grid(R.color.colorAccent))
+    private fun createGrid(view : RecyclerView) {
+        val loop : Int = width*height
+        for(x in 1..loop) {
+            adapter.add(Grid(R.color.colorAccent))
+        }
+
     }
 
 }
