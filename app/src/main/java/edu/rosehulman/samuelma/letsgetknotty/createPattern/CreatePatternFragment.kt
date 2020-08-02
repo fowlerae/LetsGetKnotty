@@ -60,7 +60,7 @@ class CreatePatternFragment: Fragment() {
         recyclerView.layoutManager = width?.let { GridLayoutManager(context, it) }
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
-        adapter?.addSnapshotListener()
+    //    adapter?.addSnapshotListener()
         return view
     }
 
