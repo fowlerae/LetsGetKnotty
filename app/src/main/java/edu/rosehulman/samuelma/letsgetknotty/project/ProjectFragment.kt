@@ -16,6 +16,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
+import edu.rosehulman.samuelma.letsgetknotty.createPattern.CreatePatternFragment
 import edu.rosehulman.samuelma.letsgetknotty.note.Note
 import edu.rosehulman.samuelma.letsgetknotty.rowCounter.RowCounter
 import edu.rosehulman.samuelma.letsgetknotty.note.NoteAdapter
@@ -32,12 +33,12 @@ import kotlinx.android.synthetic.main.row_counter_card_view.view.*
 private const val ARG_PROJECT = "project"
 
 class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
-    private var project: Project? = null
+    private lateinit var project: Project
     lateinit var patternAdapter : PatternAdapter
     lateinit var noteAdapter : NoteAdapter
     lateinit var rowCounterAdapter : RowCounterAdapter
     lateinit var listener: PatternAdapter.OnPatternSelectedListener
-    private var uid : String? = null
+    private var uid : String = ""
     private lateinit var projectRef : DocumentReference
 
     companion object {
@@ -46,7 +47,9 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
             ProjectFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PROJECT, pro)
-                    uid = u
+                    if (u != null) {
+                        uid = u
+                    }
                     project = pro
 
                 }
@@ -56,9 +59,9 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        project = arguments?.getParcelable(ARG_PROJECT)
+        project = arguments?.getParcelable(ARG_PROJECT)!!
         arguments?.let {
-            project = it.getParcelable(ARG_PROJECT)
+            project = it.getParcelable(ARG_PROJECT)!!
         }
         projectRef = uid?.let {
             project?.id?.let { it1 ->
@@ -226,6 +229,24 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
             ft.commit()
         }
     }
+
+    override fun onAddPatternSelected(pattern: Pattern) {
+        val fragment = project?.let {
+            uid?.let { it1 ->
+                CreatePatternFragment.newInstance(
+                    it1,pattern,
+                    it,pattern.stitchesInRepeat,pattern.rowsInRepeat)
+            }
+        }
+        val fm = fragmentManager
+        val ft = fm?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.fragment_container, fragment)
+            ft.addToBackStack("add pattern")
+            ft.commit()
+        }
+    }
+
 
 
     fun editDialog(position : Int) {

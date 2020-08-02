@@ -23,8 +23,8 @@ class CreatePatternFragment: Fragment() {
     private lateinit var project: Project
     private var width: Int = 0
     private var height: Int = 0
-    private var uid: String? = null
-    private lateinit var adapter: CreatePatternAdapter?
+    private var uid: String = ""
+    private lateinit var adapter: CreatePatternAdapter
     companion object {
         @JvmStatic
         fun newInstance(uid :String, pattern: Pattern, project : Project, width : Int, height : Int) =
@@ -46,7 +46,7 @@ class CreatePatternFragment: Fragment() {
         project = arguments!!.getParcelable(ARG_PROJECT)!!
         width = arguments!!.getInt(ARG_WIDTH)
         height = arguments!!.getInt(ARG_HEIGHT)
-        uid = arguments!!.getString(ARG_UID)
+        uid = arguments!!.getString(ARG_UID).toString()
 
     }
 
@@ -56,7 +56,7 @@ class CreatePatternFragment: Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_create_pattern, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.create_pattern_grid_view)
-        adapter = context?.let { uid?.let { it1 -> CreatePatternAdapter(it, it1, project,pattern) } }
+        adapter = context?.let { CreatePatternAdapter(it,uid,project,pattern) }!!
         recyclerView.layoutManager = width?.let { GridLayoutManager(context, it) }
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
