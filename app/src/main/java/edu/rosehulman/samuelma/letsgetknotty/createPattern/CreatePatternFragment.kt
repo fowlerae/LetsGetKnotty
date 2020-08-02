@@ -56,10 +56,10 @@ class CreatePatternFragment: Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_create_pattern, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.create_pattern_grid_view)
-        adapter = context?.let { CreatePatternAdapter(it,uid,project,pattern) }!!
-        recyclerView.layoutManager = width?.let { GridLayoutManager(context, it) }
-        recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = adapter
+    //    adapter = context?.let { CreatePatternAdapter(it,uid,project,pattern) }!!
+    //    recyclerView.layoutManager = width?.let { GridLayoutManager(context, it) }
+    //    recyclerView.setHasFixedSize(true)
+    //    recyclerView.adapter = adapter
     //    adapter?.addSnapshotListener()
         return view
     }
