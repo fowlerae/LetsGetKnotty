@@ -3,6 +3,7 @@ package edu.rosehulman.samuelma.letsgetknotty.project
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -242,7 +243,8 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         val ft = fm?.beginTransaction()
         if (ft != null) {
             ft.replace(R.id.fragment_container, fragment)
-            ft.addToBackStack("add pattern")
+            ft.addToBackStack("add")
+            Log.d(Constants.TAG, "Trying to add create pattern fragment")
             ft.commit()
         }
     }
