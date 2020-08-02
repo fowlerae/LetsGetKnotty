@@ -90,19 +90,19 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
 
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             val name = view.pattern_name_edit_text.text.toString()
-            var rowsInRepeat = 0
+            var rowsInRepeat = 10
             if( view.number_of_rows_in_repeat_edit_text.text.toString() != "") {
                 rowsInRepeat = view.number_of_rows_in_repeat_edit_text.text.toString().toInt()
             }
-            var stitchesInRepeat = 0
+            var stitchesInRepeat = 10
             if(view.number_of_stitches_in_repeat_edit_text.text.toString() != "") {
               stitchesInRepeat = view.number_of_stitches_in_repeat_edit_text.text.toString().toInt()
             }
-            var totalRows = 0
+            var totalRows = 10
             if(view.total_number_of_rows_edit_text.text.toString() != "") {
                 totalRows = view.total_number_of_rows_edit_text.text.toString().toInt()
             }
-            var totalStitches = 0
+            var totalStitches = 10
             if(view.total_number_of_stitches_edit_text.text.toString() != "") {
                 totalStitches = view.total_number_of_stitches_edit_text.text.toString().toInt()
             }
