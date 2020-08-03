@@ -16,7 +16,7 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     private val cardView :CardView = itemView.grid_card_view
     init {
         itemView.setOnClickListener {
-            adapter.updateColor(adapterPosition, adapter.context.resources.getColor(R.color.colorPrimaryDark))
+            adapter.updateColor(adapterPosition)
             cardView.setCardBackgroundColor(adapter.context.resources.getColor(R.color.colorPrimaryDark))
         }
         itemView.setOnLongClickListener {

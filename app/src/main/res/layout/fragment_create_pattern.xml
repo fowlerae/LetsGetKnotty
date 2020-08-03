@@ -10,6 +10,12 @@
         android:layout_height="wrap_content"
         android:text="Create Pattern"/>
 
+    <Button
+        android:id="@+id/choose_color_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose a color"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/create_pattern_grid_view"
         android:layout_width="match_parent"

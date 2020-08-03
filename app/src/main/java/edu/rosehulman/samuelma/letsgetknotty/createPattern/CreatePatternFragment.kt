@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.flask.colorpicker.ColorPickerView
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
@@ -62,6 +66,11 @@ class CreatePatternFragment: Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
         adapter.addSnapshotListener()
+
+        val button : Button = view.findViewById(R.id.choose_color_button)
+        button.setOnClickListener {
+            showColorDialog(button)
+        }
         return view
     }
 
@@ -72,6 +81,29 @@ class CreatePatternFragment: Fragment() {
             resources.getColor(R.color.colorPrimaryDark)
         }
 
+    }
+
+    // From https://android-arsenal.com/details/1/1693
+    private fun showColorDialog(fontButton : Button) {
+        val builder = ColorPickerDialogBuilder.with(context)
+        builder.setTitle("Choose HSV color")
+        builder.wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+        builder.density(12)
+        builder.setOnColorSelectedListener { selectedColor ->
+            Toast.makeText(
+                context,
+                "onColorSelected: 0x" + Integer.toHexString(selectedColor),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        builder.setPositiveButton(android.R.string.ok) { dialog, selectedColor, allColors ->
+            //  colorMessage.message = activity_input_message.text.toString()
+            val color = selectedColor
+            fontButton.setBackgroundColor(color)
+            adapter.color = color
+        }
+        builder.setNegativeButton(getString(android.R.string.cancel), null)
+        builder.build().show()
     }
 
 }

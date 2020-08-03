@@ -1,6 +1,7 @@
 package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         .collection(Constants.PATTERNS_COLLECTION)
         .document(pattern.id)
         .collection(Constants.GRID_COLLECTION)
+    var color : Int = Color.WHITE
 
     private lateinit var listenerRegistration: ListenerRegistration
 
@@ -98,7 +100,7 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         // build grid here loop the number of grid (width * height) and loop over number calling add method
     }
 
-    fun updateColor(position: Int , color : Int) {
+    fun updateColor(position: Int) {
         rectangles[position].color = color
         gridRef.document(rectangles[position].id).set(rectangles[position])
     }
