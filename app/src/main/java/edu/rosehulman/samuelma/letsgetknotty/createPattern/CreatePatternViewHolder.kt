@@ -26,7 +26,6 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     }
 
     fun bind(grid: Grid) {
-        grid.color = Color.WHITE
-        cardView.setCardBackgroundColor(Color.WHITE)
+        cardView.setCardBackgroundColor(grid.color)
     }
 }
