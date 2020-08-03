@@ -12,7 +12,7 @@ import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
 class CreatePatternAdapter(val context: Context, uid: String, project: Project, pattern: Pattern) : RecyclerView.Adapter<CreatePatternViewHolder>()  {
-    private val rectangle = ArrayList<Grid>()
+    private val rectangles = ArrayList<Grid>()
     private val gridRef = FirebaseFirestore
         .getInstance()
         .collection(Constants.USERS_COLLECTION)
@@ -45,19 +45,19 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
             when (documentChange.type) {
                 DocumentChange.Type.ADDED -> {
                     Log.d(Constants.TAG, "Adding $grid")
-                    rectangle.add(0, grid)
+                    rectangles.add(0, grid)
                     notifyItemInserted(0)
                 }
                 DocumentChange.Type.REMOVED -> {
                     Log.d(Constants.TAG, "Removing $grid")
-                    val index = rectangle.indexOfFirst { it.id == grid.id }
-                    rectangle.removeAt(index)
+                    val index = rectangles.indexOfFirst { it.id == grid.id }
+                    rectangles.removeAt(index)
                     notifyItemRemoved(index)
                 }
                 DocumentChange.Type.MODIFIED -> {
                     Log.d(Constants.TAG, "Modifying $grid")
-                    val index = rectangle.indexOfFirst { it.id == grid.id }
-                    rectangle[index] = grid
+                    val index = rectangles.indexOfFirst { it.id == grid.id }
+                    rectangles[index] = grid
                     notifyItemChanged(index)
                 }
             }
@@ -73,10 +73,10 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         listViewHolder: CreatePatternViewHolder,
         index: Int
     ) {
-        listViewHolder.bind(rectangle[index])
+        listViewHolder.bind(rectangles[index])
     }
 
-    override fun getItemCount() = rectangle.size
+    override fun getItemCount() = rectangles.size
 
 
     fun add(grid: Grid) {
@@ -91,11 +91,15 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
 
 
     private fun remove(position: Int) {
-        gridRef.document(rectangle[position].id).delete()
+        gridRef.document(rectangles[position].id).delete()
     }
 
     fun buildGrid() {
         // build grid here loop the number of grid (width * height) and loop over number calling add method
     }
 
+    fun updateColor(position: Int , color : Int) {
+        rectangles[position].color = color
+        gridRef.document(rectangles[position].id).set(rectangles[position])
+    }
 }

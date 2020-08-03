@@ -16,6 +16,7 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     private val cardView :CardView = itemView.grid_card_view
     init {
         itemView.setOnClickListener {
+            adapter.updateColor(adapterPosition, adapter.context.resources.getColor(R.color.colorPrimaryDark))
             cardView.setCardBackgroundColor(adapter.context.resources.getColor(R.color.colorPrimaryDark))
         }
         itemView.setOnLongClickListener {
@@ -25,19 +26,6 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     }
 
     fun bind(grid: Grid) {
-//        nameTextView.text = project.name
-//        Picasso.get().load(project?.imageUrl)
-//            .transform(CropSquareTransformation())
-//            .into(imageView)
-//        //  Log.d(Constants.TAG, "IMAGE VIEW SIZE: ${imageView.width}")
-//        if (grid.showDark) {
-//            cardView.setCardBackgroundColor(
-//                ContextCompat.getColor(adapter.context, R.color.colorAccent)
-//            )
-//        } else {
-//            cardView.setCardBackgroundColor(Color.WHITE)
-//        }
-        cardView.setCardBackgroundColor(Color.WHITE)
-       // itemView.setBackgroundColor(adapter.context.resources.getColor(R.color.colorPrimaryDark))
+        cardView.setCardBackgroundColor(grid.color)
     }
 }
