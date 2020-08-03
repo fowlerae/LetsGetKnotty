@@ -35,6 +35,6 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
 //        } else {
 //            cardView.setCardBackgroundColor(Color.WHITE)
 //        }
-        itemView.setBackgroundColor(grid.color)
+        itemView.setBackgroundColor(adapter.context.resources.getColor(R.color.colorPrimaryDark))
     }
 }
