@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.View
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
 import edu.rosehulman.samuelma.letsgetknotty.R
 import kotlinx.android.synthetic.main.project_list_grid_card_view.view.*
@@ -13,8 +14,7 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
 //    private val imageView: ImageView = itemView.findViewById(R.id.image_text_view)
     init {
         itemView.setOnClickListener {
-         //   adapter.selectProject(adapterPosition)
-
+            itemView.setBackgroundColor(adapter.context.resources.getColor(R.color.colorPrimaryDark))
         }
         itemView.setOnLongClickListener {
          //   adapter.showAddEditDialog(adapterPosition)

@@ -69,6 +69,7 @@ class CreatePatternFragment: Fragment() {
         val loop : Int = width*height
         for(x in 1..loop) {
             adapter.add(Grid(R.color.colorAccent))
+            resources.getColor(R.color.colorPrimaryDark)
         }
 
     }
