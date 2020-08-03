@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/grid_card_view"
-    android:layout_margin="1dp"
+    android:layout_margin="0.1dp"
     android:layout_width="30dp"
     android:layout_height="30dp">
 
