@@ -61,7 +61,7 @@ class CreatePatternFragment: Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
         adapter?.addSnapshotListener()
-        createGrid(recyclerView)
+      //  createGrid(recyclerView)
         return view
     }
 
