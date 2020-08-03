@@ -17,7 +17,7 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     init {
         itemView.setOnClickListener {
             adapter.updateColor(adapterPosition)
-            cardView.setCardBackgroundColor(adapter.context.resources.getColor(R.color.colorPrimaryDark))
+            cardView.setCardBackgroundColor(adapter.color)
         }
         itemView.setOnLongClickListener {
          //   adapter.showAddEditDialog(adapterPosition)
