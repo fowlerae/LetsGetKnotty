@@ -104,4 +104,10 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         rectangles[position].color = color
         gridRef.document(rectangles[position].id).set(rectangles[position])
     }
+
+    fun empty() {
+        for(x in 0..rectangles.size) {
+            remove(x)
+        }
+    }
 }

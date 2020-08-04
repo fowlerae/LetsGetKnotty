@@ -237,7 +237,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
             uid?.let { it1 ->
                 CreatePatternFragment.newInstance(
                     it1,pattern,
-                    it,pattern.stitchesInRepeat,pattern.rowsInRepeat)
+                    it,-1)
             }
         }
         val fm = fragmentManager

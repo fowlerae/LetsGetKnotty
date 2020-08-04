@@ -156,4 +156,6 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
         fun onPatternSelected(pattern: Pattern)
         fun onAddPatternSelected(pattern: Pattern)
     }
+
+
 }

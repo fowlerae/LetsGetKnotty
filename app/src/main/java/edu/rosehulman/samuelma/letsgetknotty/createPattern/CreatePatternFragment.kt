@@ -19,27 +19,24 @@ import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
 private const val ARG_PATTERN = "pattern"
 private const val ARG_PROJECT = "project"
-private const val ARG_WIDTH = "width"
-private const val ARG_HEIGHT = "height"
 private const val ARG_UID = "uid"
+private const val ARG_POSITION = "position"
 
 class CreatePatternFragment: Fragment() {
     private lateinit var pattern : Pattern
     private lateinit var project: Project
-    private var width: Int = 0
-    private var height: Int = 0
     private var uid: String = ""
+    private var position: Int = -1
     private lateinit var adapter: CreatePatternAdapter
     companion object {
         @JvmStatic
-        fun newInstance(uid :String, pattern: Pattern, project : Project, width : Int, height : Int) =
+        fun newInstance(uid :String, pattern: Pattern, project : Project, position : Int) =
             CreatePatternFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PATTERN, pattern)
                     putParcelable(ARG_PROJECT, project)
-                    putInt(ARG_WIDTH,width)
-                    putInt(ARG_HEIGHT, height)
                     putString(ARG_UID, uid)
+                    putInt(ARG_POSITION,position)
                 }
             }
 
@@ -49,9 +46,8 @@ class CreatePatternFragment: Fragment() {
         super.onCreate(savedInstanceState)
         pattern = arguments!!.getParcelable(ARG_PATTERN)!!
         project = arguments!!.getParcelable(ARG_PROJECT)!!
-        width = arguments!!.getInt(ARG_WIDTH)
-        height = arguments!!.getInt(ARG_HEIGHT)
         uid = arguments!!.getString(ARG_UID).toString()
+        position = arguments!!.get(ARG_POSITION).toString().toInt()
 
     }
 
@@ -67,19 +63,21 @@ class CreatePatternFragment: Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
         adapter.addSnapshotListener()
-
         val button : Button = view.findViewById(R.id.choose_color_button)
         button.setOnClickListener {
             showColorDialog(button)
         }
+        if(position == -1) {
+            createGrid()
+        }
         return view
     }
 
-    private fun createGrid(view : RecyclerView) {
-        val loop : Int = width*height
+    private fun createGrid() {
+        adapter.empty()
+        val loop : Int = pattern.stitchesInRepeat*pattern.rowsInRepeat
         for(x in 1..loop) {
-            adapter.add(Grid(R.color.colorAccent))
-            resources.getColor(R.color.colorPrimaryDark)
+            adapter.add(Grid(Color.WHITE))
         }
 
     }
