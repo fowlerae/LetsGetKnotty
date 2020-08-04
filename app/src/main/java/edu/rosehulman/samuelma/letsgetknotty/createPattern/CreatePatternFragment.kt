@@ -72,6 +72,12 @@ class CreatePatternFragment: Fragment() {
         return view
     }
 
+    private fun createGrid() {
+        for(x in 0 until pattern.stitchesInRepeat*pattern.rowsInRepeat) {
+            adapter.add(Grid(Color.WHITE))
+        }
+    }
+
     // From https://android-arsenal.com/details/1/1693
     private fun showColorDialog(colorButton : Button) {
         val builder = ColorPickerDialogBuilder.with(context)
