@@ -13,7 +13,12 @@ import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import kotlinx.android.synthetic.main.dialog_add_pattern.view.*
 
 
-class PatternAdapter(val context: Context, uid: String, projectId: String, var listener: OnPatternSelectedListener?) : RecyclerView.Adapter<PatternViewHolder>() {
+class PatternAdapter(
+    val context: Context,
+    uid: String,
+    projectId: String,
+    var listener: OnPatternSelectedListener?
+) : RecyclerView.Adapter<PatternViewHolder>() {
     private val patterns = ArrayList<Pattern>()
     private val patternsRef = FirebaseFirestore
         .getInstance()
@@ -23,7 +28,7 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
         .document(projectId)
         .collection(Constants.PATTERNS_COLLECTION)
     private lateinit var listenerRegistration: ListenerRegistration
-    private var gauge : String = ""
+    private var gauge: String = ""
 
     fun addSnapshotListener() {
         listenerRegistration = patternsRef
@@ -91,28 +96,39 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             val name = view.pattern_name_edit_text.text.toString()
             var rowsInRepeat = 10
-            if( view.number_of_rows_in_repeat_edit_text.text.toString() != "") {
+            if (view.number_of_rows_in_repeat_edit_text.text.toString() != "") {
                 rowsInRepeat = view.number_of_rows_in_repeat_edit_text.text.toString().toInt()
             }
             var stitchesInRepeat = 10
-            if(view.number_of_stitches_in_repeat_edit_text.text.toString() != "") {
-              stitchesInRepeat = view.number_of_stitches_in_repeat_edit_text.text.toString().toInt()
+            if (view.number_of_stitches_in_repeat_edit_text.text.toString() != "") {
+                stitchesInRepeat =
+                    view.number_of_stitches_in_repeat_edit_text.text.toString().toInt()
             }
             var totalRows = 10
-            if(view.total_number_of_rows_edit_text.text.toString() != "") {
+            if (view.total_number_of_rows_edit_text.text.toString() != "") {
                 totalRows = view.total_number_of_rows_edit_text.text.toString().toInt()
             }
             var totalStitches = 10
-            if(view.total_number_of_stitches_edit_text.text.toString() != "") {
+            if (view.total_number_of_stitches_edit_text.text.toString() != "") {
                 totalStitches = view.total_number_of_stitches_edit_text.text.toString().toInt()
             }
-            val pattern = Pattern(name,"",rowsInRepeat,stitchesInRepeat,totalRows,totalStitches,"",false)
-            if(position < 0) {
-                pattern.imageUrl = "https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489"
+            val pattern = Pattern(
+                name,
+                "",
+                rowsInRepeat,
+                stitchesInRepeat,
+                totalRows,
+                totalStitches,
+                "",
+                false
+            )
+            if (position < 0) {
+                pattern.imageUrl =
+                    "https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489"
                 add(pattern)
                 listener?.onAddPatternSelected(patterns[0])
             } else {
-                edit(position, name, rowsInRepeat,stitchesInRepeat,totalRows,totalStitches)
+                edit(position, name, rowsInRepeat, stitchesInRepeat, totalRows, totalStitches)
             }
         }
         builder.setNegativeButton(android.R.string.cancel, null)
@@ -124,11 +140,16 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
 
     fun add(pattern: Pattern) {
         patternsRef.add(pattern)
-
-        // call method to do fragment transaction for the create pattern
     }
 
-    private fun edit(position: Int, name: String, rowsInRepeat: Int, stitchesInRepeat: Int, totalRows: Int, totalStitches: Int) {
+    private fun edit(
+        position: Int,
+        name: String,
+        rowsInRepeat: Int,
+        stitchesInRepeat: Int,
+        totalRows: Int,
+        totalStitches: Int
+    ) {
         patterns[position].name = name
         patterns[position].rowsInRepeat = rowsInRepeat
         patterns[position].stitchesInRepeat = stitchesInRepeat
@@ -136,7 +157,6 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
         patterns[position].totalStitches = totalStitches
         patternsRef.document(patterns[position].id).set(patterns[position])
     }
-
 
 
     private fun remove(position: Int) {
