@@ -106,8 +106,11 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
     }
 
     fun empty() {
-        for(x in 0..rectangles.size) {
-            remove(x)
+        if(rectangles.isNotEmpty()) {
+            for(x in 0..(rectangles.size-1).toInt()) {
+                remove(x)
+            }
         }
+
     }
 }
