@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.*
 import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
-import edu.rosehulman.samuelma.letsgetknotty.pattern.CreatePatternViewHolder
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
