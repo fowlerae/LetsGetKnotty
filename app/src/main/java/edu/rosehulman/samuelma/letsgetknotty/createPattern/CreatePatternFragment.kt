@@ -67,14 +67,16 @@ class CreatePatternFragment: Fragment() {
         button.setOnClickListener {
             showColorDialog(button)
         }
-        if(position == -1) {
+        if(position != -1) {
+            adapter.empty()
+            createGrid()
+        } else {
             createGrid()
         }
         return view
     }
 
     private fun createGrid() {
-        adapter.empty()
         val loop : Int = pattern.stitchesInRepeat*pattern.rowsInRepeat
         for(x in 1..loop) {
             adapter.add(Grid(Color.WHITE))
