@@ -28,7 +28,7 @@ class CreatePatternFragment: Fragment() {
     private lateinit var adapter: CreatePatternAdapter
     companion object {
         @JvmStatic
-        fun newInstance(uid :String, pattern: Pattern, project : Project, position : Int) =
+        fun newInstance(uid :String, pattern: Pattern, project : Project) =
             CreatePatternFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PATTERN, pattern)
