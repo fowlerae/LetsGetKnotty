@@ -135,6 +135,7 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
         patterns[position].totalRows = totalRows
         patterns[position].totalStitches = totalStitches
         patternsRef.document(patterns[position].id).set(patterns[position])
+        listener?.onAddPatternSelected(patterns[position])
     }
 
 
