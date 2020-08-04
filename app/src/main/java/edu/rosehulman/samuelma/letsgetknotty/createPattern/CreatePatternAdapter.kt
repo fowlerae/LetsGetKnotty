@@ -101,10 +101,4 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         gridRef.document(rectangles[position].id).set(rectangles[position])
     }
 
-    fun isEmpty() : Boolean {
-        if(rectangles.size == 0) {
-            return true
-        }
-        return false
-    }
 }

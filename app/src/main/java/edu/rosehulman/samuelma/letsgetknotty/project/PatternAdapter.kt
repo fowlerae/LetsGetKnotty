@@ -113,7 +113,6 @@ class PatternAdapter(val context: Context, uid: String, projectId: String, var l
                 listener?.onAddPatternSelected(patterns[0], position)
             } else {
                 edit(position, name, rowsInRepeat,stitchesInRepeat,totalRows,totalStitches)
-                listener?.onAddPatternSelected(patterns[0], position)
             }
         }
         builder.setNegativeButton(android.R.string.cancel, null)

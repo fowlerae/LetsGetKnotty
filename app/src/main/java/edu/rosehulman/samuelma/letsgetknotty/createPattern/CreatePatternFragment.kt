@@ -67,11 +67,7 @@ class CreatePatternFragment: Fragment() {
         button.setOnClickListener {
             showColorDialog(button)
         }
- //       adapter.empty()
-        if(adapter.isEmpty()) {
-            createGrid()
-        }
-
+        createGrid()
         return view
     }
 
