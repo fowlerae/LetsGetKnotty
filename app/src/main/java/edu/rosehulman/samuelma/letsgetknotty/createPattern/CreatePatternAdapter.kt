@@ -23,7 +23,7 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         .collection(Constants.PATTERNS_COLLECTION)
         .document(pattern.id)
         .collection(Constants.GRID_COLLECTION)
-    var color : Int = Color.WHITE
+    var color : Int = Color.BLACK
 
     private lateinit var listenerRegistration: ListenerRegistration
 

@@ -1,5 +1,6 @@
 package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -68,6 +69,7 @@ class CreatePatternFragment: Fragment() {
         adapter.addSnapshotListener()
 
         val button : Button = view.findViewById(R.id.choose_color_button)
+        button.setBackgroundColor(Color.BLACK)
         button.setOnClickListener {
             showColorDialog(button)
         }
