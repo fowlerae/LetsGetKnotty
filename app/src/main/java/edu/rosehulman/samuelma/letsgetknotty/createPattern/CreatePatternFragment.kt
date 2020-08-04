@@ -77,15 +77,15 @@ class CreatePatternFragment: Fragment() {
     }
 
     private fun createGrid() {
-        val loop : Int = pattern.stitchesInRepeat*pattern.rowsInRepeat
-        for(x in 1..loop) {
-            adapter.add(Grid(Color.WHITE))
+        for(x in 1..pattern.rowsInRepeat) {
+            for(y in 1..pattern.stitchesInRepeat) {
+                adapter.add(Grid(Color.WHITE))
+            }
         }
-
     }
 
     // From https://android-arsenal.com/details/1/1693
-    private fun showColorDialog(fontButton : Button) {
+    private fun showColorDialog(colorButton : Button) {
         val builder = ColorPickerDialogBuilder.with(context)
         builder.setTitle("Choose HSV color")
         builder.wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
@@ -100,7 +100,7 @@ class CreatePatternFragment: Fragment() {
         builder.setPositiveButton(android.R.string.ok) { dialog, selectedColor, allColors ->
             //  colorMessage.message = activity_input_message.text.toString()
             val color = selectedColor
-            fontButton.setBackgroundColor(color)
+            colorButton.setBackgroundColor(color)
             adapter.color = color
         }
         builder.setNegativeButton(getString(android.R.string.cancel), null)
