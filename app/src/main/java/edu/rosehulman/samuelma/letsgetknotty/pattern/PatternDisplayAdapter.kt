@@ -1,7 +1,6 @@
 package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
 import android.content.Context
-import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.*
 import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
-import edu.rosehulman.samuelma.letsgetknotty.pattern.CreatePatternViewHolder
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
+import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternDisplayViewHolder
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
-class CreatePatternAdapter(val context: Context, uid: String, project: Project, pattern: Pattern) : RecyclerView.Adapter<CreatePatternViewHolder>()  {
+class PatternDisplayAdapter(val context: Context, uid: String, project: Project, pattern: Pattern) : RecyclerView.Adapter<PatternDisplayViewHolder>()  {
     private val rectangles = ArrayList<Grid>()
     private val gridRef = FirebaseFirestore
         .getInstance()
@@ -24,7 +23,6 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         .collection(Constants.PATTERNS_COLLECTION)
         .document(pattern.id)
         .collection(Constants.GRID_COLLECTION)
-    var color : Int = Color.BLACK
 
     private lateinit var listenerRegistration: ListenerRegistration
 
@@ -67,13 +65,13 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, index: Int): CreatePatternViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, index: Int): PatternDisplayViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.create_pattern_grid_view, parent, false)
-        return CreatePatternViewHolder(view, this)
+        return PatternDisplayViewHolder(view, this)
     }
 
     override fun onBindViewHolder(
-        listViewHolder: CreatePatternViewHolder,
+        listViewHolder: PatternDisplayViewHolder,
         index: Int
     ) {
         listViewHolder.bind(rectangles[index])
@@ -97,12 +95,4 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         gridRef.document(rectangles[position].id).delete()
     }
 
-    fun buildGrid() {
-        // build grid here loop the number of grid (width * height) and loop over number calling add method
-    }
-
-    fun updateColor(position: Int) {
-        rectangles[position].color = color
-        gridRef.document(rectangles[position].id).set(rectangles[position])
-    }
 }

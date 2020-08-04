@@ -69,7 +69,6 @@ class CreatePatternFragment: Fragment() {
         adapter.addSnapshotListener()
 
         val button : Button = view.findViewById(R.id.choose_color_button)
-        button.setBackgroundColor(Color.BLACK)
         button.setOnClickListener {
             showColorDialog(button)
         }

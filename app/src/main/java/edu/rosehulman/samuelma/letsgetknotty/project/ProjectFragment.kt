@@ -221,27 +221,13 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
 
     override fun onPatternSelected(pattern: Pattern) {
-//        val fragment = PatternFragment.newInstance(pattern)
-//        val fm = fragmentManager
-//        val ft = fm?.beginTransaction()
-//        if (ft != null) {
-//            ft.replace(R.id.fragment_container, fragment)
-//            ft.addToBackStack("pattern")
-//            ft.commit()
-//        }
-        val fragment = project?.let {
-            uid?.let { it1 ->
-                CreatePatternFragment.newInstance(
-                    it1,pattern,
-                    it,pattern.stitchesInRepeat,pattern.rowsInRepeat)
-            }
-        }
+        val fragment = PatternFragment.newInstance(uid, pattern, project)
         val fm = fragmentManager
         val ft = fm?.beginTransaction()
         if (ft != null) {
             ft.replace(R.id.fragment_container, fragment)
             ft.addToBackStack("add")
-            Log.d(Constants.TAG, "Trying to add create pattern fragment")
+            Log.d(Constants.TAG, "Trying to display pattern")
             ft.commit()
         }
     }

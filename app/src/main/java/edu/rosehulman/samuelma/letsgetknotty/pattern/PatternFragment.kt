@@ -5,22 +5,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import edu.rosehulman.samuelma.letsgetknotty.project.PatternAdapter
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import edu.rosehulman.samuelma.letsgetknotty.R
+import edu.rosehulman.samuelma.letsgetknotty.createPattern.PatternDisplayAdapter
+import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
 
 private const val ARG_PATTERN = "pattern"
+private const val ARG_UID = "uid"
+private const val ARG_PROJECT = "project"
 
 class PatternFragment : Fragment() {
-    private var pattern: Pattern? = null
-    private var uid: String? = null
-    private lateinit var adapter: PatternAdapter
+    private lateinit var pattern: Pattern
+    private lateinit var uid: String
+    private lateinit var project : Project
+    private lateinit var adapter: PatternDisplayAdapter
     companion object {
         @JvmStatic
-        fun newInstance(pattern: Pattern) =
+        fun newInstance(uid :String, pattern: Pattern, project: Project) =
             PatternFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PATTERN, pattern)
+                    putString(ARG_UID,uid)
+                    putParcelable(ARG_PROJECT,project)
                 }
             }
 
@@ -28,10 +36,9 @@ class PatternFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pattern = arguments?.getParcelable(ARG_PATTERN)
-        arguments?.let {
-            pattern = it.getParcelable(ARG_PATTERN)
-        }
+        pattern = arguments!!.getParcelable(ARG_PATTERN)!!
+        project = arguments!!.getParcelable(ARG_PROJECT)!!
+        uid = arguments!!.getString(ARG_UID).toString()
 
     }
 
@@ -39,7 +46,15 @@ class PatternFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_pattern, container, false)
+        val view : View = inflater.inflate(R.layout.fragment_pattern, container, false)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.pattern_grid_view)
+        adapter = context?.let { PatternDisplayAdapter(it,uid,project,pattern) }!!
+        recyclerView.layoutManager =
+            GridLayoutManager(context,10)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = adapter
+        adapter.addSnapshotListener()
+        return view
     }
 
 
