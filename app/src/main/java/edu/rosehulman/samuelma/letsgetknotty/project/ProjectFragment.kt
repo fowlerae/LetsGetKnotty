@@ -264,10 +264,9 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         val horizontalGauge = (stitchCount/ width) * 4
         val verticalGauge : Int = (rowCount / height) * 4
         val gauge : String = "$horizontalGauge in x $verticalGauge in"
-     //   project.gauge = gauge
-      //  patternsRef.document(patterns[position].id).set(patterns[position])
         val map = mapOf("gauge" to gauge)
-        projectRef.set(map)
+
+        projectRef.update(map)
     }
 
 }
