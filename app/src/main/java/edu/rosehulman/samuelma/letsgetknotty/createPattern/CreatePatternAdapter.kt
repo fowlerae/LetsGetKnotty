@@ -102,7 +102,7 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
     }
 
     fun isEmpty() : Boolean {
-        if(rectangles.isEmpty()) {
+        if(rectangles.size == 0) {
             return true
         }
         return false
