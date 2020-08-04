@@ -96,21 +96,14 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         gridRef.document(rectangles[position].id).delete()
     }
 
-    fun buildGrid() {
-        // build grid here loop the number of grid (width * height) and loop over number calling add method
-    }
-
     fun updateColor(position: Int) {
         rectangles[position].color = color
         gridRef.document(rectangles[position].id).set(rectangles[position])
     }
 
     fun empty() {
-        if(rectangles.isNotEmpty()) {
-            for(x in 0..(rectangles.size-1).toInt()) {
-                remove(x)
-            }
+        for(x in 0..(rectangles.size-1).toInt()) {
+            remove(x)
         }
-
     }
 }
