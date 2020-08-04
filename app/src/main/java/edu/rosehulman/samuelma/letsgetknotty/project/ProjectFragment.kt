@@ -232,12 +232,12 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         }
     }
 
-    override fun onAddPatternSelected(pattern: Pattern) {
+    override fun onAddPatternSelected(pattern: Pattern, position: Int) {
         val fragment = project?.let {
             uid?.let { it1 ->
                 CreatePatternFragment.newInstance(
                     it1,pattern,
-                    it,-1)
+                    it,position)
             }
         }
         val fm = fragmentManager
