@@ -263,9 +263,8 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     fun addGuage(stitchCount : Int, rowCount : Int, width : Int, height : Int) {
         val horizontalGauge = (stitchCount/ width) * 4
         val verticalGauge : Int = (rowCount / height) * 4
-        val gauge : String = "$horizontalGauge in x $verticalGauge in"
+        val gauge : String = "$horizontalGauge st x $verticalGauge row"
         val map = mapOf("gauge" to gauge)
-
         projectRef.update(map)
     }
 
