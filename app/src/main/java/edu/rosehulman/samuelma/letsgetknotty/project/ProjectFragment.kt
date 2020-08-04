@@ -52,6 +52,12 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
                         uid = u
                     }
                     project = pro
+                    projectRef = FirebaseFirestore
+                        .getInstance()
+                        .collection(Constants.USERS_COLLECTION)
+                        .document(uid)
+                        .collection(Constants.PROJECTS_COLLECTION)
+                        .document(project.id)
 
                 }
             }
@@ -199,6 +205,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
                 val rowsCountString = view.rows_completed_edit_text.text.toString()
                 val widthString = view.project_width_edit_text.text.toString()
                 val heightString : String = view.project_height_edit_text.text.toString()
+                val stitchString : String = view.project_stitch_count_edit_text.text.toString()
                 var rowCount = 0
                 if(rowsCountString != "") {
                      rowCount = rowsCountString.toInt()
@@ -211,7 +218,11 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
                 if(heightString != "") {
                     height = heightString.toInt()
                 }
-              //  rowCounterAdapter.addGuage(name, rowCount,width,height)
+                var stitchCount =0
+                if(stitchString != "") {
+                    stitchCount = stitchString.toInt()
+                }
+                addGuage(stitchCount, rowCount,width,height)
             }
             builder.setNegativeButton(android.R.string.cancel, null)
             builder.show()
@@ -249,24 +260,14 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         }
     }
 
-
-
-    fun editDialog(position : Int) {
-        patternAdapter?.showAddEditDialog(position)
-    }
-
-    fun addRowCounter(rowCounter: RowCounter) {
-        //rowCounterRef.add(rowCounter)
-    }
-
-    fun addGuage(pattern : Pattern, rowCount : Int, width : Int, height : Int) {
-//        val position : Int= patterns.indexOf(pattern)
-//        val horizontalGauge = (patterns[position].totalStitches / width) * 4
-//        val verticalGauge : Int = (rowCount / height) * 4
-//        val gauge : String = "$horizontalGauge in x $verticalGauge in"
-//        patterns[position].gauge = gauge
-//        patternsRef.document(patterns[position].id).set(patterns[position])
-
+    fun addGuage(stitchCount : Int, rowCount : Int, width : Int, height : Int) {
+        val horizontalGauge = (stitchCount/ width) * 4
+        val verticalGauge : Int = (rowCount / height) * 4
+        val gauge : String = "$horizontalGauge in x $verticalGauge in"
+     //   project.gauge = gauge
+      //  patternsRef.document(patterns[position].id).set(patterns[position])
+        val map = mapOf("gauge" to gauge)
+        projectRef.set(map)
     }
 
 }
