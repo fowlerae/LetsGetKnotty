@@ -41,7 +41,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     lateinit var listener: PatternAdapter.OnPatternSelectedListener
     private var uid : String = ""
     private lateinit var projectRef : DocumentReference
-
+    private lateinit var view : View
     companion object {
         @JvmStatic
         fun newInstance(pro: Project, u: String?) =
@@ -91,7 +91,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_project_view, container, false)
+        view = inflater.inflate(R.layout.fragment_project_view, container, false)
 
         val textView : TextView = view.findViewById(R.id.project_title_text_view)
         textView.text = project?.name
@@ -266,6 +266,8 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         val gauge : String = "$horizontalGauge st x $verticalGauge row"
         val map = mapOf("gauge" to gauge)
         projectRef.update(map)
+        val gaugeTextView = view.findViewById<TextView>(R.id.project_gauge)
+        gaugeTextView.text = gauge
     }
 
 }
