@@ -27,8 +27,6 @@ import edu.rosehulman.samuelma.letsgetknotty.rowCounter.RowCounterAdapter
 import kotlinx.android.synthetic.main.dialog_add_gauge.view.*
 import kotlinx.android.synthetic.main.dialog_add_note.view.*
 import kotlinx.android.synthetic.main.dialog_add_row_counter.view.*
-import kotlinx.android.synthetic.main.note_card_view.view.*
-import kotlinx.android.synthetic.main.row_counter_card_view.view.*
 
 
 private const val ARG_PROJECT = "project"
@@ -41,7 +39,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     lateinit var listener: PatternAdapter.OnPatternSelectedListener
     private var uid : String = ""
     private lateinit var projectRef : DocumentReference
-    private lateinit var view : View
+    private lateinit var root : View
     companion object {
         @JvmStatic
         fun newInstance(pro: Project, u: String?) =
@@ -91,13 +89,13 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        view = inflater.inflate(R.layout.fragment_project_view, container, false)
+        root = inflater.inflate(R.layout.fragment_project_view, container, false)
 
-        val textView : TextView = view.findViewById(R.id.project_title_text_view)
+        val textView : TextView = root.findViewById(R.id.project_title_text_view)
         textView.text = project?.name
 
         // pattern recycler
-        val patternRecyclerView : RecyclerView = view.findViewById(R.id.pattern_recycler_view)
+        val patternRecyclerView : RecyclerView = root.findViewById(R.id.pattern_recycler_view)
         patternAdapter = project?.id?.let { PatternAdapter(context!!, uid!!, it, listener) }!!
         patternRecyclerView.adapter = patternAdapter
         patternAdapter.addSnapshotListener()
@@ -105,7 +103,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
         // note recycler
 
-        val noteRecyclerView : RecyclerView = view.findViewById(R.id.note_recycler_view)
+        val noteRecyclerView : RecyclerView = root.findViewById(R.id.note_recycler_view)
         noteAdapter = project?.id?.let { NoteAdapter(context!!, uid!!, it) }!!
         noteRecyclerView.adapter = noteAdapter
         noteAdapter.addSnapshotListener()
@@ -113,33 +111,33 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
         // row counter recycler
 
-        val rowCounterRecyclerView : RecyclerView = view.findViewById(R.id.row_counter_recycler_view)
+        val rowCounterRecyclerView : RecyclerView = root.findViewById(R.id.row_counter_recycler_view)
         rowCounterAdapter = project?.id?.let { RowCounterAdapter(context!!, uid!!, it) }!!
         rowCounterRecyclerView.adapter = rowCounterAdapter
         rowCounterAdapter.addSnapshotListener()
         rowCounterRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL ,false)
 
 
-        val addPattern = view.findViewById<LinearLayout>(R.id.add_pattern_button)
+        val addPattern = root.findViewById<LinearLayout>(R.id.add_pattern_button)
         addPattern.setOnClickListener {
 //            adapter.add(Pattern("front","https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489",false))
 //            adapter.notifyDataSetChanged()
             patternAdapter.showAddEditDialog(-1)
         }
-        val addCounter = view.findViewById<LinearLayout>(R.id.add_row_counter_button)
+        val addCounter = root.findViewById<LinearLayout>(R.id.add_row_counter_button)
         addCounter.setOnClickListener {
             showAddCounter()
         }
-        val addGauge : LinearLayout = view.findViewById(R.id.add_gauge_button)
+        val addGauge : LinearLayout = root.findViewById(R.id.add_gauge_button)
         addGauge.setOnClickListener {
             showAddGauge()
         }
 
-        val addNote : LinearLayout = view.findViewById(R.id.add_note_button)
+        val addNote : LinearLayout = root.findViewById(R.id.add_note_button)
         addNote.setOnClickListener {
             showAddNote()
         }
-        return view
+        return root
     }
 
     @SuppressLint("InflateParams")
@@ -266,7 +264,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         val gauge : String = "$horizontalGauge st x $verticalGauge row"
         val map = mapOf("gauge" to gauge)
         projectRef.update(map)
-        val gaugeTextView = view.findViewById<TextView>(R.id.project_gauge)
+        val gaugeTextView = root.findViewById<TextView>(R.id.project_gauge)
         gaugeTextView.text = gauge
     }
 
