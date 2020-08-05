@@ -50,7 +50,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/add_pattern"
-                                    android:textSize="12sp"
+                                    android:textSize="16sp"
                                     android:layout_gravity="end" />
 
                         </LinearLayout>
@@ -96,6 +96,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:textSize="16sp"
                                     android:text="@string/add_row_counter" />
 
 
@@ -160,7 +161,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/add_gauge"
-                                    android:textSize="12sp"/>
+                                    android:textSize="16sp"/>
                         </LinearLayout>
 
                 </RelativeLayout>
@@ -200,7 +201,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/add_note"
-                                    android:textSize="12sp"
+                                    android:textSize="16sp"
                                     android:layout_gravity="end" />
 
                         </LinearLayout>
