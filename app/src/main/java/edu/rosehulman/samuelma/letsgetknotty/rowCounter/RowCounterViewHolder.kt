@@ -13,7 +13,7 @@ class RowCounterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)  {
     private val rowCounterName : TextView = itemView.findViewById(R.id.row_counter_name)
     private val rowTextView: TextView = itemView.findViewById(R.id.current_row_text_view)
     private val upImageView : RelativeLayout = itemView.findViewById(R.id.row_counter_increase_button)
-    private val downImageView : RelativeLayout = itemView.findViewById(R.id.row_counter_decrease_button)
+    private val downImageView : ImageView = itemView.findViewById(R.id.row_counter_decrease_button)
   //  private var cardView: CardView = itemView.row_card_view
 
     fun bind(rowCounter: RowCounter) {
