@@ -123,6 +123,7 @@
                     android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/gauge_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -135,6 +136,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
+                            android:layout_below="@+id/gauge_title"
                             android:textSize="24sp"
                             android:text=""/>
 
