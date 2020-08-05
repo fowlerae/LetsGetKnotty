@@ -65,7 +65,7 @@ class RowCounterAdapter(val context: Context, uid: String, projectId: String) : 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RowCounterViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.row_counter_card_view, parent, false)
-        return RowCounterViewHolder(view)
+        return RowCounterViewHolder(view, this)
     }
 
     override fun getItemCount() = rowCounters.size
@@ -76,6 +76,18 @@ class RowCounterAdapter(val context: Context, uid: String, projectId: String) : 
 
     fun add(rowCounter: RowCounter) {
         rowCounterRef.add(rowCounter)
+    }
+
+    fun increaseRow(position: Int) : Int {
+        rowCounters[position].increaseRow()
+        rowCounterRef.document(rowCounters[position].id).set(rowCounters[position])
+        return rowCounters[position].currentRow
+    }
+
+    fun decreaseRow(position: Int) : Int  {
+        rowCounters[position].decreaseRow()
+        rowCounterRef.document(rowCounters[position].id).set(rowCounters[position])
+        return rowCounters[position].currentRow
     }
 
     private fun remove(position: Int) {

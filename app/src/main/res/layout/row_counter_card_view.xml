@@ -32,7 +32,7 @@
                 android:id="@+id/row_counter_decrease_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="140dp"
+                android:layout_marginLeft="130dp"
                 android:layout_marginRight="10dp">
 
                 <View
