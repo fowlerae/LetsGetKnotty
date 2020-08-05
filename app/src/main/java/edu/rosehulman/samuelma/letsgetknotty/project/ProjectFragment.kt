@@ -146,7 +146,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
                 return@addSnapshotListener
             }
             val gaugeTextView = root.findViewById<TextView>(R.id.project_gauge)
-            gaugeTextView.text = (snapshot.get("gauge") ?: "") as String
+            gaugeTextView.text = (snapshot?.get("gauge") ?: "") as String
         }
 
         return root
