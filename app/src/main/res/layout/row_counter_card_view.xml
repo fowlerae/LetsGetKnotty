@@ -31,7 +31,9 @@
             <RelativeLayout
                 android:id="@+id/row_counter_decrease_button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="10dp">
 
                 <View
                     android:id="@+id/ellipse_5"
@@ -64,7 +66,9 @@
             <RelativeLayout
                 android:id="@+id/row_counter_increase_button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="50dp">
 
                 <View
                     android:layout_width="24dp"
