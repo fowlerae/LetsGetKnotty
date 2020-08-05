@@ -14,7 +14,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
 import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.createPattern.CreatePatternFragment
@@ -137,6 +139,16 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         addNote.setOnClickListener {
             showAddNote()
         }
+
+
+        projectRef.addSnapshotListener { snapshot : DocumentSnapshot?, exception : FirebaseFirestoreException? ->
+            if(exception != null) {
+                return@addSnapshotListener
+            }
+            val gaugeTextView = root.findViewById<TextView>(R.id.project_gauge)
+            gaugeTextView.text = (snapshot.get("gauge") ?: "") as String
+        }
+
         return root
     }
 
