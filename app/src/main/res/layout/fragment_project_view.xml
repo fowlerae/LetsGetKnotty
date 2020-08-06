@@ -14,9 +14,14 @@
             android:id="@+id/fragment_project_view"
             tools:context=".MainActivity">
 
+<!--                <androidx.core.widget.ContentLoadingProgressBar-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="5dp"-->
+<!--                    style="?android:attr/progressBarStyleHorizontal"-->
+<!--                    />-->
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="10dp"
                     android:layout_height="wrap_content">
                         <TextView
                             android:id="@+id/project_title_text_view"
@@ -26,34 +31,20 @@
                             android:layout_alignParentStart="true"
                             android:layout_marginVertical="10dp"
                             android:layout_alignParentTop="true"
-                            android:textStyle="bold"
-                            android:textSize="24sp">
+                            style="@style/SectionTitle">
 
                         </TextView>
 
-                        <LinearLayout
-                            android:id="@+id/add_pattern_button"
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginVertical="13dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_baseline_add_24" />
-
                                 <TextView
+                                    android:id="@+id/add_pattern_button"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/add_pattern"
-                                    android:textSize="16sp"
-                                    android:layout_gravity="end" />
+                                    android:layout_gravity="end"
+                                    android:layout_alignBaseline="@id/project_title_text_view"
+                                    style="@style/SectionAdd"
+                                    />
 
-                        </LinearLayout>
 
 
                 </RelativeLayout>
@@ -74,33 +65,18 @@
                             android:id="@+id/row_counter_name_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
                             android:text="@string/row_counter"
-                            android:textStyle="bold"
-                            android:textSize="24sp">
+                            style="@style/SectionTitle">
                         </TextView>
 
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_gravity="center"
-                            android:id="@+id/add_row_counter_button"
-                            android:layout_width="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_baseline_add_24" />
-
                                 <TextView
+                                    android:id="@+id/add_row_counter_button"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="16sp"
-                                    android:text="@string/add_row_counter" />
-
-
-                        </LinearLayout>
+                                    android:text="@string/add_row_counter"
+                                    android:layout_alignBaseline="@id/row_counter_name_text_view"
+                                    style="@style/SectionAdd"/>
 
 
                 </RelativeLayout>
@@ -114,63 +90,44 @@
                     android:padding="2dp"
                     android:layout_height="wrap_content"/>
 
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"/>
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/gauge_title"
+                            style="@style/SectionTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:text="@string/gauge_4_in_x_4in"/>
+                            android:text="@string/gauge_4_in_x_4in" />
 
                         <TextView
                             android:id="@+id/project_gauge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_centerHorizontal="true"
                             android:layout_below="@+id/gauge_title"
-                            android:textSize="24sp"
-                            android:text=""/>
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:text=""
+                            android:textSize="24sp" />
 
-                        <LinearLayout
-                            android:layout_alignParentRight="true"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center"
+                        <TextView
                             android:id="@+id/add_gauge_button"
-                            android:layout_marginLeft="105dp"
+                            style="@style/SectionAdd"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/gauge_title"
+                            android:text="@string/add_gauge" />
 
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_baseline_add_24" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/add_gauge"
-                                    android:textSize="16sp"/>
-                        </LinearLayout>
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="10dp"
                     android:layout_height="wrap_content">
                         <TextView
+                            android:id="@+id/note_title_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/note"
@@ -182,29 +139,14 @@
 
                         </TextView>
 
-                        <LinearLayout
-                            android:id="@+id/add_note_button"
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginVertical="13dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_height="wrap_content">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_baseline_add_24" />
-
                                 <TextView
+                                    android:id="@+id/add_note_button"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/add_note"
-                                    android:textSize="16sp"
-                                    android:layout_gravity="end" />
-
-                        </LinearLayout>
+                                    android:layout_alignBaseline="@id/note_title_text_view"
+                                    style="@style/SectionAdd"
+                                    />
 
 
                 </RelativeLayout>

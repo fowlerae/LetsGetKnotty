@@ -120,22 +120,22 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         rowCounterRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL ,false)
 
 
-        val addPattern = root.findViewById<LinearLayout>(R.id.add_pattern_button)
+        val addPattern = root.findViewById<TextView>(R.id.add_pattern_button)
         addPattern.setOnClickListener {
 //            adapter.add(Pattern("front","https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489",false))
 //            adapter.notifyDataSetChanged()
             patternAdapter.showAddEditDialog(-1)
         }
-        val addCounter = root.findViewById<LinearLayout>(R.id.add_row_counter_button)
+        val addCounter = root.findViewById<TextView>(R.id.add_row_counter_button)
         addCounter.setOnClickListener {
             showAddCounter()
         }
-        val addGauge : LinearLayout = root.findViewById(R.id.add_gauge_button)
+        val addGauge : TextView = root.findViewById(R.id.add_gauge_button)
         addGauge.setOnClickListener {
             showAddGauge()
         }
 
-        val addNote : LinearLayout = root.findViewById(R.id.add_note_button)
+        val addNote : TextView = root.findViewById(R.id.add_note_button)
         addNote.setOnClickListener {
             showAddNote()
         }
@@ -162,7 +162,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
             )
             builder.setView(view)
             builder.setPositiveButton(android.R.string.ok) { _, _ ->
-                val name = "${view.row_counter_name_edit_text.text} Row Counter"
+                val name = "${view.row_counter_name_edit_text.text}"
                 val startingValue = view.starting_value_edit_text.text.toString()
                 var num = 0
                 if(startingValue != "") {
