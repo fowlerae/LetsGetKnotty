@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="5dp"
-    >
+    android:layout_marginHorizontal="5dp">
 
     <TextView
+        android:id="@+id/create_pattern_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
         android:text="@string/create_pattern_title"
-        style="@style/SectionTitle"/>
+        style="@style/SectionTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
 
     <LinearLayout
+        android:id="@+id/color_stitch_selectors"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:gravity="center">
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/create_pattern_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
 
         <Button
             android:id="@+id/choose_color_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
-             />
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,7 +62,35 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/create_pattern_grid_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/color_stitch_selectors"
         />
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/cancel_create_pattern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/add_create_pattern"
+        android:text="Cancel"
+        />
+
+    <Button
+        android:id="@+id/add_create_pattern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/cancel_create_pattern"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Add"
+        />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
