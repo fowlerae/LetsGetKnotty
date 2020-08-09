@@ -88,9 +88,9 @@ class CreatePatternFragment: Fragment() {
         }
         builder.setPositiveButton(android.R.string.ok) { dialog, selectedColor, allColors ->
             //  colorMessage.message = activity_input_message.text.toString()
-            val color = selectedColor
-            colorButton.setBackgroundColor(color)
-            adapter.color = color
+            //val color = selectedColor
+            colorButton.setBackgroundColor(selectedColor)
+            adapter.color = selectedColor
         }
         builder.setNegativeButton(getString(android.R.string.cancel), null)
         builder.build().show()
