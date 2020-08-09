@@ -34,4 +34,7 @@
     <string name="gauge_4_in_x_4in">Gauge (4 in x 4in):</string>
     <string name="add_gauge">Add Gauge</string>
     <string name="login_prompt">Welcome! Who are you?</string>
+    <string name="color">Color</string>
+    <string name="create_pattern_title">Create Pattern</string>
+    <string name="stitch">Stitch</string>
 </resources>
