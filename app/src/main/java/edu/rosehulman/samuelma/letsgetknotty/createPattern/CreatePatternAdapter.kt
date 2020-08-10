@@ -12,7 +12,7 @@ import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
-class CreatePatternAdapter(val context: Context, uid: String, project: Project, pattern: Pattern) : RecyclerView.Adapter<CreatePatternViewHolder>()  {
+class CreatePatternAdapter(val context: Context, var uid: String, project: Project, pattern: Pattern) : RecyclerView.Adapter<CreatePatternViewHolder>()  {
     private val rectangles = ArrayList<Grid>()
     private val gridRef = FirebaseFirestore
         .getInstance()
@@ -23,6 +23,7 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         .collection(Constants.PATTERNS_COLLECTION)
         .document(pattern.id)
         .collection(Constants.GRID_COLLECTION)
+
     var color : Int = Color.BLACK
 
     private lateinit var listenerRegistration: ListenerRegistration
@@ -84,13 +85,6 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
     fun add(grid: Grid) {
         gridRef.add(grid)
     }
-
-//    private fun edit(position: Int, quote: String, movie: String) {
-//        rectangle[position].name = quote
-//        rectangle[position].imageUrl = movie
-//        gridRef.document(rectangle[position].id).set(rectangle[position])
-//    }
-
 
     private fun remove(position: Int) {
         gridRef.document(rectangles[position].id).delete()

@@ -122,8 +122,6 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
         val addPattern = root.findViewById<TextView>(R.id.add_pattern_button)
         addPattern.setOnClickListener {
-//            adapter.add(Pattern("front","https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489",false))
-//            adapter.notifyDataSetChanged()
             patternAdapter.showAddEditDialog(-1)
         }
         val addCounter = root.findViewById<TextView>(R.id.add_row_counter_button)
