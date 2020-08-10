@@ -68,7 +68,7 @@ class CreatePatternFragment: Fragment() {
     }
 
     private fun createGrid() {
-        for(x in 0 until pattern.stitchesInRepeat*pattern.rowsInRepeat) {
+        for(x in 0 until pattern.stitchesInRepeat*pattern.rowsInRepeat/2) {
             adapter.add(Grid(Color.WHITE))
         }
     }
