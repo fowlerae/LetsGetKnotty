@@ -12,7 +12,7 @@ import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
-class CreatePatternAdapter(val context: Context, var uid: String, project: Project, pattern: Pattern) : RecyclerView.Adapter<CreatePatternViewHolder>()  {
+class CreatePatternAdapter(val context: Context, var uid: String, val project: Project, val pattern: Pattern) : RecyclerView.Adapter<CreatePatternViewHolder>()  {
     private val rectangles = ArrayList<Grid>()
     private val gridRef = FirebaseFirestore
         .getInstance()
@@ -38,6 +38,7 @@ class CreatePatternAdapter(val context: Context, var uid: String, project: Proje
                     processSnapshotChanges(querySnapshot!!)
                 }
             }
+        Log.d(Constants.TAG, "Path: Uid: $uid, Project: ${project.id}, Pattern: ${pattern.id}")
     }
 
     private fun processSnapshotChanges(querySnapshot: QuerySnapshot) {
