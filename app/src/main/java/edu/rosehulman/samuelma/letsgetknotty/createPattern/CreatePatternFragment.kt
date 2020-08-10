@@ -2,6 +2,7 @@ package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
+import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
@@ -68,7 +70,9 @@ class CreatePatternFragment: Fragment() {
     }
 
     private fun createGrid() {
-        for(x in 0 until pattern.stitchesInRepeat*pattern.rowsInRepeat/2) {
+        Log.d(Constants.TAG, "stitches : ${pattern.stitchesInRepeat}")
+        Log.d(Constants.TAG, "stitches : ${pattern.rowsInRepeat}")
+        for(x in 0 until pattern.stitchesInRepeat*pattern.rowsInRepeat) {
             adapter.add(Grid(Color.WHITE))
         }
     }
