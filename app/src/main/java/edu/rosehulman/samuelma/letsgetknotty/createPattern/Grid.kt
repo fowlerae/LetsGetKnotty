@@ -9,7 +9,7 @@ import com.google.firebase.firestore.ServerTimestamp
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Grid(var color: Int = Color.WHITE) : Parcelable {
+data class Grid(var color: Int = Color.WHITE, var stitchType: StitchType = StitchType.KNIT) : Parcelable {
     @get:Exclude
     var id = ""
     @ServerTimestamp

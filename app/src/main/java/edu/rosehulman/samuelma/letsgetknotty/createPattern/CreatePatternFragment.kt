@@ -2,16 +2,19 @@ package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
+import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
@@ -45,6 +48,8 @@ class CreatePatternFragment: Fragment() {
         project = arguments!!.getParcelable(ARG_PROJECT)!!
         uid = arguments!!.getString(ARG_UID).toString()
 
+
+
     }
 
     override fun onCreateView(
@@ -63,6 +68,19 @@ class CreatePatternFragment: Fragment() {
         button.setOnClickListener {
             showColorDialog(button)
         }
+
+        //add button
+        val addPattern = view.findViewById<TextView>(R.id.add_create_pattern)
+        addPattern.setOnClickListener {
+            onAddSelected()
+        }
+
+        //cancel button
+        val cancelCreatePattern = view.findViewById<TextView>(R.id.cancel_create_pattern)
+        addPattern.setOnClickListener {
+            onAddSelected()
+        }
+
         createGrid()
         return view
     }
@@ -94,6 +112,19 @@ class CreatePatternFragment: Fragment() {
         }
         builder.setNegativeButton(getString(android.R.string.cancel), null)
         builder.build().show()
+    }
+
+    fun onAddSelected() {
+        val fm = fragmentManager
+        Log.d(Constants.TAG, "Trying to close create pattern fragment")
+        fm?.popBackStack()
+    }
+
+    fun onCancelSelected() {
+        
+        val fm = fragmentManager
+        Log.d(Constants.TAG, "Trying to close create pattern fragment")
+        fm?.popBackStack()
     }
 
 }

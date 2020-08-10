@@ -1,11 +1,13 @@
 package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
+import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import kotlinx.android.synthetic.main.create_pattern_grid_view.view.*
 import kotlinx.android.synthetic.main.project_list_grid_card_view.view.*
@@ -17,6 +19,7 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     init {
         itemView.setOnClickListener {
             adapter.updateColor(adapterPosition)
+            Log.d(Constants.TAG, "update color: $adapterPosition")
             cardView.setCardBackgroundColor(adapter.color)
         }
         itemView.setOnLongClickListener {
