@@ -59,6 +59,7 @@ class CreatePatternFragment: Fragment() {
         recyclerView.layoutManager =
             GridLayoutManager(context,pattern.stitchesInRepeat)
         recyclerView.setHasFixedSize(true)
+        Log.d(Constants.TAG, "Path: Uid: $uid, Project: ${project.id}, Pattern: ${pattern.id}")
         recyclerView.adapter = adapter
         adapter.addSnapshotListener()
         val button : Button = view.findViewById(R.id.choose_color_button)

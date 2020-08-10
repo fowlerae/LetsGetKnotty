@@ -38,7 +38,7 @@ class CreatePatternAdapter(val context: Context, var uid: String, val project: P
                     processSnapshotChanges(querySnapshot!!)
                 }
             }
-        Log.d(Constants.TAG, "Path: Uid: $uid, Project: ${project.id}, Pattern: ${pattern.id}")
+
     }
 
     private fun processSnapshotChanges(querySnapshot: QuerySnapshot) {
