@@ -119,7 +119,7 @@ class PatternAdapter(
                     "https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489"
                 add(pattern)
                 Log.d(Constants.TAG, pattern.toString())
-                listener?.onAddPatternSelected(patterns[findPattern(pattern)])
+                listener?.onAddPatternSelected(findPattern(pattern))
             } else {
                 edit(position, name, rowsInRepeat, stitchesInRepeat, totalRows, totalStitches)
             }
@@ -169,14 +169,14 @@ class PatternAdapter(
         fun onAddPatternSelected(pattern: Pattern)
     }
 
-    fun findPattern(pattern: Pattern) : Int {
+    fun findPattern(pattern: Pattern) : Pattern {
         for((i, pat) in patterns.withIndex()) {
             if(pat.name == pattern.name && pat.stitchesInRepeat == pattern.stitchesInRepeat && pat.rowsInRepeat == pattern.rowsInRepeat) {
                 Log.d(Constants.TAG, "Pattern: ${pat.id}")
-                return i
+                return pat
             }
         }
-        return 0
+        return patterns[0]
     }
 
 }
