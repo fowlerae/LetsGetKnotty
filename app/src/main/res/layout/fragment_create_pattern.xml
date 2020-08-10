@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="5dp">
+    android:padding="5dp"
+    >
 
     <TextView
         android:id="@+id/create_pattern_title"
@@ -16,6 +17,16 @@
         style="@style/SectionTitle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/pattern_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/create_pattern_title"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Pattern Name"
+        style="@style/SectionSubtitle"
         />
 
     <LinearLayout
@@ -34,6 +45,7 @@
             android:id="@+id/choose_color_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:backgroundTint="@android:color/black"
             />
 
         <TextView
@@ -48,6 +60,9 @@
             android:id="@+id/choose_stitch_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginEnd="2dp"
+            android:foreground="@drawable/ic_stitch_purl_black"
+            android:backgroundTint="@android:color/darker_gray"
             />
 
         <TextView
@@ -62,15 +77,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/create_pattern_grid_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/color_stitch_selectors"
+        app:layout_constraintBottom_toTopOf="@id/cancel_create_pattern"
+        app:layout_constrainedHeight="true"
         />
-    
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/cancel_create_pattern"
@@ -80,6 +93,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/add_create_pattern"
         android:text="Cancel"
+        android:backgroundTint="@color/colorAccentLight"
         />
 
     <Button
@@ -90,7 +104,7 @@
         app:layout_constraintLeft_toRightOf="@id/cancel_create_pattern"
         app:layout_constraintRight_toRightOf="parent"
         android:text="Add"
+        android:backgroundTint="@color/colorAccentLight"
         />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
