@@ -252,6 +252,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     }
 
     override fun onAddPatternSelected(pattern: Pattern) {
+        Log.d(Constants.TAG, "Pattern: ${pattern.id}")
         val fragment = project?.let {
             uid?.let { it1 ->
                 CreatePatternFragment.newInstance(
