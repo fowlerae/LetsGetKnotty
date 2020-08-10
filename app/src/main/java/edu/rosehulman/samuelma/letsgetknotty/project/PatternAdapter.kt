@@ -126,7 +126,7 @@ class PatternAdapter(
                 pattern.imageUrl =
                     "https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489"
                 add(pattern)
-                listener?.onAddPatternSelected(patterns[0])
+                listener?.onAddPatternSelected(patterns[patterns.indexOf(pattern)])
             } else {
                 edit(position, name, rowsInRepeat, stitchesInRepeat, totalRows, totalStitches)
             }

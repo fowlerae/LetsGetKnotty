@@ -35,12 +35,5 @@ class PatternViewHolder(itemView: View, private val adapter: PatternAdapter): Re
         Picasso.get().load(pattern?.imageUrl)
             .transform(CropSquareTransformation())
             .into(imageView)
-        if (pattern.showDark) {
-            cardView.setCardBackgroundColor(
-                ContextCompat.getColor(adapter.context, R.color.colorAccent)
-            )
-        } else {
-            cardView.setCardBackgroundColor(Color.WHITE)
-        }
     }
 }
