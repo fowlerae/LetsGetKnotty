@@ -9,4 +9,5 @@ object Constants {
     const val NOTES_COLLECTION = "notes"
     const val ROW_COUNTER_COLLECTION = "rowCounters"
     const val GRID_COLLECTION = "gridView"
+    const val KEY_URL = "KEY_URL"
 }

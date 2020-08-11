@@ -2,16 +2,30 @@ package edu.rosehulman.samuelma.letsgetknotty.projectlist
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Bitmap
+import android.net.Uri
+import android.os.AsyncTask
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
+import edu.rosehulman.samuelma.letsgetknotty.BitmapUtils
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import kotlinx.android.synthetic.main.dialog_add_edit_image.view.*
+import java.io.ByteArrayOutputStream
+import kotlin.math.abs
+import kotlin.random.Random
 
 class ProjectListAdapter(val context: Context, uid: String, var listener: OnProjectSelectedListener?) : RecyclerView.Adapter<ProjectListViewHolder>() {
     private val projects = ArrayList<Project>()
@@ -21,6 +35,12 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         .document(uid)
         .collection(Constants.PROJECTS_COLLECTION)
     private lateinit var listenerRegistration: ListenerRegistration
+    var image : String = ""
+
+    private val storageRef: StorageReference = FirebaseStorage
+        .getInstance()
+        .reference
+        .child("images")
 
     fun addSnapshotListener() {
         listenerRegistration = projectsRef
@@ -87,14 +107,21 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
             view.dialog_edit_text_name.setText(projects[position].name)
             view.dialog_edit_text_image.setText(projects[position].imageUrl)
         }
+        val addImage : Button = view.add_image_button
+        addImage.setOnClickListener {
+            listener?.showPictureDialog()
+        }
 
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
-            val quote = view.dialog_edit_text_name.text.toString()
-            val movie = view.dialog_edit_text_image.text.toString()
+            val name = view.dialog_edit_text_name.text.toString()
+          //  val image = view.dialog_edit_text_image.text.toString()
+            if(view.dialog_edit_text_image.text.toString() != null) {
+                image = view.dialog_edit_text_image.text.toString()
+            }
             if (position < 0) {
-                add(Project(quote, movie))
+                add(Project(name, image))
             } else {
-                edit(position, quote, movie)
+                edit(position, name, image)
             }
 
         }
@@ -116,7 +143,12 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
     }
 
 
+
     private fun remove(position: Int) {
+        val ref = FirebaseStorage.getInstance().getReferenceFromUrl(projects[position].imageUrl)
+        ref.delete().addOnFailureListener {
+            Log.d(Constants.TAG, "deleted: ${projects[position].id}")
+        }
         projectsRef.document(projects[position].id).delete()
     }
 
@@ -126,5 +158,58 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
 
     interface OnProjectSelectedListener {
         fun onProjectSelected(pic: Project)
+        fun showPictureDialog()
     }
+
+    fun addImage(localPath: String) {
+        // TODO: You'll want to wait to add this to Firetore until after you have a Storage download URL.
+        // Move this line of code there.
+        //thumbnailRef.add(Thumbnail(localPath))
+        ImageRescaleTask(localPath).execute()
+    }
+
+
+    // Could save a smaller version to Storage to save time on the network.
+    // But if too small, recognition accuracy can suffer.
+    inner class ImageRescaleTask(val localPath: String) : AsyncTask<Void, Void, Bitmap>() {
+        override fun doInBackground(vararg p0: Void?): Bitmap? {
+            // Reduces length and width by a factor (currently 2).
+            val ratio = 2
+            return BitmapUtils.rotateAndScaleByRatio(context, localPath, ratio)
+        }
+
+        override fun onPostExecute(bitmap: Bitmap?) {
+            // TODO: Write and call a new storageAdd() method with the path and bitmap
+            // that uses Firebase storage.
+            // https://firebase.google.com/docs/storage/android/upload-files
+            storageAdd(localPath, bitmap)
+        }
+    }
+    private fun storageAdd(localPath: String, bitmap: Bitmap?) {
+        val baos = ByteArrayOutputStream()
+        bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+        val id = abs(Random.nextLong()).toString()
+        var uploadTask = storageRef.child(id).putBytes(data)
+        uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
+                task ->
+
+            if(!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            return@Continuation storageRef.child(id).downloadUrl
+        }).addOnCompleteListener { task ->
+            if(task.isSuccessful) {
+                val downloadUri = task.result
+            //    projectsRef.add(Thumbnail(downloadUri.toString()))
+                  image = downloadUri.toString()
+            } else {
+                // handle failures
+            }
+        }
+    }
+
+
 }

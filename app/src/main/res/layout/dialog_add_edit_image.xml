@@ -20,4 +20,10 @@
         android:textSize="24sp"
         />
 
+    <Button
+        android:id="@+id/add_image_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Upload Image"/>
+
 </RelativeLayout>
