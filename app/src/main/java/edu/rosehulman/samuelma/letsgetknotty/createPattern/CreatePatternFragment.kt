@@ -69,6 +69,8 @@ class CreatePatternFragment: Fragment() {
             showColorDialog(button)
         }
 
+        view.findViewById<TextView>(R.id.pattern_name_textview).text = pattern.name
+
         //add button
         val addPattern = view.findViewById<TextView>(R.id.add_create_pattern)
         addPattern.setOnClickListener {
