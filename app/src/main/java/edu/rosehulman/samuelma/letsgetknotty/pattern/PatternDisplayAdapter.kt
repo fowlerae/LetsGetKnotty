@@ -82,6 +82,10 @@ class PatternDisplayAdapter(val context: Context, uid: String, project: Project,
 
     fun add(grid: Grid) {
         gridRef.add(grid)
+//        var rect = rectangles[0]
+//        rect.id = index.toString()
+//        gridRef.document(rectangles[0].id).set(rectangles[0])
+//     //   index++
     }
 
 //    private fun edit(position: Int, quote: String, movie: String) {
