@@ -2,6 +2,7 @@ package edu.rosehulman.samuelma.letsgetknotty.project
 
 import android.app.AlertDialog
 import android.content.Context
+import android.os.Handler
 import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -117,7 +118,11 @@ class PatternAdapter(
                     "https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489"
             add(pattern)
             Log.d(Constants.TAG, pattern.toString())
-            listener?.onAddPatternSelected(patterns[0])
+            val handler = Handler()
+            handler.postDelayed({
+                // do something after 1000ms
+                listener?.onAddPatternSelected(patterns[0])
+            }, 1000)
 
         }
         builder.setNegativeButton(android.R.string.cancel, null)
