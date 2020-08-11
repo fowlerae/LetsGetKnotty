@@ -83,7 +83,7 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
 
 
     fun add(grid: Grid) {
-        gridRef.document(index.toString()).set(rectangles[0])
+        gridRef.add(grid)
     }
 
 //    private fun edit(position: Int, quote: String, movie: String) {
