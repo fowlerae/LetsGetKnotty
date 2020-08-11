@@ -113,16 +113,21 @@ class PatternAdapter(
                 totalStitches = view.total_number_of_stitches_edit_text.text.toString().toInt()
             }
             val pattern = Pattern(name, "", rowsInRepeat, stitchesInRepeat, totalRows, totalStitches, "", false)
-
-            if (position < 0) {
                 pattern.imageUrl =
                     "https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489"
                 add(pattern)
                 Log.d(Constants.TAG, pattern.toString())
                 listener?.onAddPatternSelected(findPattern(pattern))
-            } else {
-                edit(position, name, rowsInRepeat, stitchesInRepeat, totalRows, totalStitches)
-            }
+
+//            if (position < 0) {
+//                pattern.imageUrl =
+//                    "https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489"
+//                add(pattern)
+//                Log.d(Constants.TAG, pattern.toString())
+//                listener?.onAddPatternSelected(findPattern(pattern))
+//            } else {
+//                edit(position, name, rowsInRepeat, stitchesInRepeat, totalRows, totalStitches)
+//            }
         }
         builder.setNegativeButton(android.R.string.cancel, null)
         builder.setNeutralButton("Remove") { _, _ ->
