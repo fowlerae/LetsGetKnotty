@@ -79,6 +79,9 @@ class PatternDisplayAdapter(val context: Context, uid: String, project: Project,
 
     override fun getItemCount() = rectangles.size
 
+    fun getAllGrids():ArrayList<Grid> {
+        return rectangles
+    }
 
     fun add(grid: Grid) {
         gridRef.add(grid)
@@ -89,7 +92,6 @@ class PatternDisplayAdapter(val context: Context, uid: String, project: Project,
 //        rectangle[position].imageUrl = movie
 //        gridRef.document(rectangle[position].id).set(rectangle[position])
 //    }
-
 
     private fun remove(position: Int) {
         gridRef.document(rectangles[position].id).delete()

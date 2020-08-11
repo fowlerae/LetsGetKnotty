@@ -90,17 +90,16 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
 //        rectangle[position].imageUrl = movie
 //        gridRef.document(rectangle[position].id).set(rectangle[position])
 //    }
+//
+//    fun emptyGridRef(){
+//        for (rect in rectangles){
+//            remove(rectangles.indexOf(rect))
+//        }
+//    }
 
-    fun emptyGridRef(){
-        for (rect in rectangles){
-            remove(rectangles.indexOf(rect))
-        }
-    }
-
-
-    private fun remove(position: Int) {
-        gridRef.document(rectangles[position].id).delete()
-    }
+//    private fun remove(position: Int) {
+//        gridRef.document(rectangles[position].id).delete()
+//    }
 
     fun updateColor(position: Int) {
         rectangles[position].color = color

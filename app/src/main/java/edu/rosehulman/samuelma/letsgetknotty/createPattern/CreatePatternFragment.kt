@@ -49,14 +49,13 @@ class CreatePatternFragment: Fragment() {
         project = arguments!!.getParcelable(ARG_PROJECT)!!
         uid = arguments!!.getString(ARG_UID).toString()
 
-
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_create_pattern, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.create_pattern_grid_view)
         adapter = context?.let { CreatePatternAdapter(it,uid,project,pattern) }!!
@@ -88,7 +87,7 @@ class CreatePatternFragment: Fragment() {
 
     private fun createGrid() {
         for(x in 0 until pattern.stitchesInRepeat*pattern.rowsInRepeat) {
-            adapter.add(Grid(Color.WHITE))
+            adapter.add(Grid())
         }
     }
 
@@ -99,11 +98,11 @@ class CreatePatternFragment: Fragment() {
         builder.wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
         builder.density(12)
         builder.setOnColorSelectedListener { selectedColor ->
-            Toast.makeText(
-                context,
-                "onColorSelected: 0x" + Integer.toHexString(selectedColor),
-                Toast.LENGTH_SHORT
-            ).show()
+//            Toast.makeText(
+////                context,
+////                "onColorSelected: 0x" + Integer.toHexString(selectedColor),
+////                Toast.LENGTH_SHORT
+////            ).show()
         }
         builder.setPositiveButton(android.R.string.ok) { dialog, selectedColor, allColors ->
             //  colorMessage.message = activity_input_message.text.toString()
