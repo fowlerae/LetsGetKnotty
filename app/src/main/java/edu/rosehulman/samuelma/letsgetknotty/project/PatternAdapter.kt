@@ -120,9 +120,11 @@ class PatternAdapter(
             Log.d(Constants.TAG, pattern.toString())
             val handler = Handler()
             handler.postDelayed({
-                // do something after 1000ms
+                // do something after 500ms
+                // had to add delay as it was adding after the grid was created which led to adding the grid
+                // to the wrong pattern
                 listener?.onAddPatternSelected(patterns[0])
-            }, 1000)
+            }, 500)
 
         }
         builder.setNegativeButton(android.R.string.cancel, null)
