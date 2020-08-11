@@ -28,7 +28,7 @@ class PatternDisplayAdapter(val context: Context, uid: String, project: Project,
 
     fun addSnapshotListener() {
         listenerRegistration = gridRef
-            .orderBy(Project.LAST_TOUCHED_KEY, Query.Direction.ASCENDING)
+            .orderBy(Grid.CREATED_KEY, Query.Direction.ASCENDING)
             .addSnapshotListener { querySnapshot, e ->
                 if (e != null) {
                     Log.w(Constants.TAG, "listen error", e)
