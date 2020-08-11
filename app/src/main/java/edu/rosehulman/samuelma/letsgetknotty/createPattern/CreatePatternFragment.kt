@@ -82,8 +82,9 @@ class CreatePatternFragment: Fragment() {
 
     private fun createGrid() {
         Log.d(Constants.TAG, "stitches : ${pattern.stitchesInRepeat}")
-        Log.d(Constants.TAG, "stitches : ${pattern.rowsInRepeat}")
-        for(x in 0 until pattern.stitchesInRepeat*pattern.rowsInRepeat/2) {
+        Log.d(Constants.TAG, "rows : ${pattern.rowsInRepeat}")
+        Log.d(Constants.TAG, "total grids : ${pattern.rowsInRepeat*pattern.stitchesInRepeat}")
+        for(x in 0 until pattern.stitchesInRepeat*pattern.rowsInRepeat) {
             adapter.add(Grid(Color.WHITE))
         }
     }

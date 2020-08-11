@@ -73,15 +73,11 @@ class CreatePatternAdapter(val context: Context, var uid: String, val project: P
         return CreatePatternViewHolder(view, this)
     }
 
-    override fun onBindViewHolder(
-        listViewHolder: CreatePatternViewHolder,
-        index: Int
-    ) {
+    override fun onBindViewHolder(listViewHolder: CreatePatternViewHolder, index: Int) {
         listViewHolder.bind(rectangles[index])
     }
 
     override fun getItemCount() = rectangles.size
-
 
     fun add(grid: Grid) {
         gridRef.add(grid)
@@ -92,7 +88,6 @@ class CreatePatternAdapter(val context: Context, var uid: String, val project: P
             remove(position)
         }
     }
-
 
     private fun remove(position: Int) {
         gridRef.document(rectangles[position].id).delete()

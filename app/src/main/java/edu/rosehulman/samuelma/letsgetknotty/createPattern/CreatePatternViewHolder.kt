@@ -11,21 +11,15 @@ import kotlinx.android.synthetic.main.create_pattern_grid_view.view.*
 import kotlinx.android.synthetic.main.project_list_grid_card_view.view.*
 
 class CreatePatternViewHolder(itemView: View, private val adapter: CreatePatternAdapter): RecyclerView.ViewHolder(itemView) {
-//    private val nameTextView: TextView = itemView.findViewById(R.id.name_text_view)
-//    private val imageView: ImageView = itemView.findViewById(R.id.image_text_view)
     private val cardView :CardView = itemView.grid_card_view
     init {
         itemView.setOnClickListener {
             adapter.updateColor(adapterPosition)
             cardView.setCardBackgroundColor(adapter.color)
         }
-        itemView.setOnLongClickListener {
-         //   adapter.showAddEditDialog(adapterPosition)
-            true
-        }
     }
 
     fun bind(grid: Grid) {
-     //   cardView.setCardBackgroundColor(grid.color)
+        cardView.setCardBackgroundColor(grid.color)
     }
 }
