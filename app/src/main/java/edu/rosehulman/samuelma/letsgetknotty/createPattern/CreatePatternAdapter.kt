@@ -12,7 +12,7 @@ import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
-class CreatePatternAdapter(val context: Context, var uid: String, val project: Project, val pattern: Pattern) : RecyclerView.Adapter<CreatePatternViewHolder>()  {
+class CreatePatternAdapter(val context: Context, uid: String, project: Project, pattern: Pattern) : RecyclerView.Adapter<CreatePatternViewHolder>()  {
     private val rectangles = ArrayList<Grid>()
     private val gridRef = FirebaseFirestore
         .getInstance()
@@ -23,7 +23,6 @@ class CreatePatternAdapter(val context: Context, var uid: String, val project: P
         .collection(Constants.PATTERNS_COLLECTION)
         .document(pattern.id)
         .collection(Constants.GRID_COLLECTION)
-
     var color : Int = Color.BLACK
 
     private lateinit var listenerRegistration: ListenerRegistration
@@ -38,7 +37,6 @@ class CreatePatternAdapter(val context: Context, var uid: String, val project: P
                     processSnapshotChanges(querySnapshot!!)
                 }
             }
-
     }
 
     private fun processSnapshotChanges(querySnapshot: QuerySnapshot) {
@@ -73,21 +71,26 @@ class CreatePatternAdapter(val context: Context, var uid: String, val project: P
         return CreatePatternViewHolder(view, this)
     }
 
-    override fun onBindViewHolder(listViewHolder: CreatePatternViewHolder, index: Int) {
+    override fun onBindViewHolder(
+        listViewHolder: CreatePatternViewHolder,
+        index: Int
+    ) {
         listViewHolder.bind(rectangles[index])
     }
 
     override fun getItemCount() = rectangles.size
 
+
     fun add(grid: Grid) {
         gridRef.add(grid)
     }
 
-    fun deleteGrid() {
-        for(position in 0 until rectangles.size) {
-            remove(position)
-        }
-    }
+//    private fun edit(position: Int, quote: String, movie: String) {
+//        rectangle[position].name = quote
+//        rectangle[position].imageUrl = movie
+//        gridRef.document(rectangle[position].id).set(rectangle[position])
+//    }
+
 
     private fun remove(position: Int) {
         gridRef.document(rectangles[position].id).delete()

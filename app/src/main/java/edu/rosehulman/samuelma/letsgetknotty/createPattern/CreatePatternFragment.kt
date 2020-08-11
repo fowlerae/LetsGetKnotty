@@ -2,7 +2,6 @@ package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
-import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
-import edu.rosehulman.samuelma.letsgetknotty.project.ProjectFragment
 
 
 private const val ARG_PATTERN = "pattern"
@@ -57,33 +54,20 @@ class CreatePatternFragment: Fragment() {
         val view = inflater.inflate(R.layout.fragment_create_pattern, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.create_pattern_grid_view)
         adapter = context?.let { CreatePatternAdapter(it,uid,project,pattern) }!!
-        recyclerView.layoutManager = GridLayoutManager(context,pattern.stitchesInRepeat)
+        recyclerView.layoutManager =
+            GridLayoutManager(context,pattern.stitchesInRepeat)
         recyclerView.setHasFixedSize(true)
-        Log.d(Constants.TAG, "Path: Uid: $uid, Project: ${project.id}, Pattern: ${pattern.id}")
         recyclerView.adapter = adapter
         adapter.addSnapshotListener()
         val button : Button = view.findViewById(R.id.choose_color_button)
         button.setOnClickListener {
             showColorDialog(button)
         }
-        adapter.addSnapshotListener()
-        val cancelButton : Button = view.findViewById(R.id.cancel_created_pattern_button)
-        cancelButton.setOnClickListener {
-                adapter.deleteGrid()
-                switchToProjectFragment()
-        }
-        val addButton : Button = view.findViewById(R.id.add_created_pattern_button)
-        addButton.setOnClickListener {
-            switchToProjectFragment()
-        }
         createGrid()
         return view
     }
 
     private fun createGrid() {
-        Log.d(Constants.TAG, "stitches : ${pattern.stitchesInRepeat}")
-        Log.d(Constants.TAG, "rows : ${pattern.rowsInRepeat}")
-        Log.d(Constants.TAG, "total grids : ${pattern.rowsInRepeat*pattern.stitchesInRepeat}")
         for(x in 0 until pattern.stitchesInRepeat*pattern.rowsInRepeat) {
             adapter.add(Grid(Color.WHITE))
         }
@@ -104,23 +88,12 @@ class CreatePatternFragment: Fragment() {
         }
         builder.setPositiveButton(android.R.string.ok) { dialog, selectedColor, allColors ->
             //  colorMessage.message = activity_input_message.text.toString()
-            //val color = selectedColor
-            colorButton.setBackgroundColor(selectedColor)
-            adapter.color = selectedColor
+            val color = selectedColor
+            colorButton.setBackgroundColor(color)
+            adapter.color = color
         }
         builder.setNegativeButton(getString(android.R.string.cancel), null)
         builder.build().show()
-    }
-
-    private fun switchToProjectFragment() {
-        val fragment = ProjectFragment.newInstance(project,uid)
-        val fm = fragmentManager
-        val ft = fm?.beginTransaction()
-        if (ft != null) {
-            ft.replace(R.id.fragment_container, fragment)
-            ft.addToBackStack("project")
-            ft.commit()
-        }
     }
 
 }
