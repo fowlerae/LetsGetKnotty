@@ -92,6 +92,11 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
 //        gridRef.document(rectangle[position].id).set(rectangle[position])
 //    }
 
+    fun deleteGrid() {
+        for(position in 0 until rectangles.size) {
+            remove(position)
+        }
+    }
 
     private fun remove(position: Int) {
         gridRef.document(rectangles[position].id).delete()

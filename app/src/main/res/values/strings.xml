@@ -37,4 +37,5 @@
     <string name="color">Color</string>
     <string name="create_pattern_title">Create Pattern</string>
     <string name="stitch">Stitch</string>
+    <string name="pattern_fragment">Pattern Fragment</string>
 </resources>

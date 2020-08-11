@@ -15,6 +15,7 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
+import edu.rosehulman.samuelma.letsgetknotty.project.ProjectFragment
 
 
 private const val ARG_PATTERN = "pattern"
@@ -63,6 +64,17 @@ class CreatePatternFragment: Fragment() {
         button.setOnClickListener {
             showColorDialog(button)
         }
+        val addButton : Button = view.findViewById(R.id.add_created_pattern_button)
+        addButton.setOnClickListener {
+            switchToProjectFragment()
+        }
+        val cancelButton : Button = view.findViewById(R.id.cancel_created_pattern_button)
+        button.setOnClickListener {
+            adapter.deleteGrid()
+            switchToProjectFragment()
+        }
+
+
         createGrid()
         return view
     }
@@ -94,6 +106,17 @@ class CreatePatternFragment: Fragment() {
         }
         builder.setNegativeButton(getString(android.R.string.cancel), null)
         builder.build().show()
+    }
+
+    private fun switchToProjectFragment() {
+        val fragment = ProjectFragment.newInstance(project,uid)
+        val fm = fragmentManager
+        val ft = fm?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.fragment_container, fragment)
+            ft.addToBackStack("project")
+            ft.commit()
+        }
     }
 
 }

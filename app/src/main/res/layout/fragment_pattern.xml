@@ -7,10 +7,11 @@
     android:layout_margin="10dp">
 
     <TextView
+        android:id="@+id/pattern_fragment_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
-        android:text="Pattern Fragment"/>
+        android:text="@string/pattern_fragment"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
