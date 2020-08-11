@@ -177,7 +177,7 @@ class PatternAdapter(
 
     fun findPattern(pattern: Pattern) : Pattern {
         for(pat in patterns) {
-            Log.d(Constants.TAG, pattern.toString())
+            Log.d(Constants.TAG, pat.toString())
             if(pat.name == pattern.name ) {
                 Log.d(Constants.TAG, "Find Pattern: ${pat.id}, name = ${pat.name}")
                 return pat
