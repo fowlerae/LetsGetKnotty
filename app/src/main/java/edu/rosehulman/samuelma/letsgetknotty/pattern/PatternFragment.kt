@@ -50,14 +50,20 @@ class PatternFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.pattern_grid_view)
         adapter = context?.let { PatternDisplayAdapter(it,uid,project,pattern) }!!
         recyclerView.layoutManager =
-            GridLayoutManager(context,10)
+            GridLayoutManager(context,pattern.stitchesInRepeat)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
         adapter.addSnapshotListener()
         return view
     }
 
-
+//    fun loadGrid(recyclerView: RecyclerView){
+//        val grids = adapter.getAllGrids()
+//        val size = adapter.getItemCount()
+//        for (grid in 0 until size){
+//            recyclerView.addView()
+//        }
+//    }
 
 
 }
