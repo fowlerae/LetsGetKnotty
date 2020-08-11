@@ -47,6 +47,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         arguments?.let {
             uid = it.getString(ARG_UID)
         }
+        currentPhotoPath = savedInstanceState?.getString(Constants.KEY_URL, "") ?: ""
    }
 
     override fun onCreateView(
@@ -67,7 +68,8 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         listAdapter.addSnapshotListener()
         val addProjectButton = view.findViewById<TextView>(R.id.add_project_button)
         addProjectButton.setOnClickListener {
-            listAdapter.showAddEditDialog(-1)
+           // listAdapter.showAddEditDialog(-1)
+            showPictureDialog()
         }
         return view
     }
@@ -160,8 +162,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         // https://developer.android.com/guide/topics/providers/document-provider
         val choosePictureIntent = Intent(
             Intent.ACTION_OPEN_DOCUMENT,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        )
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         choosePictureIntent.addCategory(Intent.CATEGORY_OPENABLE)
         choosePictureIntent.type = "image/*"
         if (choosePictureIntent.resolveActivity(context!!.packageManager) != null) {
