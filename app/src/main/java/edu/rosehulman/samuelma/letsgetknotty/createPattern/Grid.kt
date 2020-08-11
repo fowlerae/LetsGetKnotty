@@ -13,10 +13,10 @@ data class Grid(var color: Int = Color.WHITE) : Parcelable {
     @get:Exclude
     var id = ""
     @ServerTimestamp
-    var lastTouched: Timestamp? = null
+    var created: Timestamp? = null
 
     companion object {
-        const val LAST_TOUCHED_KEY = "lastTouched"
+        const val CREATED_KEY = "created"
 
         fun fromSnapshot(snapshot: DocumentSnapshot): Grid {
             val grid = snapshot.toObject(Grid::class.java)!!
