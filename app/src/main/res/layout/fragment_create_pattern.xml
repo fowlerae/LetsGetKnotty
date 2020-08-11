@@ -1,71 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="5dp"
-    >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:text="@string/create_pattern_title"
-        style="@style/SectionTitle"/>
-
+    android:layout_width="match_parent">
     <LinearLayout
-        android:orientation="horizontal"
+
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/choose_color_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-             />
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="5dp"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/color"
-            android:layout_marginEnd="70dp"
-            style="@style/SectionSubtitle"
-            />
+            android:layout_marginVertical="10dp"
+            android:text="@string/create_pattern_title"
+            style="@style/SectionTitle"/>
 
-        <Button
-            android:id="@+id/choose_stitch_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/stitch"
-            style="@style/SectionSubtitle"
+            android:layout_marginBottom="5dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/choose_color_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/color"
+                android:layout_marginEnd="70dp"
+                style="@style/SectionSubtitle"
+                />
+
+            <Button
+                android:id="@+id/choose_stitch_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stitch"
+                style="@style/SectionSubtitle"
+                />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/create_pattern_grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/add_created_pattern_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add" />
+
+            <Button
+                android:id="@+id/cancel_created_pattern_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/create_pattern_grid_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+</ScrollView>
 
-    <Button
-        android:id="@+id/add_created_pattern_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add" />
-
-    <Button
-        android:id="@+id/cancel_created_pattern_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel" />
-
-</LinearLayout>
