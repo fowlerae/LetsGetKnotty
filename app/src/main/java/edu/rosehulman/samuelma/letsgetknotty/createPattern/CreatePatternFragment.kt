@@ -57,8 +57,7 @@ class CreatePatternFragment: Fragment() {
         val view = inflater.inflate(R.layout.fragment_create_pattern, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.create_pattern_grid_view)
         adapter = context?.let { CreatePatternAdapter(it,uid,project,pattern) }!!
-        recyclerView.layoutManager =
-            GridLayoutManager(context,pattern.stitchesInRepeat)
+        recyclerView.layoutManager = GridLayoutManager(context,pattern.stitchesInRepeat)
         recyclerView.setHasFixedSize(true)
         Log.d(Constants.TAG, "Path: Uid: $uid, Project: ${project.id}, Pattern: ${pattern.id}")
         recyclerView.adapter = adapter
@@ -69,7 +68,7 @@ class CreatePatternFragment: Fragment() {
         }
         adapter.addSnapshotListener()
         val cancelButton : Button = view.findViewById(R.id.cancel_created_pattern_button)
-        cancelButton.setOnClickListener {adapter.deleteGrid()
+            cancelButton.setOnClickListener {adapter.deleteGrid()
         }
         val addButton : Button = view.findViewById(R.id.add_created_pattern_button)
         addButton.setOnClickListener {
@@ -82,11 +81,10 @@ class CreatePatternFragment: Fragment() {
     private fun createGrid() {
         Log.d(Constants.TAG, "stitches : ${pattern.stitchesInRepeat}")
         Log.d(Constants.TAG, "stitches : ${pattern.rowsInRepeat}")
-        for(x in 0 until pattern.stitchesInRepeat*pattern.rowsInRepeat) {
+        for(x in 0 until pattern.stitchesInRepeat*pattern.rowsInRepeat/2) {
             adapter.add(Grid(Color.WHITE))
         }
     }
-
 
     // From https://android-arsenal.com/details/1/1693
     private fun showColorDialog(colorButton : Button) {

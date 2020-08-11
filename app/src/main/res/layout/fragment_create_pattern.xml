@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/color"
-            android:layout_marginEnd="70dp"
+            android:layout_marginEnd="10dp"
             style="@style/SectionSubtitle"
             />
 
@@ -45,8 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/stitch"
-            style="@style/SectionSubtitle"
-            />
+            style="@style/SectionSubtitle" />
 
         <Button
             android:id="@+id/add_created_pattern_button"
