@@ -183,7 +183,8 @@ class PatternAdapter(
             }
         }
         Log.d(Constants.TAG, "Didn't Find Pattern: ${pattern.id}, name = ${pattern.name}")
-        return patterns[1]
+        Log.d(Constants.TAG, "Didn't Find Pattern: ${patterns[0].id}, name = ${patterns[0].name}")
+        return patterns[0]
     }
 
 }
