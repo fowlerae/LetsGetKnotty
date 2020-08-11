@@ -48,12 +48,6 @@
             style="@style/SectionSubtitle"
             />
 
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_gravity="right"
-        android:layout_height="match_parent">
         <Button
             android:id="@+id/add_created_pattern_button"
             android:layout_width="wrap_content"
@@ -68,14 +62,12 @@
 
     </LinearLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/create_pattern_grid_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-
-
-
 
 
 </LinearLayout>
