@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/add_create_pattern"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:backgroundTint="@color/colorAccentLight"
         />
 
@@ -104,7 +104,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/cancel_create_pattern"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Add"
+        android:text="@string/add"
         android:backgroundTint="@color/colorAccentLight"
         />
 
