@@ -68,14 +68,14 @@ class CreatePatternFragment: Fragment() {
             showColorDialog(button)
         }
         adapter.addSnapshotListener()
-        val cancelButton : Button = view.findViewById(R.id.cancel_created_pattern_button)
-        cancelButton.setOnClickListener {adapter.deleteGrid()
-        }
-        val addButton : Button = view.findViewById(R.id.add_created_pattern_button)
-        addButton.setOnClickListener {
-            switchToProjectFragment()
-        }
-        createGrid()
+//        val cancelButton : Button = view.findViewById(R.id.cancel_created_pattern_button)
+//        cancelButton.setOnClickListener {adapter.deleteGrid()
+//        }
+//        val addButton : Button = view.findViewById(R.id.add_created_pattern_button)
+//        addButton.setOnClickListener {
+//            switchToProjectFragment()
+//        }
+//        createGrid()
         return view
     }
 
