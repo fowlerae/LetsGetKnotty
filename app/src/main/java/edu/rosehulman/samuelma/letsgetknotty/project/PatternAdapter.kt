@@ -170,9 +170,9 @@ class PatternAdapter(
     }
 
     fun findPattern(pattern: Pattern) : Pattern {
-        for((i, pat) in patterns.withIndex()) {
-            if(pat.name == pattern.name && pat.stitchesInRepeat == pattern.stitchesInRepeat && pat.rowsInRepeat == pattern.rowsInRepeat) {
-                Log.d(Constants.TAG, "Pattern: ${pat.id}")
+        for(pat in patterns) {
+            if(pat.name == pattern.name ) {
+                Log.d(Constants.TAG, "Pattern: ${pat.id}, name = ${pat.name}")
                 return pat
             }
         }
