@@ -11,7 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
-        android:text="@string/pattern_fragment"/>
+        android:text="@string/pattern_fragment"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
