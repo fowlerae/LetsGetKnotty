@@ -11,19 +11,11 @@
         android:textSize="24sp"
         />
 
-    <EditText
-        android:id="@+id/dialog_edit_text_image"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/dialog_edit_text_name"
-        android:layout_height="wrap_content"
-        android:hint="Thumbnail URl"
-        android:textSize="24sp"
-        />
-
     <Button
         android:id="@+id/add_image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_edit_text_name"
         android:text="Upload Image"/>
 
 </RelativeLayout>

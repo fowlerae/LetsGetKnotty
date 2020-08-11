@@ -105,7 +105,6 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         builder.setView(view)
         if (position >= 0) {
             view.dialog_edit_text_name.setText(projects[position].name)
-            view.dialog_edit_text_image.setText(projects[position].imageUrl)
         }
         val addImage : Button = view.add_image_button
         addImage.setOnClickListener {
@@ -115,9 +114,7 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             val name = view.dialog_edit_text_name.text.toString()
           //  val image = view.dialog_edit_text_image.text.toString()
-            if(view.dialog_edit_text_image.text.toString() != null) {
-                image = view.dialog_edit_text_image.text.toString()
-            }
+
             if (position < 0) {
                 add(Project(name, image))
             } else {
