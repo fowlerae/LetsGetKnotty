@@ -4,7 +4,7 @@
     android:initialKeyguardLayout="@layout/simple_app_widget"
     android:initialLayout="@layout/simple_app_widget"
     android:minHeight="60dp"
-    android:minWidth="200dp"
+    android:minWidth="180dp"
     android:previewImage="@android:drawable/ic_menu_add"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"
