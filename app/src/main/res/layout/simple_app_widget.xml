@@ -5,21 +5,30 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:background="@drawable/ic_baseline_down_circle_filled_24"
-        android:contentDescription="Decrease button" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvWidget"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/widget_margin"
-        android:gravity="center"
-        android:text="Widget"
-        android:textColor="#00BCD4"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"/>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_baseline_down_circle_filled_24"
+            android:contentDescription="Decrease button" />
+
+        <TextView
+            android:id="@+id/tvWidget"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/widget_margin"
+            android:gravity="center"
+            android:text="Widget"
+            android:textColor="#00BCD4"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"/>
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>
