@@ -1,30 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/tvWidget"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="horizontal"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <View
-        android:id="@+id/row_counter_decrease_button"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:background="@drawable/ic_baseline_down_circle_filled_24" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/current_row_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
-        android:textSize="40sp"/>
-
-    <View
-        android:id="@+id/row_counter_increase_button"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:background="@drawable/ic_baseline_up_circle_filled_24" />
+        android:id="@+id/tvWidget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/widget_margin"
+        android:gravity="center"
+        android:text="Widget"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"/>
 
 </LinearLayout>
