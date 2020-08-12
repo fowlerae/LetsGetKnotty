@@ -2,8 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tvWidget"
@@ -15,11 +14,5 @@
         android:textColor="#00BCD4"
         android:textSize="24sp"
         android:textStyle="bold|italic"/>
-
-    <View
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:background="@drawable/ic_baseline_down_circle_filled_24" />
-
 
 </LinearLayout>
