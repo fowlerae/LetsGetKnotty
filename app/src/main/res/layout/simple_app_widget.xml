@@ -13,6 +13,7 @@
         android:layout_above="@+id/widget_button_row"
         android:layout_marginVertical="10dp"
         android:layout_marginStart="20dp"
+        android:text="Row Counter"
         android:textSize="20sp"
         android:textStyle="bold"/>
 
@@ -34,12 +35,11 @@
             android:id="@+id/tvWidget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/widget_margin"
-            android:gravity="center"
-            android:text="Widget"
-            android:textColor="#00BCD4"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"/>
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:text="0"
+            android:textSize="40sp"/>
+
 
         <ImageView
             android:id="@+id/widget_row_counter_increase_button"
