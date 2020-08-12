@@ -3,7 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="horizontal">
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/ic_baseline_down_circle_filled_24"
+        android:contentDescription="Decrease button" />
 
     <TextView
         android:id="@+id/tvWidget"
@@ -16,10 +22,6 @@
         android:textSize="24sp"
         android:textStyle="bold|italic"/>
 
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:background="@drawable/ic_baseline_down_circle_filled_24"
-        android:contentDescription="Decrease button" />
+
 
 </LinearLayout>
