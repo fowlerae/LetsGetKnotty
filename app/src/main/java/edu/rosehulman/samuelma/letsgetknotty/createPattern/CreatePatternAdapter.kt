@@ -24,7 +24,6 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         .document(pattern.id)
         .collection(Constants.GRID_COLLECTION)
     var color : Int = Color.BLACK
-    var index = 0
 
     private lateinit var listenerRegistration: ListenerRegistration
 
@@ -85,12 +84,6 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
     fun add(grid: Grid) {
         gridRef.add(grid)
     }
-
-//    private fun edit(position: Int, quote: String, movie: String) {
-//        rectangle[position].name = quote
-//        rectangle[position].imageUrl = movie
-//        gridRef.document(rectangle[position].id).set(rectangle[position])
-//    }
 
     fun deleteGrid() {
         for(position in 0 until rectangles.size) {
