@@ -5,16 +5,18 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/row_counter_decrease_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@drawable/ic_baseline_down_circle_filled_24"
-            android:contentDescription="Decrease button" />
+            android:background="@drawable/ic_baseline_down_circle_filled_24" />
 
         <TextView
             android:id="@+id/tvWidget"
@@ -26,6 +28,12 @@
             android:textColor="#00BCD4"
             android:textSize="24sp"
             android:textStyle="bold|italic"/>
+
+        <ImageView
+            android:id="@+id/row_counter_increase_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_baseline_up_circle_filled_24" />
 
     </LinearLayout>
 
