@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="#ffffff"
+    android:gravity="center"
+    android:orientation="horizontal"
     android:layout_height="match_parent">
 
     <TextView
@@ -24,11 +26,6 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
 
             <View
                 android:id="@+id/row_counter_decrease_button"
@@ -49,7 +46,4 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/ic_baseline_up_circle_filled_24" />
-
-        </LinearLayout>
-
-</FrameLayout>
+</LinearLayout>
