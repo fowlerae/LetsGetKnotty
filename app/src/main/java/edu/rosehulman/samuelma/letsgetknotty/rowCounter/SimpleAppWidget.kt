@@ -34,7 +34,7 @@ class SimpleAppWidget : AppWidgetProvider() {
         // In widget we are not allowing to use intents as usually. We have to use PendingIntent instead of 'startActivity'
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
         // Here the basic operations the remote view can do.
-     //   views.setOnClickPendingIntent(R.id.tvWidget, pendingIntent)
+        views.setOnClickPendingIntent(R.id.tvWidget, pendingIntent)
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views)
     }
