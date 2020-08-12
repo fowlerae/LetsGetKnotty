@@ -9,7 +9,6 @@
         android:id="@+id/tvWidget"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/widget_margin"
         android:gravity="center"
         android:text="Widget"
         android:textColor="#00BCD4"
