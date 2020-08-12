@@ -1,18 +1,56 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvWidget"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/widget_margin"
-        android:background="#ff6200"
-        android:contentDescription="Text"
-        android:gravity="center"
-        android:text="Text"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/row_counter_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/row_counter_name"
+            app:layout_constraintLeft_toLeftOf="@id/row_counter_name"
+            app:layout_constraintRight_toRightOf="@id/row_counter_name"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/row_counter_decrease_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/ic_baseline_down_circle_filled_24" />
+
+            <TextView
+                android:id="@+id/current_row_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:textSize="40sp"/>
+
+            <View
+                android:id="@+id/row_counter_increase_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/ic_baseline_up_circle_filled_24" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
