@@ -67,7 +67,7 @@ class SimpleAppWidget : AppWidgetProvider() {
         // And this time we are sending a broadcast with getBroadcast
         // And this time we are sending a broadcast with getBroadcast
         val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-
+        views.setOnClickPendingIntent(R.id.widget_row_counter_decrease_button, pendingIntent)
 
         val intent2 = Intent(context, SimpleAppWidget::class.java)
         intent2.action = ACTION_DECREASE_BUTTON
@@ -138,7 +138,7 @@ class SimpleAppWidget : AppWidgetProvider() {
 //        appWidgetManager.updateAppWidget(appWidget, views)
     }
 
-    fun increaseCount() : Int {
+    private fun increaseCount() : Int {
         count +=1
         return count
     }
