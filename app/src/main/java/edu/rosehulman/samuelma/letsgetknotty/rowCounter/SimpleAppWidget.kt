@@ -68,7 +68,7 @@ class SimpleAppWidget : AppWidgetProvider() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-
+        Log.d(Constants.TAG, "Got to the onReceive, Intent: ${intent.action}")
         val views = RemoteViews(context.packageName, R.layout.simple_app_widget)
         if(ACTION_INCREASE_BUTTON == intent.action) {
             // change values in
