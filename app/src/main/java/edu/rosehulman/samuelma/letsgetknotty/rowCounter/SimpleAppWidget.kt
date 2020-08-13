@@ -88,7 +88,7 @@ class SimpleAppWidget : AppWidgetProvider() {
 //            count++
 //            views.setTextViewText(R.id.widget_current_row, count.toString())
 //            Log.d(Constants.TAG, "Increase: $count")
-            count++
+            count += 1
             // Construct the RemoteViews object
             // Construct the RemoteViews object
             Log.d(Constants.TAG, "Increase: $count")
