@@ -6,7 +6,9 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.RemoteViews
+import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 
 
@@ -74,17 +76,19 @@ class SimpleAppWidget : AppWidgetProvider() {
             // views.setTextViewText(R.id.widget_current_row, rowCounter.currentRow.toString())
             count++
             views.setTextViewText(R.id.widget_current_row, count.toString())
+            Log.d(Constants.TAG, "Increase: $count")
 
         } else if(ACTION_DECREASE_BUTTON == intent.action) {
            // rowCounter.decreaseRow()
            // views.setTextViewText(R.id.widget_current_row, rowCounter.currentRow.toString())
             count--
             views.setTextViewText(R.id.widget_current_row, count.toString())
+            Log.d(Constants.TAG, "Decrease: $count")
         }
 
-            val appWidget = ComponentName(context, SimpleAppWidget::class.java)
-            val appWidgetManager = AppWidgetManager.getInstance(context)
-            appWidgetManager.updateAppWidget(appWidget, views)
+        val appWidget = ComponentName(context, SimpleAppWidget::class.java)
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        appWidgetManager.updateAppWidget(appWidget, views)
     }
 
 
