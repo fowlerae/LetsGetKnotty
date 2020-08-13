@@ -54,6 +54,7 @@ class SimpleAppWidget : AppWidgetProvider() {
 
         views.setOnClickPendingIntent(R.id.widget_row_counter_increase_button, increasePendingIntentButton)
 
+        views.setOnClickPendingIntent(R.id.widget_button_row, increasePendingIntentButton)
         val decreaseIntentButton = Intent(context, SimpleAppWidget::class.java)
         decreaseIntentButton.action = ACTION_DECREASE_BUTTON
 
