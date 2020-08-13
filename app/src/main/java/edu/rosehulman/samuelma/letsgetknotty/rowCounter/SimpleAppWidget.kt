@@ -66,12 +66,17 @@ class SimpleAppWidget : AppWidgetProvider() {
         intent.action = ACTION_INCREASE_BUTTON
         // And this time we are sending a broadcast with getBroadcast
         // And this time we are sending a broadcast with getBroadcast
-        val pendingIntent = PendingIntent.getBroadcast(
-            context, 0, intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        views.setOnClickPendingIntent(R.id.widget_row_counter_increase_button, pendingIntent)
+
+        val intent2 = Intent(context, SimpleAppWidget::class.java)
+        intent2.action = ACTION_DECREASE_BUTTON
+        // And this time we are sending a broadcast with getBroadcast
+        // And this time we are sending a broadcast with getBroadcast
+        val pendingIntent2 = PendingIntent.getBroadcast(context, 0, intent2, PendingIntent.FLAG_UPDATE_CURRENT)
+
+
+        views.setOnClickPendingIntent(R.id.widget_row_counter_decrease_button, pendingIntent2)
         appWidgetManager.updateAppWidget(appWidgetId, views)
 
     }
@@ -94,7 +99,7 @@ class SimpleAppWidget : AppWidgetProvider() {
             Log.d(Constants.TAG, "Increase: $count")
             val views =
                 RemoteViews(context.packageName, R.layout.simple_app_widget)
-            views.setTextViewText(R.id.widget_current_row, Integer.toString(count))
+            views.setTextViewText(R.id.widget_current_row, count.toString())
             // This time we dont have widgetId. Reaching our widget with that way.
             // This time we dont have widgetId. Reaching our widget with that way.
             val appWidget = ComponentName(context, SimpleAppWidget::class.java)
@@ -105,13 +110,28 @@ class SimpleAppWidget : AppWidgetProvider() {
 
         }
 
-//        else if(ACTION_DECREASE_BUTTON == intent.action) {
-//           // rowCounter.decreaseRow()
-//           // views.setTextViewText(R.id.widget_current_row, rowCounter.currentRow.toString())
+        else if(ACTION_DECREASE_BUTTON == intent.action) {
+           // rowCounter.decreaseRow()
+           // views.setTextViewText(R.id.widget_current_row, rowCounter.currentRow.toString())
 //            count--
 //            views.setTextViewText(R.id.widget_current_row, count.toString())
 //            Log.d(Constants.TAG, "Decrease: $count")
-//        }
+
+            count -= 1
+            // Construct the RemoteViews object
+            // Construct the RemoteViews object
+            Log.d(Constants.TAG, "Increase: $count")
+            val views =
+                RemoteViews(context.packageName, R.layout.simple_app_widget)
+            views.setTextViewText(R.id.widget_current_row, count.toString())
+            // This time we dont have widgetId. Reaching our widget with that way.
+            // This time we dont have widgetId. Reaching our widget with that way.
+            val appWidget = ComponentName(context, SimpleAppWidget::class.java)
+            val appWidgetManager = AppWidgetManager.getInstance(context)
+            // Instruct the widget manager to update the widget
+            // Instruct the widget manager to update the widget
+            appWidgetManager.updateAppWidget(appWidget, views)
+        }
 //
 //        val appWidget = ComponentName(context, SimpleAppWidget::class.java)
 //        val appWidgetManager = AppWidgetManager.getInstance(context)
