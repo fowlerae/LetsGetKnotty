@@ -72,8 +72,6 @@ class SimpleAppWidget : AppWidgetProvider() {
         )
 
         views.setOnClickPendingIntent(R.id.widget_button_row, pendingIntent)
-        // Instruct the widget manager to update the widget
-        // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views)
 
     }
@@ -96,7 +94,7 @@ class SimpleAppWidget : AppWidgetProvider() {
             Log.d(Constants.TAG, "Increase: $count")
             val views =
                 RemoteViews(context.packageName, R.layout.simple_app_widget)
-            views.setTextViewText(R.id.current_row_text_view, Integer.toString(count))
+            views.setTextViewText(R.id.widget_current_row, Integer.toString(count))
             // This time we dont have widgetId. Reaching our widget with that way.
             // This time we dont have widgetId. Reaching our widget with that way.
             val appWidget = ComponentName(context, SimpleAppWidget::class.java)
@@ -105,13 +103,15 @@ class SimpleAppWidget : AppWidgetProvider() {
             // Instruct the widget manager to update the widget
             appWidgetManager.updateAppWidget(appWidget, views)
 
-        } else if(ACTION_DECREASE_BUTTON == intent.action) {
-           // rowCounter.decreaseRow()
-           // views.setTextViewText(R.id.widget_current_row, rowCounter.currentRow.toString())
-            count--
-            views.setTextViewText(R.id.widget_current_row, count.toString())
-            Log.d(Constants.TAG, "Decrease: $count")
         }
+
+//        else if(ACTION_DECREASE_BUTTON == intent.action) {
+//           // rowCounter.decreaseRow()
+//           // views.setTextViewText(R.id.widget_current_row, rowCounter.currentRow.toString())
+//            count--
+//            views.setTextViewText(R.id.widget_current_row, count.toString())
+//            Log.d(Constants.TAG, "Decrease: $count")
+//        }
 //
 //        val appWidget = ComponentName(context, SimpleAppWidget::class.java)
 //        val appWidgetManager = AppWidgetManager.getInstance(context)
