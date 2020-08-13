@@ -11,9 +11,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -24,8 +24,11 @@ import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import kotlinx.android.synthetic.main.dialog_add_edit_image.view.*
 import java.io.ByteArrayOutputStream
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.abs
-import kotlin.random.Random
+import kotlin.random.Random.Default.nextLong
+
 
 class ProjectListAdapter(val context: Context, uid: String, var listener: OnProjectSelectedListener?) : RecyclerView.Adapter<ProjectListViewHolder>() {
     private val projects = ArrayList<Project>()
@@ -74,6 +77,7 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
                 DocumentChange.Type.MODIFIED -> {
                     Log.d(Constants.TAG, "Modifying $project")
                     val index = projects.indexOfFirst { it.id == project.id }
+                    project.lastTouched = Timestamp.now()
                     projects[index] = project
                     notifyItemChanged(index)
                 }
@@ -186,7 +190,7 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         val baos = ByteArrayOutputStream()
         bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
-        val id = abs(Random.nextLong()).toString()
+        val id = abs(nextLong()).toString()
         var uploadTask = storageRef.child(id).putBytes(data)
         uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
                 task ->

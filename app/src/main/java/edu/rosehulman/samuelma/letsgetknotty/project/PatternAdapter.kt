@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.*
 import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
@@ -65,6 +66,7 @@ class PatternAdapter(
                 DocumentChange.Type.MODIFIED -> {
                     Log.d(Constants.TAG, "Modifying $pattern")
                     val index = patterns.indexOfFirst { it.id == pattern.id }
+                    pattern.lastTouched = Timestamp.now()
                     patterns[index] = pattern
                     notifyItemChanged(index)
                 }

@@ -30,10 +30,12 @@ data class RowCounter(
         }
 
     fun increaseRow() {
+        lastTouched = Timestamp.now()
         currentRow++
     }
 
     fun decreaseRow() {
+        lastTouched = Timestamp.now()
         currentRow--
     }
 
