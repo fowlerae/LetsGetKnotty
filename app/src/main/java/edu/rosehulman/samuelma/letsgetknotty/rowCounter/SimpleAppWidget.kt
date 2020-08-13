@@ -73,7 +73,7 @@ class SimpleAppWidget : AppWidgetProvider() {
         intent2.action = ACTION_DECREASE_BUTTON
         // And this time we are sending a broadcast with getBroadcast
         // And this time we are sending a broadcast with getBroadcast
-        val pendingIntent2 = PendingIntent.getBroadcast(context, 0, intent2, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent2 = PendingIntent.getBroadcast(context, 1, intent2, PendingIntent.FLAG_UPDATE_CURRENT)
 
 
         views.setOnClickPendingIntent(R.id.widget_row_counter_decrease_button, pendingIntent2)
