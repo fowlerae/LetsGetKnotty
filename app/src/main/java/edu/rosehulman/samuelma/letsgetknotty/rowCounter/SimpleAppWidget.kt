@@ -93,13 +93,13 @@ class SimpleAppWidget : AppWidgetProvider() {
 //            count++
 //            views.setTextViewText(R.id.widget_current_row, count.toString())
 //            Log.d(Constants.TAG, "Increase: $count")
-            count += 1
+            val c = increaseCount()
             // Construct the RemoteViews object
             // Construct the RemoteViews object
-            Log.d(Constants.TAG, "Increase: $count")
+            Log.d(Constants.TAG, "Increase: $c")
             val views =
                 RemoteViews(context.packageName, R.layout.simple_app_widget)
-            views.setTextViewText(R.id.widget_current_row, count.toString())
+            views.setTextViewText(R.id.widget_current_row, c.toString())
             // This time we dont have widgetId. Reaching our widget with that way.
             // This time we dont have widgetId. Reaching our widget with that way.
             val appWidget = ComponentName(context, SimpleAppWidget::class.java)
@@ -117,13 +117,13 @@ class SimpleAppWidget : AppWidgetProvider() {
 //            views.setTextViewText(R.id.widget_current_row, count.toString())
 //            Log.d(Constants.TAG, "Decrease: $count")
 
-            count -= 1
+            val c = decreaseCount()
             // Construct the RemoteViews object
             // Construct the RemoteViews object
-            Log.d(Constants.TAG, "Increase: $count")
+            Log.d(Constants.TAG, "Increase: $c")
             val views =
                 RemoteViews(context.packageName, R.layout.simple_app_widget)
-            views.setTextViewText(R.id.widget_current_row, count.toString())
+            views.setTextViewText(R.id.widget_current_row, c.toString())
             // This time we dont have widgetId. Reaching our widget with that way.
             // This time we dont have widgetId. Reaching our widget with that way.
             val appWidget = ComponentName(context, SimpleAppWidget::class.java)
@@ -136,6 +136,16 @@ class SimpleAppWidget : AppWidgetProvider() {
 //        val appWidget = ComponentName(context, SimpleAppWidget::class.java)
 //        val appWidgetManager = AppWidgetManager.getInstance(context)
 //        appWidgetManager.updateAppWidget(appWidget, views)
+    }
+
+    fun increaseCount() : Int {
+        count +=1
+        return count
+    }
+
+    fun decreaseCount() : Int {
+        count -=1
+        return count
     }
 
 }
