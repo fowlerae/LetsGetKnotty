@@ -18,15 +18,6 @@ class SimpleAppWidget : AppWidgetProvider() {
     private lateinit var rowCounter : RowCounter
     private var count : Int = 0
 
-//    override fun onEnabled(context: Context?) {
-//        super.onEnabled(context)
-//        // need to set action listeners
-//
-//        // call getRowCounter
-//
-//        // it is null then you need to do something change text box????
-//    }
-
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
@@ -49,8 +40,10 @@ class SimpleAppWidget : AppWidgetProvider() {
         val increaseIntentButton = Intent(context, SimpleAppWidget::class.java)
         increaseIntentButton.action = ACTION_INCREASE_BUTTON
 
-        val increasePendingIntentButton =
-            PendingIntent.getBroadcast(context, 0, increaseIntentButton, PendingIntent.FLAG_UPDATE_CURRENT)
+        val increasePendingIntentButton =PendingIntent.getBroadcast(
+            context, 0, increaseIntentButton,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
 
         views.setOnClickPendingIntent(R.id.widget_row_counter_increase_button, increasePendingIntentButton)
 
@@ -68,6 +61,7 @@ class SimpleAppWidget : AppWidgetProvider() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
+        Log.d(Constants.TAG, "Got to the onReceive, Intent: ${intent.action}")
         super.onReceive(context, intent)
         Log.d(Constants.TAG, "Got to the onReceive, Intent: ${intent.action}")
         val views = RemoteViews(context.packageName, R.layout.simple_app_widget)
@@ -91,12 +85,5 @@ class SimpleAppWidget : AppWidgetProvider() {
         val appWidgetManager = AppWidgetManager.getInstance(context)
         appWidgetManager.updateAppWidget(appWidget, views)
     }
-
-
-    /// need a function for getting the last touched row counter !!!!!
-
-//    fun getRowCounter() {
-//
-//    }
 
 }
