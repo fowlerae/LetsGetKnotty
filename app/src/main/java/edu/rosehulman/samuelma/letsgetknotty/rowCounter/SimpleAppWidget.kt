@@ -71,7 +71,7 @@ class SimpleAppWidget : AppWidgetProvider() {
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        views.setOnClickPendingIntent(R.id.widget_button_row, pendingIntent)
+        views.setOnClickPendingIntent(R.id.widget_row_counter_increase_button, pendingIntent)
         appWidgetManager.updateAppWidget(appWidgetId, views)
 
     }
