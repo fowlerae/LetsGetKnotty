@@ -31,6 +31,8 @@
         <receiver android:name=".rowCounter.SimpleAppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.ACTION_INCREASE_BUTTON"/>
+                <action android:name="android.appwidget.action.ACTION_DECREASE_BUTTON"/>
             </intent-filter>
 
             <meta-data
