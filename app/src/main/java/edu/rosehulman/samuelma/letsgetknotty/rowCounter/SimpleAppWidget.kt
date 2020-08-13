@@ -15,7 +15,7 @@ import edu.rosehulman.samuelma.letsgetknotty.R
 class SimpleAppWidget : AppWidgetProvider() {
     private val ACTION_INCREASE_BUTTON = "ACTION_INCREASE_BUTTON"
     private val ACTION_DECREASE_BUTTON = "ACTION_DECREASE_BUTTON"
-    private lateinit var rowCounter : RowCounter
+ //   private lateinit var rowCounter : RowCounter
     private var count : Int = 0
 
     override fun onUpdate(
