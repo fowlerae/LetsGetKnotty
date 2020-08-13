@@ -24,11 +24,9 @@ import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import kotlinx.android.synthetic.main.dialog_add_edit_image.view.*
 import java.io.ByteArrayOutputStream
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.abs
 import kotlin.random.Random.Default.nextLong
-
 
 class ProjectListAdapter(val context: Context, uid: String, var listener: OnProjectSelectedListener?) : RecyclerView.Adapter<ProjectListViewHolder>() {
     private val projects = ArrayList<Project>()
@@ -194,7 +192,6 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         var uploadTask = storageRef.child(id).putBytes(data)
         uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> {
                 task ->
-
             if(!task.isSuccessful) {
                 task.exception?.let {
                     throw it
