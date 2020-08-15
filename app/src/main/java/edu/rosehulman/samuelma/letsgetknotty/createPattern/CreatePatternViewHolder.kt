@@ -27,6 +27,7 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     }
 
     fun bind(grid: Grid) {
+        Log.d(Constants.TAG, "On Bind: $grid")
         cardView.setCardBackgroundColor(grid.color)
         if(grid.image != null) {
             imageView.setImageResource(grid.image!!)

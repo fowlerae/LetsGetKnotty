@@ -118,9 +118,7 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
             Log.d(Constants.TAG, "update stitch Stitch: ${stitch}")
             Log.d(Constants.TAG, "update stitch  Button Color: ${color}")
             rectangles[position].image = this.stitch!!
-            if(rectangles[position].color != Color.WHITE) {
-                rectangles[position].color = Color.WHITE
-            }
+            rectangles[position].color = Color.WHITE
             gridRef.document(rectangles[position].id).set(rectangles[position])
         }, 50)
 
