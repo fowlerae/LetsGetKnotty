@@ -28,7 +28,6 @@ class CreatePatternFragment: Fragment() {
     private lateinit var project: Project
     private var uid: String = ""
     private lateinit var adapter: CreatePatternAdapter
-    private var currentStitch : Int? = null
     companion object {
         @JvmStatic
         fun newInstance(uid :String, pattern: Pattern, project : Project) =
@@ -103,15 +102,11 @@ class CreatePatternFragment: Fragment() {
             ).show()
         }
         builder.setPositiveButton(android.R.string.ok) { dialog, selectedColor, allColors ->
-            adapter.stitch = null
-            adapter.usingStitch = false
-            adapter.usingColor = true
             colorButton.setBackgroundColor(selectedColor)
             adapter.color = selectedColor
         }
         builder.setNegativeButton(android.R.string.cancel) { _, _ ->
-            adapter.usingStitch = false
-            adapter.usingColor = false
+
         }
         builder.build().show()
     }
@@ -122,24 +117,19 @@ class CreatePatternFragment: Fragment() {
         val view = LayoutInflater.from(context).inflate(R.layout.dialog_choose_stitch, null, false)
         builder.setView(view)
         val purlButton = view.findViewById<ImageButton>(R.id.black_purl_stitch_button)
+        var choosenStitch : Int? = null
         purlButton.setOnClickListener {
-            adapter.stitch = R.drawable.ic_stitch_purl_black
+            choosenStitch = R.drawable.ic_stitch_purl_black
         }
         val yarnOverButton = view.findViewById<ImageButton>(R.id.black_yarn_over_stitch_button)
         yarnOverButton.setOnClickListener {
-            adapter.stitch = R.drawable.ic_stitch_yarnover_black
+            choosenStitch = R.drawable.ic_stitch_yarnover_black
         }
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
-            adapter.usingStitch = true
+            adapter.stitch = choosenStitch
             adapter.stitch?.let { stitchButton.setImageResource(it) }
         }
-
-        builder.setNegativeButton(android.R.string.cancel) { _, _ ->
-            adapter.usingStitch = false
-            adapter.usingColor = false
-            adapter.stitch = null
-        }
-
+        builder.setNegativeButton(android.R.string.cancel,null)
         builder.create().show()
     }
 
