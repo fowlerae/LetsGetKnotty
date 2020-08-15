@@ -120,6 +120,7 @@ class CreatePatternFragment: Fragment() {
         val builder = androidx.appcompat.app.AlertDialog.Builder(context!!)
         builder.setTitle("Choose a stitch")
         val view = LayoutInflater.from(context).inflate(R.layout.dialog_choose_stitch, null, false)
+        builder.setView(view)
         val purlButton = view.findViewById<ImageButton>(R.id.black_purl_stitch_button)
         purlButton.setOnClickListener {
             adapter.stitch = R.drawable.ic_stitch_purl_black
