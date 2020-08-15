@@ -151,7 +151,7 @@ class WidgetService : Service() {
 
             projectId = projects[0].id
             getRowCounter()
-        }, 500)
+        }, 1000)
 
         handler.postDelayed({
             // do something after 500ms
@@ -159,7 +159,7 @@ class WidgetService : Service() {
             // to the wrong pattern
             rowCounter = rowCounters[0]
             setCounter(rowCounter!!)
-        }, 500)
+        }, 1000)
 
 
         // Reaches the view on widget and displays the number
