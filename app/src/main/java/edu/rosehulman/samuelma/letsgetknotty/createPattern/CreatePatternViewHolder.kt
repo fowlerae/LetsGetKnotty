@@ -21,6 +21,7 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
                 cardView.setCardBackgroundColor(adapter.color)
             } else {
                 adapter.updateStitch(adapterPosition)
+                adapter.updateStitch(adapterPosition)
                 imageView.setImageResource(adapter.stitch!!)
             }
 
