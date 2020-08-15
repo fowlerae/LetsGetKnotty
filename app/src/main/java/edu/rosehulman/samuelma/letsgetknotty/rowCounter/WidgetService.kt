@@ -203,7 +203,7 @@ class WidgetService : Service() {
 
     companion object {
         var counter : RowCounter? = null
-        private lateinit var rowCountersRef : CollectionReference
+        var rowCountersRef : CollectionReference? = null
 
         fun increaseCount() : String {
             Log.d(Constants.TAG, "Widget Service setting Counter: $counter")
@@ -222,7 +222,7 @@ class WidgetService : Service() {
         }
 
         private fun edit() {
-            rowCountersRef.document(counter!!.id).set(counter!!)
+            rowCountersRef!!.document(counter!!.id).set(counter!!)
         }
 
     }
