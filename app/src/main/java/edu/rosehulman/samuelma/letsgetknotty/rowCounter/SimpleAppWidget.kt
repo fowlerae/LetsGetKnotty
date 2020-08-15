@@ -37,15 +37,15 @@ class SimpleAppWidget : AppWidgetProvider() {
     ) {
 
         val views = RemoteViews(context.packageName, R.layout.simple_app_widget)
-        val intent = Intent(context, SimpleAppWidget::class.java)
-        intent.action = ACTION_INCREASE_BUTTON
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        views.setOnClickPendingIntent(R.id.widget_row_counter_increase_button, pendingIntent)
-
-        val intent2 = Intent(context, SimpleAppWidget::class.java)
-        intent2.action = ACTION_DECREASE_BUTTON
-        val pendingIntent2 = PendingIntent.getBroadcast(context, 1, intent2, PendingIntent.FLAG_UPDATE_CURRENT)
-        views.setOnClickPendingIntent(R.id.widget_row_counter_decrease_button, pendingIntent2)
+//        val intent = Intent(context, SimpleAppWidget::class.java)
+//        intent.action = ACTION_INCREASE_BUTTON
+//        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+//        views.setOnClickPendingIntent(R.id.widget_row_counter_increase_button, pendingIntent)
+//
+//        val intent2 = Intent(context, SimpleAppWidget::class.java)
+//        intent2.action = ACTION_DECREASE_BUTTON
+//        val pendingIntent2 = PendingIntent.getBroadcast(context, 1, intent2, PendingIntent.FLAG_UPDATE_CURRENT)
+//        views.setOnClickPendingIntent(R.id.widget_row_counter_decrease_button, pendingIntent2)
 
         appWidgetManager.updateAppWidget(appWidgetId, views)
 

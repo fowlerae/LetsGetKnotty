@@ -202,12 +202,14 @@ class WidgetService : Service() {
         var counter : RowCounter? = null
 
         fun increaseCount() : String {
+            Log.d(Constants.TAG, "Widget Service setting Counter: $counter")
             counter?.increaseRow()
             val c = counter?.currentRow
             return c?.toString() ?: "0"
         }
 
         fun decreaseCount() : String {
+            Log.d(Constants.TAG, "Widget Service setting Counter: $counter")
             counter?.decreaseRow()
             val c = counter?.currentRow
             return c?.toString() ?: "0"
