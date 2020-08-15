@@ -222,7 +222,7 @@ class WidgetService : Service() {
         }
 
         private fun edit() {
-            rowCountersRef.document(counter.id).set(counter!!)
+            rowCountersRef.document(counter!!.id).set(counter!!)
         }
 
     }
