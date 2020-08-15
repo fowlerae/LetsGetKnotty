@@ -159,7 +159,7 @@ class WidgetService : Service() {
             // to the wrong pattern
             rowCounter = rowCounters[0]
             setCounter(rowCounter!!)
-        }, 1000)
+        }, 2000)
 
 
         // Reaches the view on widget and displays the number
