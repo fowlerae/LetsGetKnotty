@@ -195,15 +195,20 @@ class WidgetService : Service() {
 
     private fun setCounter(rowCounter: RowCounter) {
         counter = rowCounter
+        rowCountersRef = rowCounterRef
         Log.d(Constants.TAG, "Widget Service setting Counter: $counter")
     }
 
+
+
     companion object {
         var counter : RowCounter? = null
+        private lateinit var rowCountersRef : CollectionReference
 
         fun increaseCount() : String {
             Log.d(Constants.TAG, "Widget Service setting Counter: $counter")
             counter?.increaseRow()
+            edit()
             val c = counter?.currentRow
             return c?.toString() ?: "0"
         }
@@ -211,8 +216,13 @@ class WidgetService : Service() {
         fun decreaseCount() : String {
             Log.d(Constants.TAG, "Widget Service setting Counter: $counter")
             counter?.decreaseRow()
+            edit()
             val c = counter?.currentRow
             return c?.toString() ?: "0"
+        }
+
+        private fun edit() {
+            rowCountersRef.document(counter.id).set(counter!!)
         }
 
     }
