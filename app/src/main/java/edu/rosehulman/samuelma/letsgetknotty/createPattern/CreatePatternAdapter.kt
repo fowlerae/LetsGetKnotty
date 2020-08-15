@@ -109,11 +109,12 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
 
     fun updateStitch(position: Int) {
         //  add delays here
-        Log.d(Constants.TAG, "update stitch Stitch: ${stitch}")
-        Log.d(Constants.TAG, "update stitch  Button Color: ${color}")
-        rectangles[position].image = this.stitch!!
+
         val handler = Handler()
         handler.postDelayed({
+            Log.d(Constants.TAG, "update stitch Stitch: ${stitch}")
+            Log.d(Constants.TAG, "update stitch  Button Color: ${color}")
+            rectangles[position].image = this.stitch!!
             gridRef.document(rectangles[position].id).set(rectangles[position])
         }, 50)
 
