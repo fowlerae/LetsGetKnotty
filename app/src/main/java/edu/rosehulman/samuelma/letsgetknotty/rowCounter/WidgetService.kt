@@ -4,6 +4,7 @@ import android.app.Service
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Intent
+import android.os.Handler
 import android.os.IBinder
 import android.util.Log
 import android.widget.RemoteViews
@@ -142,10 +143,24 @@ class WidgetService : Service() {
 
         // get projects
         getProject()
-        projectId = projects[0].id
-        getRowCounter()
-        rowCounter = rowCounters[0]
-        setCounter(rowCounter)
+        val handler = Handler()
+        handler.postDelayed({
+            // do something after 500ms
+            // had to add delay as it was adding after the grid was created which led to adding the grid
+            // to the wrong pattern
+
+            projectId = projects[0].id
+            getRowCounter()
+        }, 500)
+
+        handler.postDelayed({
+            // do something after 500ms
+            // had to add delay as it was adding after the grid was created which led to adding the grid
+            // to the wrong pattern
+            rowCounter = rowCounters[0]
+            setCounter(rowCounter)
+        }, 500)
+
 
         // Reaches the view on widget and displays the number
         val view = RemoteViews(packageName, R.layout.simple_app_widget)
