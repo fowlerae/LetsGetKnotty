@@ -29,7 +29,7 @@ class WidgetService : Service() {
     private lateinit var listenerRegistration: ListenerRegistration
     private var uid : String = ""
     private var projectId : String = ""
-    lateinit var rowCounter : RowCounter
+    private var rowCounter : RowCounter? = null
 
     private fun getProject() {
         val firebaseUser : FirebaseUser? = FirebaseAuth.getInstance().currentUser;
@@ -158,13 +158,13 @@ class WidgetService : Service() {
             // had to add delay as it was adding after the grid was created which led to adding the grid
             // to the wrong pattern
             rowCounter = rowCounters[0]
-            setCounter(rowCounter)
+            setCounter(rowCounter!!)
         }, 500)
 
 
         // Reaches the view on widget and displays the number
         val view = RemoteViews(packageName, R.layout.simple_app_widget)
-        view.setTextViewText(R.id.widget_current_row, rowCounter.currentRow.toString())
+        view.setTextViewText(R.id.widget_current_row, rowCounter?.currentRow.toString())
         val theWidget = ComponentName(this, SimpleAppWidget::class.java)
         val manager = AppWidgetManager.getInstance(this)
         manager.updateAppWidget(theWidget, view)
