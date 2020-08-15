@@ -166,11 +166,11 @@ class WidgetService : Service() {
         // Reaches the view on widget and displays the number
         val view = RemoteViews(packageName, R.layout.simple_app_widget)
         if(rowCounter != null) {
-            view.setTextViewText(R.id.widget_row_counter_name, rowCounter?.name)
-            view.setTextViewText(R.id.widget_current_row, rowCounter?.currentRow.toString())
+            view.setTextViewText(R.id.widget_row_counter_name, rowCounters[0].name)
+            view.setTextViewText(R.id.widget_current_row, rowCounters[0].currentRow.toString())
         } else {
             view.setTextViewText(R.id.widget_row_counter_name, "Row Counter not getting passed")
-            view.setTextViewText(R.id.widget_current_row, rowCounter?.currentRow.toString())
+            view.setTextViewText(R.id.widget_current_row, rowCounters[0].currentRow.toString())
         }
 
         val theWidget = ComponentName(this, SimpleAppWidget::class.java)
