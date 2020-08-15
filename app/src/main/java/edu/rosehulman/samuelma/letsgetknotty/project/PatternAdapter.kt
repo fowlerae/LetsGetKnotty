@@ -88,7 +88,7 @@ class PatternAdapter(
             R.layout.dialog_add_pattern, null, false
         )
         builder.setView(view)
-        if (position < 0) {
+        if (position >= 0) {
             view.pattern_name_edit_text.setText(patterns[position].name)
             view.number_of_rows_in_repeat_edit_text.setText(patterns[position].rowsInRepeat.toString())
             view.number_of_stitches_in_repeat_edit_text.setText(patterns[position]?.stitchesInRepeat.toString())
