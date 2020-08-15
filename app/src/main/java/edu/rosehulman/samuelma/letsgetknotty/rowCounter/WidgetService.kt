@@ -164,7 +164,7 @@ class WidgetService : Service() {
             // Reaches the view on widget and displays the number
             val view = RemoteViews(packageName, R.layout.simple_app_widget)
             if(rowCounters[0] != null) {
-                view.setTextViewText(R.id.widget_row_counter_name, rowCounters[0].name)
+                view.setTextViewText(R.id.widget_row_counter_name, "${projects[0].name} ${rowCounters[0].name}")
                 view.setTextViewText(R.id.widget_current_row, rowCounters[0].currentRow.toString())
             } else {
                 view.setTextViewText(R.id.widget_row_counter_name, "Row Counter not getting passed")
@@ -182,6 +182,7 @@ class WidgetService : Service() {
 
     private fun setCounter(rowCounter: RowCounter) {
         counter = rowCounter
+        Log.d(Constants.TAG, "Widget Service setting Counter: $counter")
     }
 
     companion object {
