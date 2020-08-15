@@ -1,5 +1,6 @@
 package edu.rosehulman.samuelma.letsgetknotty.rowCounter
 
+import android.app.PendingIntent
 import android.app.Service
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
@@ -20,6 +21,8 @@ import java.util.*
 
 
 class WidgetService : Service() {
+    private val ACTION_INCREASE_BUTTON = "ACTION_INCREASE_BUTTON"
+    private val ACTION_DECREASE_BUTTON = "ACTION_DECREASE_BUTTON"
 
     private val rowCounters = ArrayList<RowCounter>()
     private val projects = ArrayList<Project>()
