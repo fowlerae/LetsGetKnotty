@@ -2,6 +2,7 @@ package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
+import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
@@ -68,6 +70,8 @@ class CreatePatternFragment: Fragment() {
         button.setOnClickListener {
             adapter.color  = color
             adapter.stitch = null
+            Log.d(Constants.TAG, "Color Button Stitch: ${adapter.stitch}")
+            Log.d(Constants.TAG, "Color Button Color: ${adapter.color}")
         }
         button.setOnLongClickListener {
             showColorDialog(button)
@@ -87,6 +91,8 @@ class CreatePatternFragment: Fragment() {
         stitchButton.setOnClickListener {
             adapter.color  = Color.WHITE
             adapter.stitch = stitch
+            Log.d(Constants.TAG, "Stitch Button Stitch: ${adapter.stitch}")
+            Log.d(Constants.TAG, "Stitch Button Color: ${adapter.color}")
         }
         stitchButton.setOnLongClickListener {
             showStitchDialog(stitchButton)

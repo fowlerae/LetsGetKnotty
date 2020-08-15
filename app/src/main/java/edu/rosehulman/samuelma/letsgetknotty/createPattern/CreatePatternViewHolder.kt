@@ -1,9 +1,11 @@
 package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import edu.rosehulman.samuelma.letsgetknotty.Constants
 import kotlinx.android.synthetic.main.create_pattern_grid_view.view.*
 
 class CreatePatternViewHolder(itemView: View, private val adapter: CreatePatternAdapter): RecyclerView.ViewHolder(itemView) {
@@ -11,6 +13,8 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     private val imageView : ImageView = itemView.grid_stitch_image
     init {
         itemView.setOnClickListener {
+            Log.d(Constants.TAG, "View Holder Stitch: ${adapter.stitch}")
+            Log.d(Constants.TAG, "View Holder  Button Color: ${adapter.color}")
             adapter.updateColor(adapterPosition)
             cardView.setCardBackgroundColor(adapter.color!!)
             if(adapter.stitch!= null) {
