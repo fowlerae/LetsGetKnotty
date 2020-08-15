@@ -88,7 +88,7 @@ class PatternAdapter(
             R.layout.dialog_add_pattern, null, false
         )
         builder.setView(view)
-        if (position >= 0) {
+        if (position < 0) {
             view.pattern_name_edit_text.setText(patterns[position].name)
             view.number_of_rows_in_repeat_edit_text.setText(patterns[position].rowsInRepeat.toString())
             view.number_of_stitches_in_repeat_edit_text.setText(patterns[position]?.stitchesInRepeat.toString())
@@ -118,15 +118,29 @@ class PatternAdapter(
             val pattern = Pattern(name, "", rowsInRepeat, stitchesInRepeat, totalRows, totalStitches, "", false)
             pattern.imageUrl =
                     "https://cdn.shopify.com/s/files/1/0032/0025/4021/products/ilia_01_182d4112-7a3f-4057-807e-7f9cc68bfe79_480x480.jpg?v=1571710489"
-            add(pattern)
-            Log.d(Constants.TAG, pattern.toString())
-            val handler = Handler()
-            handler.postDelayed({
-                // do something after 500ms
-                // had to add delay as it was adding after the grid was created which led to adding the grid
-                // to the wrong pattern
-                listener?.onAddPatternSelected(patterns[0])
-            }, 500)
+
+            if(position < 0) {
+                add(pattern)
+                Log.d(Constants.TAG, pattern.toString())
+                val handler = Handler()
+                handler.postDelayed({
+                    // do something after 500ms
+                    // had to add delay as it was adding after the grid was created which led to adding the grid
+                    // to the wrong pattern
+                    listener?.onAddPatternSelected(patterns[0])
+                }, 500)
+            } else {
+                edit(pattern, position)
+                Log.d(Constants.TAG, pattern.toString())
+                val handler = Handler()
+                handler.postDelayed({
+                    // do something after 500ms
+                    // had to add delay as it was adding after the grid was created which led to adding the grid
+                    // to the wrong pattern
+                    listener?.onAddPatternSelected(patterns[position])
+                }, 500)
+            }
+
 
         }
         builder.setNegativeButton(android.R.string.cancel, null)
@@ -140,19 +154,8 @@ class PatternAdapter(
         patternsRef.add(pattern)
     }
 
-    private fun edit(
-        position: Int,
-        name: String,
-        rowsInRepeat: Int,
-        stitchesInRepeat: Int,
-        totalRows: Int,
-        totalStitches: Int
-    ) {
-        patterns[position].name = name
-        patterns[position].rowsInRepeat = rowsInRepeat
-        patterns[position].stitchesInRepeat = stitchesInRepeat
-        patterns[position].totalRows = totalRows
-        patterns[position].totalStitches = totalStitches
+    private fun edit(pattern: Pattern, position: Int) {
+        patterns[position] = pattern
         patternsRef.document(patterns[position].id).set(patterns[position])
     }
 

@@ -15,7 +15,7 @@ import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
 class CreatePatternAdapter(val context: Context, uid: String, project: Project, pattern: Pattern) :
     RecyclerView.Adapter<CreatePatternViewHolder>() {
-    private val rectangles = ArrayList<Grid>()
+    val rectangles = ArrayList<Grid>()
     private val gridRef = FirebaseFirestore
         .getInstance()
         .collection(Constants.USERS_COLLECTION)

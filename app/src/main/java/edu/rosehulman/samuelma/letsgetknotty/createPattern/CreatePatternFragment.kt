@@ -98,7 +98,9 @@ class CreatePatternFragment: Fragment() {
             showStitchDialog(stitchButton)
             true
         }
-        createGrid()
+        if(adapter.rectangles.size == 0) {
+            createGrid()
+        }
         return view
     }
 
