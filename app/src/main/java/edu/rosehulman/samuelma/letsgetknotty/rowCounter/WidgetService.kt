@@ -160,22 +160,23 @@ class WidgetService : Service() {
             Log.d(Constants.TAG, "Widget Service Project: ${rowCounters[0]}")
             rowCounter = rowCounters[0]
             setCounter(rowCounter!!)
+
+            // Reaches the view on widget and displays the number
+            val view = RemoteViews(packageName, R.layout.simple_app_widget)
+            if(rowCounters[0] != null) {
+                view.setTextViewText(R.id.widget_row_counter_name, rowCounters[0].name)
+                view.setTextViewText(R.id.widget_current_row, rowCounters[0].currentRow.toString())
+            } else {
+                view.setTextViewText(R.id.widget_row_counter_name, "Row Counter not getting passed")
+                view.setTextViewText(R.id.widget_current_row, "0")
+            }
+
+            val theWidget = ComponentName(this, SimpleAppWidget::class.java)
+            val manager = AppWidgetManager.getInstance(this)
+            manager.updateAppWidget(theWidget, view)
+
         }, 10000)
 
-
-        // Reaches the view on widget and displays the number
-        val view = RemoteViews(packageName, R.layout.simple_app_widget)
-        if(rowCounters[0] != null) {
-            view.setTextViewText(R.id.widget_row_counter_name, rowCounters[0].name)
-            view.setTextViewText(R.id.widget_current_row, rowCounters[0].currentRow.toString())
-        } else {
-            view.setTextViewText(R.id.widget_row_counter_name, "Row Counter not getting passed")
-            view.setTextViewText(R.id.widget_current_row, "0")
-        }
-
-        val theWidget = ComponentName(this, SimpleAppWidget::class.java)
-        val manager = AppWidgetManager.getInstance(this)
-        manager.updateAppWidget(theWidget, view)
         return super.onStartCommand(intent, flags, startId)
     }
 
