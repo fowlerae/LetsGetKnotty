@@ -16,9 +16,6 @@ class SimpleAppWidget : AppWidgetProvider() {
     private val ACTION_INCREASE_BUTTON = "ACTION_INCREASE_BUTTON"
     private val ACTION_DECREASE_BUTTON = "ACTION_DECREASE_BUTTON"
 
-    //   private lateinit var rowCounter : RowCounter
-    private var count: Int = 0
-
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
@@ -26,7 +23,11 @@ class SimpleAppWidget : AppWidgetProvider() {
     ) {
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId)
+       //     updateAppWidget(context, appWidgetManager, appWidgetId)
+            val intent = Intent(context.applicationContext, WidgetService::class.java)
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds)
+            context.startService(intent)
+
         }
     }
 
@@ -58,20 +59,20 @@ class SimpleAppWidget : AppWidgetProvider() {
         Log.d(Constants.TAG, "Got to the onReceive, Intent: ${intent.action}")
         val views = RemoteViews(context.packageName, R.layout.simple_app_widget)
         if (ACTION_INCREASE_BUTTON == intent.action) {
-            val c = increaseCount()
+            val c = WidgetService.increaseCount()
             Log.d(Constants.TAG, "Increase: $c")
             val views =
                 RemoteViews(context.packageName, R.layout.simple_app_widget)
-            views.setTextViewText(R.id.widget_current_row, c.toString())
+            views.setTextViewText(R.id.widget_current_row, c)
             val appWidget = ComponentName(context, SimpleAppWidget::class.java)
             val appWidgetManager = AppWidgetManager.getInstance(context)
             appWidgetManager.updateAppWidget(appWidget, views)
 
         } else if (ACTION_DECREASE_BUTTON == intent.action) {
-            val c = decreaseCount()
+            val c = WidgetService.decreaseCount()
             Log.d(Constants.TAG, "Increase: $c")
             val views = RemoteViews(context.packageName, R.layout.simple_app_widget)
-            views.setTextViewText(R.id.widget_current_row, c.toString())
+            views.setTextViewText(R.id.widget_current_row, c)
             val appWidget = ComponentName(context, SimpleAppWidget::class.java)
             val appWidgetManager = AppWidgetManager.getInstance(context)
             appWidgetManager.updateAppWidget(appWidget, views)
@@ -79,14 +80,5 @@ class SimpleAppWidget : AppWidgetProvider() {
 
     }
 
-    private fun increaseCount(): Int {
-        count += 1
-        return count
-    }
-
-    private fun decreaseCount(): Int {
-        count -= 1
-        return count
-    }
 
 }
