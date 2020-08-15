@@ -12,7 +12,8 @@ import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
-class CreatePatternAdapter(val context: Context, uid: String, project: Project, pattern: Pattern) : RecyclerView.Adapter<CreatePatternViewHolder>()  {
+class CreatePatternAdapter(val context: Context, uid: String, project: Project, pattern: Pattern) :
+    RecyclerView.Adapter<CreatePatternViewHolder>() {
     private val rectangles = ArrayList<Grid>()
     private val gridRef = FirebaseFirestore
         .getInstance()
@@ -23,8 +24,8 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         .collection(Constants.PATTERNS_COLLECTION)
         .document(pattern.id)
         .collection(Constants.GRID_COLLECTION)
-    var color : Int = Color.BLACK
-    var stitch : Int? = null
+    var color: Int = Color.BLACK
+    var stitch: Int? = null
 
     private lateinit var listenerRegistration: ListenerRegistration
 
@@ -68,7 +69,8 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, index: Int): CreatePatternViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.create_pattern_grid_view, parent, false)
+        val view =
+            LayoutInflater.from(context).inflate(R.layout.create_pattern_grid_view, parent, false)
         return CreatePatternViewHolder(view, this)
     }
 
@@ -87,7 +89,7 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
     }
 
     fun deleteGrid() {
-        for(position in 0 until rectangles.size) {
+        for (position in 0 until rectangles.size) {
             remove(position)
         }
     }
@@ -102,10 +104,9 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
     }
 
     fun updateStitch(position: Int) {
-        if(stitch != null) {
-            rectangles[position].image = stitch
-            gridRef.document(rectangles[position].id).set(rectangles[position])
-        }
+        rectangles[position].image = stitch
+        gridRef.document(rectangles[position].id).set(rectangles[position])
+
     }
 
 

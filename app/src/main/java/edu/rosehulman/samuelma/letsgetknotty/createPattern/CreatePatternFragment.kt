@@ -111,6 +111,7 @@ class CreatePatternFragment: Fragment() {
             val color = selectedColor
             colorButton.setBackgroundColor(color)
             adapter.color = color
+            adapter.stitch = null
         }
         builder.setNegativeButton(getString(android.R.string.cancel), null)
         builder.build().show()
