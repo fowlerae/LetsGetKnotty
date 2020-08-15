@@ -173,6 +173,16 @@ class WidgetService : Service() {
                 view.setTextViewText(R.id.widget_row_counter_name, "Row Counter not getting passed")
                 view.setTextViewText(R.id.widget_current_row, "0")
             }
+            val intent = Intent(applicationContext, SimpleAppWidget::class.java)
+            intent.action = ACTION_INCREASE_BUTTON
+            val pendingIntent = PendingIntent.getBroadcast(applicationContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            view.setOnClickPendingIntent(R.id.widget_row_counter_increase_button, pendingIntent)
+
+            val intent2 = Intent(applicationContext, SimpleAppWidget::class.java)
+            intent2.action = ACTION_DECREASE_BUTTON
+            val pendingIntent2 = PendingIntent.getBroadcast(applicationContext, 1, intent2, PendingIntent.FLAG_UPDATE_CURRENT)
+            view.setOnClickPendingIntent(R.id.widget_row_counter_decrease_button, pendingIntent2)
+
 
             val theWidget = ComponentName(this, SimpleAppWidget::class.java)
             val manager = AppWidgetManager.getInstance(this)
