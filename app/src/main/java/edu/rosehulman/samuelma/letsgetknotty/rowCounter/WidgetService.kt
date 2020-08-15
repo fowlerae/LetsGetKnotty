@@ -164,6 +164,7 @@ class WidgetService : Service() {
 
         // Reaches the view on widget and displays the number
         val view = RemoteViews(packageName, R.layout.simple_app_widget)
+        view.setTextViewText(R.id.widget_row_counter_name, rowCounter?.name)
         view.setTextViewText(R.id.widget_current_row, rowCounter?.currentRow.toString())
         val theWidget = ComponentName(this, SimpleAppWidget::class.java)
         val manager = AppWidgetManager.getInstance(this)
