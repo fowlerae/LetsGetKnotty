@@ -26,6 +26,7 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         .collection(Constants.GRID_COLLECTION)
     var color: Int = Color.BLACK
     var stitch: Int? = null
+    var usingStitch : Boolean = false
 
     private lateinit var listenerRegistration: ListenerRegistration
 

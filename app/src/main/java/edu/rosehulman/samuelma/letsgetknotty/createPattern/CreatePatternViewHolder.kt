@@ -1,6 +1,7 @@
 package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
 import android.graphics.Color
+import android.opengl.Visibility
 import android.view.View
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
@@ -16,11 +17,10 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     private val imageView : ImageView = itemView.grid_stitch_image
     init {
         itemView.setOnClickListener {
-            if(adapter.stitch == null) {
+            if(!adapter.usingStitch) {
                 adapter.updateColor(adapterPosition)
                 cardView.setCardBackgroundColor(adapter.color)
             } else {
-                adapter.updateStitch(adapterPosition)
                 adapter.updateStitch(adapterPosition)
                 imageView.setImageResource(adapter.stitch!!)
             }

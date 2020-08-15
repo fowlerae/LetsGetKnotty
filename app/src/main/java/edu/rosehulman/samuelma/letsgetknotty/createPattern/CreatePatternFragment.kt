@@ -1,8 +1,6 @@
 package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
-import android.app.AlertDialog
 import android.graphics.Color
-import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -77,13 +75,10 @@ class CreatePatternFragment: Fragment() {
             adapter.deleteGrid()
             switchToProjectFragment()
         }
-
         val stitchButton : ImageButton = view.findViewById(R.id.choose_stitch_button)
         stitchButton.setOnClickListener {
             showStitchDialog(stitchButton)
         }
-
-
         createGrid()
         return view
     }
@@ -109,9 +104,9 @@ class CreatePatternFragment: Fragment() {
         }
         builder.setPositiveButton(android.R.string.ok) { dialog, selectedColor, allColors ->
             adapter.stitch = null
-            val color = selectedColor
-            colorButton.setBackgroundColor(color)
-            adapter.color = color
+            adapter.usingStitch = false
+            colorButton.setBackgroundColor(selectedColor)
+            adapter.color = selectedColor
         }
         builder.setNegativeButton(getString(android.R.string.cancel), null)
         builder.build().show()
@@ -131,10 +126,12 @@ class CreatePatternFragment: Fragment() {
             adapter.stitch = R.drawable.ic_stitch_yarnover_black
         }
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
+            adapter.usingStitch = true
             adapter.stitch?.let { stitchButton.setImageResource(it) }
         }
 
         builder.setNegativeButton(android.R.string.cancel) { _, _ ->
+            adapter.usingStitch = false
             adapter.stitch = null
         }
 
