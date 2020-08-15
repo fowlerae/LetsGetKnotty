@@ -28,6 +28,9 @@ class CreatePatternFragment: Fragment() {
     private lateinit var project: Project
     private var uid: String = ""
     private lateinit var adapter: CreatePatternAdapter
+    private var color : Int = Color.BLACK
+    private var stitch : Int? = null
+
     companion object {
         @JvmStatic
         fun newInstance(uid :String, pattern: Pattern, project : Project) =
@@ -63,8 +66,14 @@ class CreatePatternFragment: Fragment() {
         adapter.addSnapshotListener()
         val button : Button = view.findViewById(R.id.choose_color_button)
         button.setOnClickListener {
-            showColorDialog(button)
+            adapter.color  = color
+            adapter.stitch = null
         }
+        button.setOnLongClickListener {
+            showColorDialog(button)
+            true
+        }
+
         val addButton : Button = view.findViewById(R.id.add_created_pattern_button)
         addButton.setOnClickListener {
             switchToProjectFragment()
@@ -76,7 +85,12 @@ class CreatePatternFragment: Fragment() {
         }
         val stitchButton : ImageButton = view.findViewById(R.id.choose_stitch_button)
         stitchButton.setOnClickListener {
+            adapter.color  = Color.WHITE
+            adapter.stitch = stitch
+        }
+        stitchButton.setOnLongClickListener {
             showStitchDialog(stitchButton)
+            true
         }
         createGrid()
         return view
@@ -104,6 +118,7 @@ class CreatePatternFragment: Fragment() {
         builder.setPositiveButton(android.R.string.ok) { dialog, selectedColor, allColors ->
             adapter.stitch = null
             colorButton.setBackgroundColor(selectedColor)
+            color = selectedColor
             adapter.color = selectedColor
         }
         builder.setNegativeButton(android.R.string.cancel) { _, _ ->
@@ -128,6 +143,7 @@ class CreatePatternFragment: Fragment() {
         }
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             adapter.stitch = choosenStitch
+            stitch = choosenStitch
             adapter.color = Color.WHITE
             adapter.stitch?.let { stitchButton.setImageResource(it) }
         }

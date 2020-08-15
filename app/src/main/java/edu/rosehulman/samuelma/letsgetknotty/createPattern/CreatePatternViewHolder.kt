@@ -13,14 +13,13 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
         itemView.setOnClickListener {
             adapter.updateColor(adapterPosition)
             cardView.setCardBackgroundColor(adapter.color!!)
+            if(adapter.stitch!= null) {
+                adapter.updateStitch(adapterPosition)
+                imageView.setImageResource(adapter.stitch!!)
+            }
 
         }
 
-        itemView.setOnLongClickListener {
-            adapter.updateStitch(adapterPosition)
-            imageView.setImageResource(adapter.stitch!!)
-            return@setOnLongClickListener true
-        }
     }
 
     fun bind(grid: Grid) {
