@@ -148,7 +148,7 @@ class WidgetService : Service() {
             // do something after 500ms
             // had to add delay as it was adding after the grid was created which led to adding the grid
             // to the wrong pattern
-
+            Log.d(Constants.TAG, "Project: ${projects[0]}")
             projectId = projects[0].id
             getRowCounter()
         }, 1000)
