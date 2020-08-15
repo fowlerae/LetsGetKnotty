@@ -157,6 +157,7 @@ class WidgetService : Service() {
             // do something after 500ms
             // had to add delay as it was adding after the grid was created which led to adding the grid
             // to the wrong pattern
+            Log.d(Constants.TAG, "Widget Service Project: ${rowCounters[0]}")
             rowCounter = rowCounters[0]
             setCounter(rowCounter!!)
         }, 2000)
