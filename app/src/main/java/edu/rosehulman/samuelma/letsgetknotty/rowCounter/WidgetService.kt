@@ -160,7 +160,7 @@ class WidgetService : Service() {
             Log.d(Constants.TAG, "Widget Service Project: ${rowCounters[0]}")
             rowCounter = rowCounters[0]
             setCounter(rowCounter!!)
-        }, 2000)
+        }, 10000)
 
 
         // Reaches the view on widget and displays the number
