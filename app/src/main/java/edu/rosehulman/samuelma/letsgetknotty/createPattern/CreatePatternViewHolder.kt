@@ -11,9 +11,14 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     private val imageView : ImageView = itemView.grid_stitch_image
     init {
         itemView.setOnClickListener {
+
             adapter.update(adapterPosition)
-            cardView.setCardBackgroundColor(adapter.color)
-            imageView.setImageResource(adapter.stitch!!)
+            if(adapter.usingStitch) {
+                imageView.setImageResource(adapter.stitch!!)
+            } else if(adapter.usingColor){
+                cardView.setCardBackgroundColor(adapter.color!!)
+            }
+
         }
     }
 

@@ -105,10 +105,14 @@ class CreatePatternFragment: Fragment() {
         builder.setPositiveButton(android.R.string.ok) { dialog, selectedColor, allColors ->
             adapter.stitch = null
             adapter.usingStitch = false
+            adapter.usingColor = true
             colorButton.setBackgroundColor(selectedColor)
             adapter.color = selectedColor
         }
-        builder.setNegativeButton(getString(android.R.string.cancel), null)
+        builder.setNegativeButton(android.R.string.cancel) { _, _ ->
+            adapter.usingStitch = false
+            adapter.usingColor = false
+        }
         builder.build().show()
     }
 
@@ -132,6 +136,7 @@ class CreatePatternFragment: Fragment() {
 
         builder.setNegativeButton(android.R.string.cancel) { _, _ ->
             adapter.usingStitch = false
+            adapter.usingColor = false
             adapter.stitch = null
         }
 
