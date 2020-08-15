@@ -99,16 +99,16 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         gridRef.document(rectangles[position].id).delete()
     }
 
-    fun updateColor(position: Int) {
-        rectangles[position].color = color
+    fun update(position: Int) {
+        if(!usingStitch) {
+            rectangles[position].color = color
+        } else {
+            rectangles[position].image = stitch
+        }
         gridRef.document(rectangles[position].id).set(rectangles[position])
     }
 
-    fun updateStitch(position: Int) {
-        rectangles[position].image = stitch
-        gridRef.document(rectangles[position].id).set(rectangles[position])
 
-    }
 
 
 }
