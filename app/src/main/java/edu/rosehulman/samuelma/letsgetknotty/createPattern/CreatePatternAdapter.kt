@@ -99,12 +99,16 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
     }
 
     fun updateColor(position: Int) {
-        rectangles[position].color = color!!
+        Log.d(Constants.TAG, "View Holder Stitch: ${stitch}")
+        Log.d(Constants.TAG, "View Holder  Button Color: ${color}")
+        rectangles[position].color = this.color!!
         gridRef.document(rectangles[position].id).set(rectangles[position])
     }
 
     fun updateStitch(position: Int) {
-        rectangles[position].image = stitch!!
+        Log.d(Constants.TAG, "View Holder Stitch: ${stitch}")
+        Log.d(Constants.TAG, "View Holder  Button Color: ${color}")
+        rectangles[position].image = this.stitch!!
         gridRef.document(rectangles[position].id).set(rectangles[position])
     }
 
