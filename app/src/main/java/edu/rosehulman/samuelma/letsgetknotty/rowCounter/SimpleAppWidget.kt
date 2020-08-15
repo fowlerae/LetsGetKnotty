@@ -111,7 +111,7 @@ class SimpleAppWidget : AppWidgetProvider() {
         Log.d(Constants.TAG, "Got to the onReceive, Intent: ${intent.action}")
         val views = RemoteViews(context.packageName, R.layout.simple_app_widget)
         if (ACTION_INCREASE_BUTTON == intent.action) {
-            val c = WidgetService.increaseCount()
+            val c = increaseCount()
             Log.d(Constants.TAG, "Increase: $c")
             views.setTextViewText(R.id.widget_current_row, c)
             val appWidget = ComponentName(context, SimpleAppWidget::class.java)
@@ -119,7 +119,7 @@ class SimpleAppWidget : AppWidgetProvider() {
             appWidgetManager.updateAppWidget(appWidget, views)
 
         } else if (ACTION_DECREASE_BUTTON == intent.action) {
-            val c = WidgetService.decreaseCount()
+            val c = decreaseCount()
             Log.d(Constants.TAG, "Increase: $c")
             views.setTextViewText(R.id.widget_current_row, c)
             val appWidget = ComponentName(context, SimpleAppWidget::class.java)
