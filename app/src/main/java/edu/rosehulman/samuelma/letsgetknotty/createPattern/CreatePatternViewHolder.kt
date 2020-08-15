@@ -31,6 +31,7 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
         cardView.setCardBackgroundColor(grid.color)
         if(grid.image != null) {
             imageView.setImageResource(grid.image!!)
+            imageView.visibility = View.VISIBLE
         } else {
             imageView.visibility = View.GONE
         }
