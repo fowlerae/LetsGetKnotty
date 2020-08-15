@@ -155,8 +155,7 @@ class PatternAdapter(
     }
 
     private fun edit(pattern: Pattern, position: Int) {
-        patterns[position] = pattern
-        patternsRef.document(patterns[position].id).set(patterns[position])
+        patternsRef.document(patterns[position].id).set(pattern)
     }
 
 
