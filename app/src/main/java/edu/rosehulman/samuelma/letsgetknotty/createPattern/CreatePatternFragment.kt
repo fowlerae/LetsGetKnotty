@@ -108,10 +108,10 @@ class CreatePatternFragment: Fragment() {
             ).show()
         }
         builder.setPositiveButton(android.R.string.ok) { dialog, selectedColor, allColors ->
+            adapter.stitch = null
             val color = selectedColor
             colorButton.setBackgroundColor(color)
             adapter.color = color
-            adapter.stitch = null
         }
         builder.setNegativeButton(getString(android.R.string.cancel), null)
         builder.build().show()
