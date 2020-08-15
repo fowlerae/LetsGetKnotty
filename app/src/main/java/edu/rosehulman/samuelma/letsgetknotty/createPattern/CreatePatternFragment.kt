@@ -1,11 +1,14 @@
 package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
+import android.app.AlertDialog
 import android.graphics.Color
+import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,6 +30,7 @@ class CreatePatternFragment: Fragment() {
     private lateinit var project: Project
     private var uid: String = ""
     private lateinit var adapter: CreatePatternAdapter
+    private var currentStitch : Int? = null
     companion object {
         @JvmStatic
         fun newInstance(uid :String, pattern: Pattern, project : Project) =
@@ -74,6 +78,11 @@ class CreatePatternFragment: Fragment() {
             switchToProjectFragment()
         }
 
+        val stitchButton : ImageButton = view.findViewById(R.id.choose_stitch_button)
+        stitchButton.setOnClickListener {
+            showStitchDialog(stitchButton)
+        }
+
 
         createGrid()
         return view
@@ -106,6 +115,29 @@ class CreatePatternFragment: Fragment() {
         }
         builder.setNegativeButton(getString(android.R.string.cancel), null)
         builder.build().show()
+    }
+
+    private fun showStitchDialog(stitchButton: ImageButton) {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(context!!)
+        builder.setTitle("Choose a stitch")
+        val view = LayoutInflater.from(context).inflate(R.layout.dialog_choose_stitch, null, false)
+        val purlButton = view.findViewById<ImageButton>(R.id.black_purl_stitch_button)
+        purlButton.setOnClickListener {
+            adapter.stitch = R.drawable.ic_stitch_purl_black
+        }
+        val yarnOverButton = view.findViewById<ImageButton>(R.id.black_yarn_over_stitch_button)
+        yarnOverButton.setOnClickListener {
+            adapter.stitch = R.drawable.ic_stitch_yarnover_black
+        }
+        builder.setPositiveButton(android.R.string.ok) { _, _ ->
+            adapter.stitch?.let { stitchButton.setImageResource(it) }
+        }
+
+        builder.setNegativeButton(android.R.string.cancel) { _, _ ->
+            adapter.stitch = null
+        }
+
+        builder.create().show()
     }
 
     private fun switchToProjectFragment() {

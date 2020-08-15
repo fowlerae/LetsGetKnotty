@@ -24,6 +24,7 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         .document(pattern.id)
         .collection(Constants.GRID_COLLECTION)
     var color : Int = Color.BLACK
+    var stitch : Int? = null
 
     private lateinit var listenerRegistration: ListenerRegistration
 
@@ -99,5 +100,13 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         rectangles[position].color = color
         gridRef.document(rectangles[position].id).set(rectangles[position])
     }
+
+    fun updateStitch(position: Int) {
+        if(stitch != null) {
+            rectangles[position].image = stitch
+            gridRef.document(rectangles[position].id).set(rectangles[position])
+        }
+    }
+
 
 }

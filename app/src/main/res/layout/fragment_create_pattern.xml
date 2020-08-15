@@ -4,8 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="5dp"
-    >
+    android:layout_marginHorizontal="5dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,7 +34,7 @@
             style="@style/SectionSubtitle"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/choose_stitch_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -51,13 +50,13 @@
             android:id="@+id/add_created_pattern_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add" />
+            android:text="@string/add" />
 
         <Button
             android:id="@+id/cancel_created_pattern_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
     </LinearLayout>
 
