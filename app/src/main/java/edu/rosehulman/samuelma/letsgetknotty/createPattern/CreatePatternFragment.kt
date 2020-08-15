@@ -2,6 +2,7 @@ package edu.rosehulman.samuelma.letsgetknotty.createPattern
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -98,9 +99,12 @@ class CreatePatternFragment: Fragment() {
             showStitchDialog(stitchButton)
             true
         }
-        if(adapter.rectangles.size == 0) {
-            createGrid()
-        }
+        val handler = Handler()
+        handler.postDelayed({
+            if(adapter.rectangles.size == 0) {
+                createGrid()
+            } },500)
+
         return view
     }
 
