@@ -116,6 +116,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
     // Everything camera- and storage-related is from
     // https://developer.android.com/training/camera/photobasics
     private fun launchCameraIntent() {
+        Log.d(Constants.TAG, "launchCameraIntent")
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             // Ensure that there's a camera activity to handle the intent
             takePictureIntent.resolveActivity(activity!!.packageManager)?.also {
@@ -131,7 +132,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
                     // authority declared in manifest
                     val photoURI: Uri = FileProvider.getUriForFile(
                         context!!,
-                        "edu.rosehulman.catchandkit",
+                        "edu.rosehulman.samuelma.letsgetknotty",
                         it
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
@@ -143,6 +144,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
 
     @Throws(IOException::class)
     private fun createImageFile(): File {
+        Log.d(Constants.TAG, "createImageFile")
         // Create an image file name
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
         val storageDir: File = activity!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
@@ -157,6 +159,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
     }
 
     private fun launchChooseIntent() {
+        Log.d(Constants.TAG, "launchChooseIntent")
         // https://developer.android.com/guide/topics/providers/document-provider
         val choosePictureIntent = Intent(
             Intent.ACTION_OPEN_DOCUMENT,
@@ -165,12 +168,15 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         choosePictureIntent.addCategory(Intent.CATEGORY_OPENABLE)
         choosePictureIntent.type = "image/*"
         if (choosePictureIntent.resolveActivity(context!!.packageManager) != null) {
+            Log.d(Constants.TAG, "launchChooseIntent if statement")
             startActivityForResult(choosePictureIntent, RC_CHOOSE_PICTURE)
         }
+
     }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.d(Constants.TAG, "onActivityResult")
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 RC_TAKE_PICTURE -> {
@@ -184,12 +190,14 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
     }
 
     private fun sendCameraPhotoToAdapter() {
+        Log.d(Constants.TAG, "sendCameraPhotoToAdapter")
         addPhotoToGallery()
         Log.d(Constants.TAG, "Sending to adapter this photo: $currentPhotoPath")
         adapter.addImage(currentPhotoPath)
     }
 
     private fun sendGalleryPhotoToAdapter(data: Intent?) {
+        Log.d(Constants.TAG, "sendGalleryPhotoToAdapter")
         if (data != null && data.data != null) {
             val location = data.data!!.toString()
             adapter.addImage(location)
