@@ -14,7 +14,7 @@ class RowCounterViewHolder(itemView: View, adapter: RowCounterAdapter): Recycler
     private val rowTextView: TextView = itemView.findViewById(R.id.current_row_text_view)
     private val upImageView :View  = itemView.findViewById(R.id.row_counter_increase_button)
     private val downImageView : View = itemView.findViewById(R.id.row_counter_decrease_button)
-  //  private var cardView: CardView = itemView.row_card_view
+
 
     init {
         upImageView.setOnClickListener {

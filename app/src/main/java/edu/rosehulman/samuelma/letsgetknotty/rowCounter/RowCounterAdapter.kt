@@ -117,7 +117,7 @@ class RowCounterAdapter(val context: Context, uid: String, projectId: String) : 
             )
             builder.setView(view)
             view.row_counter_name_edit_text.setText(rowCounters[position].name)
-            view.starting_value_edit_text.setText(rowCounters[position].currentRow)
+            view.starting_value_edit_text.setText(rowCounters[position].currentRow.toString())
 
             builder.setPositiveButton(android.R.string.ok) { _, _ ->
                 val name = "${view.row_counter_name_edit_text.text} Row Counter"
