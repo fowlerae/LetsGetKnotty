@@ -20,6 +20,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.firebase.Timestamp
 import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.MainActivity
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
@@ -91,6 +92,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
     }
 
     override fun onProjectSelected(pro: Project) {
+        pro.lastTouched = Timestamp.now()
         val fragment = ProjectFragment.newInstance(pro,uid)
         val fm = fragmentManager
         val ft = fm?.beginTransaction()

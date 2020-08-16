@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -239,6 +240,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
 
     override fun onPatternSelected(pattern: Pattern) {
+        pattern.lastTouched = Timestamp.now()
         val fragment = PatternFragment.newInstance(uid, pattern, project)
         val fm = fragmentManager
         val ft = fm?.beginTransaction()
