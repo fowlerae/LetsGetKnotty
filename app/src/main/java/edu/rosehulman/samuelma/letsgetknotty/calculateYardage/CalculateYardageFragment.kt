@@ -80,7 +80,7 @@ class CalculateYardageFragment : Fragment() {
         val yardsUsedString : String = view.findViewById<EditText>(R.id.calc_yards_used).text.toString()
         val yardsPerSkeinString : String = view.findViewById<EditText>(R.id.calc_yarns_per_skein).text.toString()
 
-        if(desiredHeightString != "" || desiredWidthString != "" || projectHeightString == ""
+        if(desiredHeightString != "" || desiredWidthString != "" || projectHeightString != ""
             || projectWidthString != "" || yardsUsedString != "" || yardsPerSkeinString != "") {
 
             val dHeight : Double = desiredHeightString.toInt().toDouble()
