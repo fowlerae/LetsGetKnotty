@@ -150,13 +150,6 @@ class PatternAdapter(
                 }
             }, 500)
 
-
-            handler.postDelayed({
-                // do something after 500ms
-                // had to add delay as it was adding after the grid was created which led to adding the grid
-                // to the wrong pattern
-                listener?.onAddPatternSelected(patterns[position])
-            }, 1000)
             if(position < 0) {
                 add(pattern)
                 Log.d(Constants.TAG, pattern.toString())
