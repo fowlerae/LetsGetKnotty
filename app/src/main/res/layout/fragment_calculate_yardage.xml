@@ -14,11 +14,13 @@
             android:id="@+id/calc_desired_width"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="@string/desired_width_inch"/>
         <EditText
             android:id="@+id/calc_desired_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="@string/desired_height_inch"/>
 
     </LinearLayout>
@@ -34,12 +36,14 @@
             android:id="@+id/calc_project_width"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="@string/pattern_width_inch"/>
 
         <EditText
             android:id="@+id/calc_project_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="@string/pattern_height_inch"/>
 
     </LinearLayout>
@@ -55,12 +59,14 @@
             android:id="@+id/calc_yarns_per_skein"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="@string/yards_per_skein"/>
 
         <EditText
             android:id="@+id/calc_yards_used"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="@string/yards_used"/>
 
     </LinearLayout>
