@@ -1,13 +1,11 @@
 package edu.rosehulman.samuelma.letsgetknotty.project
 
 
-import android.graphics.Color
-import androidx.core.content.ContextCompat
-import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
@@ -32,7 +30,7 @@ class PatternViewHolder(itemView: View, private val adapter: PatternAdapter): Re
 
     fun bind(pattern: Pattern) {
         nameTextView.text = pattern.name
-        Picasso.get().load(pattern?.imageUrl)
+        Picasso.get().load(pattern.imageUrl)
             .transform(CropSquareTransformation())
             .into(imageView)
     }

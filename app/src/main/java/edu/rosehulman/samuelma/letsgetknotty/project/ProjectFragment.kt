@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -35,10 +34,10 @@ private const val ARG_PROJECT = "project"
 
 class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     private lateinit var project: Project
-    lateinit var patternAdapter : PatternAdapter
-    lateinit var noteAdapter : NoteAdapter
-    lateinit var rowCounterAdapter : RowCounterAdapter
-    lateinit var listener: PatternAdapter.OnPatternSelectedListener
+    private lateinit var patternAdapter : PatternAdapter
+    private lateinit var noteAdapter : NoteAdapter
+    private lateinit var rowCounterAdapter : RowCounterAdapter
+    private lateinit var listener: PatternAdapter.OnPatternSelectedListener
     private var uid : String = ""
     private lateinit var projectRef : DocumentReference
     private lateinit var root : View
@@ -70,8 +69,8 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         arguments?.let {
             project = it.getParcelable(ARG_PROJECT)!!
         }
-        projectRef = uid?.let {
-            project?.id?.let { it1 ->
+        projectRef = uid.let {
+            project.id.let { it1 ->
                 FirebaseFirestore
                     .getInstance()
                     .collection(Constants.USERS_COLLECTION)
@@ -79,7 +78,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
                     .collection(Constants.PROJECTS_COLLECTION)
                     .document(it1)
             }
-        }!!
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -94,11 +93,11 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         root = inflater.inflate(R.layout.fragment_project_view, container, false)
 
         val textView : TextView = root.findViewById(R.id.project_title_text_view)
-        textView.text = project?.name
+        textView.text = project.name
 
         // pattern recycler
         val patternRecyclerView : RecyclerView = root.findViewById(R.id.pattern_recycler_view)
-        patternAdapter = project?.id?.let { PatternAdapter(context!!, uid!!, it, listener) }!!
+        patternAdapter = PatternAdapter(context!!, uid, project.id, listener)
         patternRecyclerView.adapter = patternAdapter
         patternAdapter.addSnapshotListener()
         patternRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL ,false)
@@ -106,7 +105,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         // note recycler
 
         val noteRecyclerView : RecyclerView = root.findViewById(R.id.note_recycler_view)
-        noteAdapter = project?.id?.let { NoteAdapter(context!!, uid!!, it) }!!
+        noteAdapter = NoteAdapter(context!!, uid, project.id)
         noteRecyclerView.adapter = noteAdapter
         noteAdapter.addSnapshotListener()
         noteRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL ,false)
@@ -114,7 +113,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         // row counter recycler
 
         val rowCounterRecyclerView : RecyclerView = root.findViewById(R.id.row_counter_recycler_view)
-        rowCounterAdapter = project?.id?.let { RowCounterAdapter(context!!, uid!!, it) }!!
+        rowCounterAdapter = RowCounterAdapter(context!!, uid, project.id)
         rowCounterRecyclerView.adapter = rowCounterAdapter
         rowCounterAdapter.addSnapshotListener()
         rowCounterRecyclerView.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL ,false)
@@ -192,7 +191,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
             builder.setView(view)
             builder.setPositiveButton(android.R.string.ok) { _, _ ->
                 val description = view.note_description_edit_text.text.toString()
-                val note : Note = Note(description)
+                val note = Note(description)
                 noteAdapter.add(note)
             }
             builder.setNegativeButton(android.R.string.cancel, null)
@@ -253,8 +252,8 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
 
     override fun onAddPatternSelected(pattern: Pattern) {
         Log.d(Constants.TAG, "Pattern: ${pattern.id}, pattern name : ${pattern.name}")
-        val fragment = project?.let {
-            uid?.let { it1 ->
+        val fragment = project.let {
+            uid.let { it1 ->
                 CreatePatternFragment.newInstance(
                     it1,pattern, it)
             }
@@ -269,10 +268,10 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         }
     }
 
-    fun addGuage(stitchCount : Int, rowCount : Int, width : Int, height : Int) {
+    private fun addGuage(stitchCount : Int, rowCount : Int, width : Int, height : Int) {
         val horizontalGauge = (stitchCount/ width) * 4
         val verticalGauge : Int = (rowCount / height) * 4
-        val gauge : String = "$horizontalGauge sts x $verticalGauge rows"
+        val gauge = "$horizontalGauge sts x $verticalGauge rows"
         val map = mapOf("gauge" to gauge)
         projectRef.update(map)
         val gaugeTextView = root.findViewById<TextView>(R.id.project_gauge)

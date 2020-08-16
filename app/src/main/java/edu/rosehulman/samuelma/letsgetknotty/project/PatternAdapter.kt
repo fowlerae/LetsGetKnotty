@@ -19,7 +19,7 @@ class PatternAdapter(
     val context: Context,
     uid: String,
     projectId: String,
-    var listener: OnPatternSelectedListener?
+    private var listener: OnPatternSelectedListener?
 ) : RecyclerView.Adapter<PatternViewHolder>() {
     private val patterns = ArrayList<Pattern>()
     private val patternsRef = FirebaseFirestore
@@ -30,7 +30,6 @@ class PatternAdapter(
         .document(projectId)
         .collection(Constants.PATTERNS_COLLECTION)
     private lateinit var listenerRegistration: ListenerRegistration
-    private var gauge: String = ""
 
     fun addSnapshotListener() {
         listenerRegistration = patternsRef
@@ -91,9 +90,9 @@ class PatternAdapter(
         if (position >= 0) {
             view.pattern_name_edit_text.setText(patterns[position].name)
             view.number_of_rows_in_repeat_edit_text.setText(patterns[position].rowsInRepeat.toString())
-            view.number_of_stitches_in_repeat_edit_text.setText(patterns[position]?.stitchesInRepeat.toString())
-            view.total_number_of_rows_edit_text.setText(patterns[position]?.totalRows.toString())
-            view.total_number_of_stitches_edit_text.setText(patterns[position]?.totalStitches.toString())
+            view.number_of_stitches_in_repeat_edit_text.setText(patterns[position].stitchesInRepeat.toString())
+            view.total_number_of_rows_edit_text.setText(patterns[position].totalRows.toString())
+            view.total_number_of_stitches_edit_text.setText(patterns[position].totalStitches.toString())
         }
 
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
