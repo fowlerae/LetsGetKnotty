@@ -33,7 +33,7 @@ class ProjectListViewHolder(itemView: View, private val listAdapter: ProjectList
     fun bind(project: Project) {
         nameTextView.text = project.name
         if(project.imageUrl == "") {
-            project.imageUrl = "https://con-lorca.appspot.com/img/no-foto.png"
+            project.imageUrl = "https://firebasestorage.googleapis.com/v0/b/let-s-get-knotty-296d2.appspot.com/o/images%2F705735745717022433?alt=media&token=d28563b8-8adb-4895-80a6-08de1827f186"
         }
         Picasso.get().load(project?.imageUrl)
             .transform(CropSquareTransformation())

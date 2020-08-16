@@ -113,11 +113,11 @@ class PatternAdapter(
             view.number_of_stitches_in_repeat_edit_text.setText(patterns[position].stitchesInRepeat.toString())
             view.total_number_of_rows_edit_text.setText(patterns[position].totalRows.toString())
             view.total_number_of_stitches_edit_text.setText(patterns[position].totalStitches.toString())
-            image = image
+            image = patterns[position].imageUrl
         }
-            addImageButton.setOnClickListener {
-                listener!!.showPictureDialog()
-            }
+        addImageButton.setOnClickListener {
+            listener!!.showPictureDialog()
+        }
 
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             val name = view.pattern_name_edit_text.text.toString()

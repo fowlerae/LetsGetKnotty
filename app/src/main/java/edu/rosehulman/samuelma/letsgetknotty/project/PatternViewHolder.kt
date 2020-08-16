@@ -30,6 +30,9 @@ class PatternViewHolder(itemView: View, private val adapter: PatternAdapter): Re
 
     fun bind(pattern: Pattern) {
         nameTextView.text = pattern.name
+        if(pattern.imageUrl == "") {
+            pattern.imageUrl = "https://firebasestorage.googleapis.com/v0/b/let-s-get-knotty-296d2.appspot.com/o/images%2F705735745717022433?alt=media&token=d28563b8-8adb-4895-80a6-08de1827f186"
+        }
         Picasso.get().load(pattern.imageUrl)
             .transform(CropSquareTransformation())
             .into(imageView)
