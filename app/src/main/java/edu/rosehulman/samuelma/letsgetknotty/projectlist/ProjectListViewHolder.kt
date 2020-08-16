@@ -32,6 +32,9 @@ class ProjectListViewHolder(itemView: View, private val listAdapter: ProjectList
 
     fun bind(project: Project) {
         nameTextView.text = project.name
+        if(project.imageUrl == "") {
+            project.imageUrl = "https://con-lorca.appspot.com/img/no-foto.png"
+        }
         Picasso.get().load(project?.imageUrl)
             .transform(CropSquareTransformation())
             .into(imageView)
