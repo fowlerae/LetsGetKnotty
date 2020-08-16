@@ -125,8 +125,10 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         }
 
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
+            if(image == "") {
+                image = "https://firebasestorage.googleapis.com/v0/b/let-s-get-knotty-296d2.appspot.com/o/images%2F705735745717022433?alt=media&token=d28563b8-8adb-4895-80a6-08de1827f186"
+            }
             val name = view.dialog_edit_text_name.text.toString()
-          //  val image = view.dialog_edit_text_image.text.toString()
             Log.d(Constants.TAG, "Image: $image")
             val handler = Handler()
             handler.postDelayed({
@@ -158,9 +160,12 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
 
 
     private fun remove(position: Int) {
-        val ref = FirebaseStorage.getInstance().getReferenceFromUrl(projects[position].imageUrl)
-        ref.delete().addOnFailureListener {
-            Log.d(Constants.TAG, "deleted: ${projects[position].id}")
+        val image = projects[position].imageUrl
+        if(image != "https://firebasestorage.googleapis.com/v0/b/let-s-get-knotty-296d2.appspot.com/o/images%2F705735745717022433?alt=media&token=d28563b8-8adb-4895-80a6-08de1827f186"){
+            val ref = FirebaseStorage.getInstance().getReferenceFromUrl(projects[position].imageUrl)
+            ref.delete().addOnFailureListener {
+                Log.d(Constants.TAG, "deleted image url: ${projects[position].imageUrl}")
+            }
         }
         projectsRef.document(projects[position].id).delete()
     }
@@ -215,7 +220,6 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         }).addOnCompleteListener { task ->
             if(task.isSuccessful) {
                 val downloadUri = task.result
-               // projectsRef.add(Project(name, downloadUri.toString()))
                 image = downloadUri.toString()
                 Log.d(Constants.TAG, "${downloadUri.toString()}")
             } else {
@@ -226,10 +230,13 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
 
     private fun removeImageFromStorageOnly(position: Int) {
         val image = projects[position].imageUrl
-        val ref = FirebaseStorage.getInstance().getReferenceFromUrl(projects[position].imageUrl)
-        ref.delete().addOnFailureListener {
-            Log.d(Constants.TAG, "deleted image url: ${projects[position].imageUrl}")
+        if(image != "https://firebasestorage.googleapis.com/v0/b/let-s-get-knotty-296d2.appspot.com/o/images%2F705735745717022433?alt=media&token=d28563b8-8adb-4895-80a6-08de1827f186"){
+            val ref = FirebaseStorage.getInstance().getReferenceFromUrl(projects[position].imageUrl)
+            ref.delete().addOnFailureListener {
+                Log.d(Constants.TAG, "deleted image url: ${projects[position].imageUrl}")
+            }
         }
+
     }
 
 
