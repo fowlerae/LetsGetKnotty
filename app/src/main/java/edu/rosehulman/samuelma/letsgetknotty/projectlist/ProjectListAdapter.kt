@@ -113,16 +113,10 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
             image = projects[position].imageUrl
         }
         val addImage : Button = view.add_image_button
-        if(position < 0) {
-            addImage.setOnClickListener {
-                listener?.showPictureDialog()
-            }
-        } else {
-            addImage.setOnClickListener {
-                removeImageFromStorageOnly(position)
-                listener?.showPictureDialog()
-            }
+        addImage.setOnClickListener {
+            listener?.showPictureDialog()
         }
+
 
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             if(image == "") {
