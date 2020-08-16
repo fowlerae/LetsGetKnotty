@@ -103,7 +103,7 @@ class CreatePatternFragment: Fragment() {
         handler.postDelayed({
             if(adapter.rectangles.size == 0) {
                 createGrid()
-            } },500)
+            } },1000)
 
         return view
     }
