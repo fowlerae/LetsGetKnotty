@@ -1,13 +1,17 @@
 package edu.rosehulman.samuelma.letsgetknotty.rowCounter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.*
 import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
+import kotlinx.android.synthetic.main.dialog_add_row_counter.view.*
 
 
 class RowCounterAdapter(val context: Context, uid: String, projectId: String) : RecyclerView.Adapter<RowCounterViewHolder>() {
@@ -78,6 +82,10 @@ class RowCounterAdapter(val context: Context, uid: String, projectId: String) : 
         rowCounterRef.add(rowCounter)
     }
 
+    fun edit(position: Int, rowCounter: RowCounter) {
+        rowCounterRef.document(rowCounters[position].id).set(rowCounter)
+    }
+
     fun increaseRow(position: Int) : Int {
         rowCounters[position].increaseRow()
         rowCounterRef.document(rowCounters[position].id).set(rowCounters[position])
@@ -90,7 +98,48 @@ class RowCounterAdapter(val context: Context, uid: String, projectId: String) : 
         return rowCounters[position].currentRow
     }
 
+    fun updateTimestamp(position: Int) {
+        rowCounters[position].lastTouched = Timestamp.now()
+        rowCounterRef.document(rowCounters[position].id).set(rowCounters[position])
+    }
+
     private fun remove(position: Int) {
         rowCounterRef.document(rowCounters[position].id).delete()
+    }
+
+    @SuppressLint("InflateParams")
+    fun showEditCounter(position: Int) {
+        val builder = context?.let { AlertDialog.Builder(it) }
+        if (builder != null) {
+            builder.setTitle("Edit Row Counter")
+            val view = LayoutInflater.from(context).inflate(
+                R.layout.dialog_add_row_counter, null, false
+            )
+            builder.setView(view)
+            view.row_counter_name_edit_text.setText(rowCounters[position].name)
+            view.starting_value_edit_text.setText(rowCounters[position].currentRow)
+
+            builder.setPositiveButton(android.R.string.ok) { _, _ ->
+                val name = "${view.row_counter_name_edit_text.text} Row Counter"
+                val startingValue = view.starting_value_edit_text.text.toString()
+                var num = 0
+                if(startingValue != "") {
+                    num = startingValue.toInt()
+                }
+                val rowCounter =
+                    RowCounter(
+                        name,
+                        num,
+                        0
+                    )
+                edit(position, rowCounter)
+            }
+            builder.setNeutralButton(android.R.string.cancel, null)
+            builder.setNegativeButton("Remove") { _, _ ->
+                remove(position)
+            }
+            builder.show()
+        }
+
     }
 }

@@ -18,11 +18,16 @@ class RowCounterViewHolder(itemView: View, adapter: RowCounterAdapter): Recycler
 
     init {
         upImageView.setOnClickListener {
+            adapter.updateTimestamp(adapterPosition)
             rowTextView.text =  adapter.increaseRow(adapterPosition).toString()
 
         }
         downImageView.setOnClickListener {
+            adapter.updateTimestamp(adapterPosition)
             rowTextView.text =  adapter.decreaseRow(adapterPosition).toString()
+        }
+        itemView.setOnClickListener {
+            adapter.showEditCounter(adapterPosition)
         }
     }
 
