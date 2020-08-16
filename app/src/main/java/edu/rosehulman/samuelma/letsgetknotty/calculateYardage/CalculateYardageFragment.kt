@@ -27,7 +27,7 @@ class CalculateYardageFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance(uid :String, pattern: Pattern, project: Project) =
-            PatternFragment().apply {
+            CalculateYardageFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PATTERN, pattern)
                     putString(ARG_UID,uid)
