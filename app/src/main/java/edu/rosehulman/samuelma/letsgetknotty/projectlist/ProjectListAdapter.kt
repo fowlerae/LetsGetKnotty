@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.AsyncTask
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.google.android.gms.tasks.Continuation
@@ -109,9 +111,15 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
             view.dialog_edit_text_name.setText(projects[position].name)
         }
         val addImage : Button = view.add_image_button
-        addImage.setOnClickListener {
-            listener?.showPictureDialog()
+        if(position < 0) {
+            addImage.visibility = View.VISIBLE
+            addImage.setOnClickListener {
+                listener?.showPictureDialog()
+            }
+        } else {
+            addImage.visibility = View.GONE
         }
+
 
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             val name = view.dialog_edit_text_name.text.toString()
@@ -120,7 +128,7 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
             if (position < 0) {
                 add(Project(name, image))
             } else {
-                edit(position, name, image)
+                edit(position, name)
             }
 
         }
@@ -135,9 +143,8 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         projectsRef.add(project)
     }
 
-    private fun edit(position: Int, quote: String, movie: String) {
-        projects[position].name = quote
-        projects[position].imageUrl = movie
+    private fun edit(position: Int, name : String) {
+        projects[position].name = name
         projectsRef.document(projects[position].id).set(projects[position])
     }
 
