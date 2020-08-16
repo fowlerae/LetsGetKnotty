@@ -21,6 +21,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_height="wrap_content">
 
             <TextView
@@ -31,7 +32,7 @@
 
             <EditText
                 android:id="@+id/calc_desired_width"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
 
@@ -42,6 +43,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_height="wrap_content">
 
             <TextView
@@ -52,7 +54,7 @@
 
             <EditText
                 android:id="@+id/calc_desired_height"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
 
@@ -72,6 +74,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
@@ -93,6 +96,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_height="wrap_content">
 
             <TextView
@@ -103,7 +107,7 @@
 
             <EditText
                 android:id="@+id/calc_project_height"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
 
@@ -124,6 +128,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_height="wrap_content">
 
             <TextView
@@ -135,7 +140,7 @@
 
             <EditText
                 android:id="@+id/calc_yarns_per_skein"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"/>
 
@@ -146,6 +151,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_height="wrap_content">
 
             <TextView
@@ -156,7 +162,7 @@
 
             <EditText
                 android:id="@+id/calc_yards_used"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
 
