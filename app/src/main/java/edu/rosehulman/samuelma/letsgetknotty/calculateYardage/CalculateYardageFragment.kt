@@ -12,6 +12,7 @@ import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.createPattern.PatternDisplayAdapter
 import edu.rosehulman.samuelma.letsgetknotty.pattern.*
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
+import edu.rosehulman.samuelma.letsgetknotty.project.ProjectFragment
 
 private const val ARG_PATTERN = "pattern"
 private const val ARG_UID = "uid"
@@ -61,14 +62,10 @@ class CalculateYardageFragment : Fragment() {
 
     private fun calculateDialog(message: String) {
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("Estimated Skeins Needed For Pattern")
         builder.setMessage(message)
-        builder.setNegativeButton("Enter Information Again") { _, _ ->
-            // remove(position)
-        }
+        builder.setNegativeButton("Enter Information Again",null)
         builder.setPositiveButton("Done") { _, _ ->
-            // remove(position)
-
+            switchToProjectFragment()
         }
         builder.show()
     }
@@ -99,8 +96,19 @@ class CalculateYardageFragment : Fragment() {
             val areaRatio : Double = desiredArea/actualArea
             val skeinsNeeded : Double = areaRatio * yardageRatio
 
-            return skeinsNeeded.toString()
+            return "Estimated Skeins Needed For Pattern $skeinsNeeded "
         }
         return "Please fill out all fields"
+    }
+
+    fun switchToProjectFragment() {
+        val fragment = PatternFragment.newInstance(uid, pattern, project)
+        val fm = fragmentManager
+        val ft = fm?.beginTransaction()
+        if (ft != null) {
+            ft.replace(R.id.fragment_container, fragment)
+            ft.addToBackStack("pattern")
+            ft.commit()
+        }
     }
 }
