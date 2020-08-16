@@ -23,10 +23,8 @@
     <string name="logout">Logout</string>
     <string name="name">Name</string>
     <string name="login">Login</string>
-    <string name="project_name">Project Name</string>
     <string name="add_pattern">Add Pattern</string>
     <string name="add_row_counter">Add Row Counter</string>
-    <string name="row_counter">Row Counter</string>
     <string name="projects">Projects</string>
     <string name="add_project">Add Project</string>
     <string name="note">Note</string>
@@ -40,7 +38,6 @@
     <string name="pattern_fragment">Pattern Fragment</string>
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
-    <string name="stitch">Stitch</string>
     <string name="project_name">Project Name</string>
     <string name="upload_image">Upload Image</string>
     <string name="rows_completed">Rows Completed</string>
@@ -58,4 +55,13 @@
     <string name="login_button">Login Button</string>
     <string name="_0">0</string>
     <string name="row_counter">Row Counter</string>
+    <string name="calculate_yards_required">Calculate Yards Required</string>
+    <string name="calculate">Calculate</string>
+    <string name="yards_per_skein">Yards Per Skein</string>
+    <string name="yards_used">Yards Used</string>
+    <string name="pattern_width_inch">Pattern Width (inch)</string>
+    <string name="pattern_height_inch">Pattern Height (inch)</string>
+    <string name="desired_width_inch">Desired Width (inch)</string>
+    <string name="desired_height_inch">Desired Height (inch)</string>
+    <string name="estimated_yards_required">Estimated Yards Required:</string>
 </resources>

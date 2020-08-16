@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/calc_desired_width"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/desired_width_inch"/>
+        <EditText
+            android:id="@+id/calc_desired_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/desired_height_inch"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/calc_project_width"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/pattern_width_inch"/>
+
+        <EditText
+            android:id="@+id/calc_project_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/pattern_height_inch"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/calc_yarns_per_skein"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/yards_per_skein"/>
+
+        <EditText
+            android:id="@+id/calc_yards_used"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/yards_used"/>
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/calculate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calculate"/>
+
+
+</LinearLayout>
