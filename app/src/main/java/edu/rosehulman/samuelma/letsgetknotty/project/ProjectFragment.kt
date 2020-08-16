@@ -159,7 +159,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
             )
             builder.setView(view)
             builder.setPositiveButton(android.R.string.ok) { _, _ ->
-                val name = "${view.row_counter_name_edit_text.text}"
+                val name = "${view.row_counter_name_edit_text.text} Row Counter"
                 val startingValue = view.starting_value_edit_text.text.toString()
                 var num = 0
                 if(startingValue != "") {
