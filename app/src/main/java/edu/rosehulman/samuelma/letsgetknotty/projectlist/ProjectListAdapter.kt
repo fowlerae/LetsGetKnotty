@@ -203,7 +203,7 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
                 val downloadUri = task.result
                // projectsRef.add(Project(name, downloadUri.toString()))
                 image = downloadUri.toString()
-                Log.d(Constants.TAG, "$image")
+                Log.d(Constants.TAG, "${downloadUri.toString()}")
             } else {
                 // handle failures
             }
