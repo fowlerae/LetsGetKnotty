@@ -21,15 +21,6 @@
             android:layout_width="190dp"
             android:layout_height="190dp" />
 
-        <androidx.core.widget.ContentLoadingProgressBar
-            android:id="@+id/project_progress_bar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:indeterminateTint="@color/colorPrimaryDark"
-            android:progress="50"
-            />
-
         <TextView
             android:id="@+id/name_text_view"
             android:layout_width="wrap_content"
