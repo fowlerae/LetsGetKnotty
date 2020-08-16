@@ -135,7 +135,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
                     // authority declared in manifest
                     val photoURI: Uri = FileProvider.getUriForFile(
                         context!!,
-                        "edu.rosehulman.catchandkit",
+                        "edu.rosehulman.sameulma.letsgetknotty",
                         it
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
