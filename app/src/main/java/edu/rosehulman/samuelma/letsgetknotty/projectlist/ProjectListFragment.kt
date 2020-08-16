@@ -65,8 +65,8 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         adapter.addSnapshotListener()
         val addProjectButton = view.findViewById<TextView>(R.id.add_project_button)
         addProjectButton.setOnClickListener {
-           // listAdapter.showAddEditDialog(-1)
-            showPictureDialog()
+           adapter.showAddEditDialog(-1)
+           // showPictureDialog()
         }
         return view
     }
@@ -167,11 +167,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         )
         choosePictureIntent.addCategory(Intent.CATEGORY_OPENABLE)
         choosePictureIntent.type = "image/*"
-      //  Log.d(Constants.TAG, "launchChooseIntent before if statement: ${context!!.packageManager}")
-      //  if (choosePictureIntent.resolveActivity(context!!.packageManager) != null) {
-            Log.d(Constants.TAG, "launchChooseIntent if statement: ${context!!.packageManager}")
-            startActivityForResult(choosePictureIntent, RC_CHOOSE_PICTURE)
-    //    }
+        startActivityForResult(choosePictureIntent, RC_CHOOSE_PICTURE)
 
     }
 

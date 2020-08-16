@@ -201,8 +201,8 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         }).addOnCompleteListener { task ->
             if(task.isSuccessful) {
                 val downloadUri = task.result
-            //    projectsRef.add(Thumbnail(downloadUri.toString()))
-                  image = downloadUri.toString()
+               // projectsRef.add(Project(name, downloadUri.toString()))
+                image = downloadUri.toString()
             } else {
                 // handle failures
             }
