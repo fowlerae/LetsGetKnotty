@@ -14,19 +14,15 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.Timestamp
 import edu.rosehulman.samuelma.letsgetknotty.Constants
-import edu.rosehulman.samuelma.letsgetknotty.MainActivity
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.project.ProjectFragment
-import edu.rosehulman.samuelma.letsgetknotty.projectlist.ProjectListFragment.Companion.newInstance
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -40,7 +36,7 @@ private const val RC_CHOOSE_PICTURE = 2
 class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedListener {
     private var listener: ProjectListAdapter.OnProjectSelectedListener? = null
     private var uid: String? = null
-    private lateinit var listAdapter: ProjectListAdapter
+    private lateinit var adapter: ProjectListAdapter
     private var currentPhotoPath = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +53,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
     ): View? {
         val view = inflater.inflate(R.layout.fragment_project_list, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.project_list_recycler_view)
-        listAdapter = ProjectListAdapter(
+        adapter = ProjectListAdapter(
             context!!,
             uid!!,
             listener
@@ -65,8 +61,8 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         recyclerView.layoutManager =
             GridLayoutManager(context,2)
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = listAdapter
-        listAdapter.addSnapshotListener()
+        recyclerView.adapter = adapter
+        adapter.addSnapshotListener()
         val addProjectButton = view.findViewById<TextView>(R.id.add_project_button)
         addProjectButton.setOnClickListener {
            // listAdapter.showAddEditDialog(-1)
@@ -135,7 +131,7 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
                     // authority declared in manifest
                     val photoURI: Uri = FileProvider.getUriForFile(
                         context!!,
-                        "edu.rosehulman.sameulma.letsgetknotty",
+                        "edu.rosehulman.catchandkit",
                         it
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
@@ -164,7 +160,8 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         // https://developer.android.com/guide/topics/providers/document-provider
         val choosePictureIntent = Intent(
             Intent.ACTION_OPEN_DOCUMENT,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        )
         choosePictureIntent.addCategory(Intent.CATEGORY_OPENABLE)
         choosePictureIntent.type = "image/*"
         if (choosePictureIntent.resolveActivity(context!!.packageManager) != null) {
@@ -189,13 +186,13 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
     private fun sendCameraPhotoToAdapter() {
         addPhotoToGallery()
         Log.d(Constants.TAG, "Sending to adapter this photo: $currentPhotoPath")
-        listAdapter.addImage(currentPhotoPath)
+        adapter.addImage(currentPhotoPath)
     }
 
     private fun sendGalleryPhotoToAdapter(data: Intent?) {
         if (data != null && data.data != null) {
             val location = data.data!!.toString()
-            listAdapter.addImage(location)
+            adapter.addImage(location)
         }
     }
 
@@ -208,10 +205,14 @@ class ProjectListFragment : Fragment(), ProjectListAdapter.OnProjectSelectedList
         }
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(Constants.KEY_URL, currentPhotoPath)
     }
-
 
 }
