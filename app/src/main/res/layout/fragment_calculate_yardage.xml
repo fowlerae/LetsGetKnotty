@@ -64,8 +64,6 @@
 
     </LinearLayout>
 
-
-
     <Button
         android:id="@+id/calculate_button"
         android:layout_width="wrap_content"
