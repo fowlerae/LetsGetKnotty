@@ -116,7 +116,7 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             val name = view.dialog_edit_text_name.text.toString()
           //  val image = view.dialog_edit_text_image.text.toString()
-
+            Log.d(Constants.TAG, "Image: $image")
             if (position < 0) {
                 add(Project(name, image))
             } else {
@@ -203,6 +203,7 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
                 val downloadUri = task.result
                // projectsRef.add(Project(name, downloadUri.toString()))
                 image = downloadUri.toString()
+                Log.d(Constants.TAG, "$image")
             } else {
                 // handle failures
             }
