@@ -74,14 +74,14 @@ class CalculateYardageFragment : Fragment() {
     }
 
     fun calculate(view: View): String {
-        val desiredHeightString = view.findViewById<EditText>(R.id.calc_desired_height).toString()
-        val desiredWidthString : String = view.findViewById<EditText>(R.id.calc_desired_width).toString()
+        val desiredHeightString = view.findViewById<EditText>(R.id.calc_desired_height).text.toString()
+        val desiredWidthString : String = view.findViewById<EditText>(R.id.calc_desired_width).text.toString()
 
-        val projectHeightString : String = view.findViewById<EditText>(R.id.calc_project_height).toString()
-        val projectWidthString : String = view.findViewById<EditText>(R.id.calc_project_width).toString()
+        val projectHeightString : String = view.findViewById<EditText>(R.id.calc_project_height).text.toString()
+        val projectWidthString : String = view.findViewById<EditText>(R.id.calc_project_width).text.toString()
 
-        val yardsUsedString : String = view.findViewById<EditText>(R.id.calc_yards_used).toString()
-        val yardsPerSkeinString : String = view.findViewById<EditText>(R.id.calc_yarns_per_skein).toString()
+        val yardsUsedString : String = view.findViewById<EditText>(R.id.calc_yards_used).text.toString()
+        val yardsPerSkeinString : String = view.findViewById<EditText>(R.id.calc_yarns_per_skein).text.toString()
 
         if(desiredHeightString != "" || desiredWidthString != "" || projectHeightString == ""
             || projectWidthString != "" || yardsUsedString != "" || yardsPerSkeinString != "") {
