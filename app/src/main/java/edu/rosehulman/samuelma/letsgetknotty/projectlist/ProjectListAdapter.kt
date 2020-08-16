@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.opengl.Visibility
 import android.os.AsyncTask
+import android.os.Handler
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
@@ -109,27 +110,33 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         builder.setView(view)
         if (position >= 0) {
             view.dialog_edit_text_name.setText(projects[position].name)
+            image = projects[position].imageUrl
         }
         val addImage : Button = view.add_image_button
         if(position < 0) {
-            addImage.visibility = View.VISIBLE
             addImage.setOnClickListener {
                 listener?.showPictureDialog()
             }
         } else {
-            addImage.visibility = View.GONE
+            addImage.setOnClickListener {
+                removeImageFromStorageOnly(position)
+                listener?.showPictureDialog()
+            }
         }
-
 
         builder.setPositiveButton(android.R.string.ok) { _, _ ->
             val name = view.dialog_edit_text_name.text.toString()
           //  val image = view.dialog_edit_text_image.text.toString()
             Log.d(Constants.TAG, "Image: $image")
-            if (position < 0) {
-                add(Project(name, image))
-            } else {
-                edit(position, name)
-            }
+            val handler = Handler()
+            handler.postDelayed({
+                if (position < 0) {
+                    add(Project(name, image))
+                } else {
+                    edit(position, name)
+                }
+            },1000)
+
 
         }
         builder.setNegativeButton(android.R.string.cancel, null)
@@ -214,6 +221,14 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
             } else {
                 // handle failures
             }
+        }
+    }
+
+    private fun removeImageFromStorageOnly(position: Int) {
+        val image = projects[position].imageUrl
+        val ref = FirebaseStorage.getInstance().getReferenceFromUrl(projects[position].imageUrl)
+        ref.delete().addOnFailureListener {
+            Log.d(Constants.TAG, "deleted image url: ${projects[position].imageUrl}")
         }
     }
 
