@@ -23,7 +23,6 @@ class CalculateYardageFragment : Fragment() {
     private lateinit var pattern: Pattern
     private lateinit var uid: String
     private lateinit var project : Project
-    private lateinit var adapter: PatternDisplayAdapter
     companion object {
         @JvmStatic
         fun newInstance(uid :String, pattern: Pattern, project: Project) =
