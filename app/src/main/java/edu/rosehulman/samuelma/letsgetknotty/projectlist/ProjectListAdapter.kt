@@ -131,7 +131,7 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
                 } else {
                     edit(position, name, image)
                 }
-            },5000)
+            },1000)
 
 
         }

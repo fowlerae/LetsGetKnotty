@@ -139,9 +139,24 @@ class PatternAdapter(
                 totalStitches = view.total_number_of_stitches_edit_text.text.toString().toInt()
             }
             val pattern = Pattern(name, image, rowsInRepeat, stitchesInRepeat, totalRows, totalStitches, "", false)
-            if(pattern.imageUrl == "") {
-                pattern.imageUrl = "https://firebasestorage.googleapis.com/v0/b/let-s-get-knotty-296d2.appspot.com/o/images%2F705735745717022433?alt=media&token=d28563b8-8adb-4895-80a6-08de1827f186"
-            }
+
+            val handler = Handler()
+            handler.postDelayed({
+                // do something after 500ms
+                // had to add delay as it was adding after the grid was created which led to adding the grid
+                // to the wrong pattern
+                if(pattern.imageUrl == "") {
+                    pattern.imageUrl = "https://firebasestorage.googleapis.com/v0/b/let-s-get-knotty-296d2.appspot.com/o/images%2F705735745717022433?alt=media&token=d28563b8-8adb-4895-80a6-08de1827f186"
+                }
+            }, 500)
+
+
+            handler.postDelayed({
+                // do something after 500ms
+                // had to add delay as it was adding after the grid was created which led to adding the grid
+                // to the wrong pattern
+                listener?.onAddPatternSelected(patterns[position])
+            }, 1000)
             if(position < 0) {
                 add(pattern)
                 Log.d(Constants.TAG, pattern.toString())
@@ -151,7 +166,7 @@ class PatternAdapter(
                     // had to add delay as it was adding after the grid was created which led to adding the grid
                     // to the wrong pattern
                     listener?.onAddPatternSelected(patterns[0])
-                }, 500)
+                }, 1000)
             } else {
                 edit(pattern, position)
                 Log.d(Constants.TAG, pattern.toString())
@@ -161,7 +176,7 @@ class PatternAdapter(
                     // had to add delay as it was adding after the grid was created which led to adding the grid
                     // to the wrong pattern
                     listener?.onAddPatternSelected(patterns[position])
-                }, 500)
+                }, 1000)
             }
 
 
