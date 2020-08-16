@@ -100,9 +100,6 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
     }
 
     fun updateColor(position: Int) {
-        // add delays here
-        Log.d(Constants.TAG, "update color Stitch: ${stitch}")
-        Log.d(Constants.TAG, "update color Button Color: ${color}")
         rectangles[position].color = this.color!!
         if(rectangles[position].image != null) {
             rectangles[position].image = null
@@ -111,9 +108,6 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
     }
 
     fun updateStitch(position: Int) {
-        //  add delays here
-        Log.d(Constants.TAG, "update stitch Stitch: ${stitch}")
-        Log.d(Constants.TAG, "update stitch  Button Color: ${color}")
         rectangles[position].image = this.stitch!!
         rectangles[position].color = Color.WHITE
         gridRef.document(rectangles[position].id).set(rectangles[position])

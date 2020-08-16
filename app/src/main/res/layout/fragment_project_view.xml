@@ -14,12 +14,6 @@
             android:id="@+id/fragment_project_view"
             tools:context=".MainActivity">
 
-<!--                <androidx.core.widget.ContentLoadingProgressBar-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="5dp"-->
-<!--                    style="?android:attr/progressBarStyleHorizontal"-->
-<!--                    />-->
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">

@@ -18,7 +18,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rows Completed"/>
+                android:text="@string/rows_completed"/>
 
             <EditText
                 android:id="@+id/rows_completed_edit_text"
@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Project Width (inches)"/>
+                android:text="@string/project_width_inches"/>
 
             <EditText
                 android:id="@+id/project_width_edit_text"
@@ -52,7 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Project Height (inches)"/>
+                android:text="@string/project_height_inches"/>
 
             <EditText
                 android:id="@+id/project_height_edit_text"
@@ -69,7 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Number of Stitches in a Row"/>
+                android:text="@string/number_of_stitches_in_a_row"/>
 
             <EditText
                 android:id="@+id/project_stitch_count_edit_text"

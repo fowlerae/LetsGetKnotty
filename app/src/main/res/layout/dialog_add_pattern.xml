@@ -18,7 +18,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pattern name"/>
+                android:text="@string/pattern_name"/>
 
             <EditText
                 android:id="@+id/pattern_name_edit_text"
@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Number of Rows in Repeat"/>
+                android:text="@string/number_of_rows_in_repeat"/>
 
             <EditText
                 android:id="@+id/number_of_rows_in_repeat_edit_text"
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="Number of Stitches in Repeat"/>
+                android:text="@string/number_of_stitches_in_repeat"/>
 
             <EditText
                 android:id="@+id/number_of_stitches_in_repeat_edit_text"
@@ -70,7 +70,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Number of Rows in Pattern"/>
+                android:text="@string/total_number_of_rows_in_pattern"/>
 
             <EditText
                 android:id="@+id/total_number_of_rows_edit_text"
@@ -87,7 +87,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Number of Stitches in Pattern"/>
+                android:text="@string/total_number_of_stitches_in_pattern"/>
 
             <EditText
                 android:id="@+id/total_number_of_stitches_edit_text"

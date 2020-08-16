@@ -12,7 +12,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/alice"
-        android:text="Row Counter"
+        android:text="@string/row_counter"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
-            android:text="0"
+            android:text="@string/_0"
             android:textSize="40sp" />
 
         <ImageButton

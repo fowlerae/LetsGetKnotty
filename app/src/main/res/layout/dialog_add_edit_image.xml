@@ -7,7 +7,7 @@
         android:id="@+id/dialog_edit_text_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Project Name"
+        android:hint="@string/project_name"
         android:textSize="24sp"
         />
 
@@ -16,6 +16,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dialog_edit_text_name"
-        android:text="Upload Image"/>
+        android:text="@string/upload_image"/>
 
 </RelativeLayout>

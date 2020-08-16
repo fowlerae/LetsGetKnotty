@@ -13,8 +13,6 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     private val imageView : ImageView = itemView.grid_stitch_image
     init {
         itemView.setOnClickListener {
-            Log.d(Constants.TAG, "View Holder Stitch: ${adapter.stitch}")
-            Log.d(Constants.TAG, "View Holder  Button Color: ${adapter.color}")
             adapter.updateColor(adapterPosition)
             cardView.setCardBackgroundColor(adapter.color!!)
             if(adapter.stitch!= null) {
@@ -27,7 +25,6 @@ class CreatePatternViewHolder(itemView: View, private val adapter: CreatePattern
     }
 
     fun bind(grid: Grid) {
-        Log.d(Constants.TAG, "On Bind: $grid")
         cardView.setCardBackgroundColor(grid.color)
         if(grid.image != null) {
             imageView.setImageResource(grid.image!!)

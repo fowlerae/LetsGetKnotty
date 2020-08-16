@@ -71,8 +71,6 @@ class CreatePatternFragment: Fragment() {
         button.setOnClickListener {
             adapter.color  = color
             adapter.stitch = null
-            Log.d(Constants.TAG, "Color Button Stitch: ${adapter.stitch}")
-            Log.d(Constants.TAG, "Color Button Color: ${adapter.color}")
         }
         button.setOnLongClickListener {
             showColorDialog(button)
@@ -92,8 +90,6 @@ class CreatePatternFragment: Fragment() {
         stitchButton.setOnClickListener {
             adapter.color  = Color.WHITE
             adapter.stitch = stitch
-            Log.d(Constants.TAG, "Stitch Button Stitch: ${adapter.stitch}")
-            Log.d(Constants.TAG, "Stitch Button Color: ${adapter.color}")
         }
         stitchButton.setOnLongClickListener {
             showStitchDialog(stitchButton)
