@@ -49,7 +49,7 @@ class CalculateYardageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view : View = inflater.inflate(R.layout.fragment_pattern, container, false)
+        val view : View = inflater.inflate(R.layout.fragment_calculate_yardage, container, false)
         val button : Button = view.findViewById(R.id.calculate_yardage_button)
         button.setOnClickListener {
             val message = calculate(view)
