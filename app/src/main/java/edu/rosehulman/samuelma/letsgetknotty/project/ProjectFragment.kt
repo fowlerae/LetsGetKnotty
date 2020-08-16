@@ -1,14 +1,20 @@
 package edu.rosehulman.samuelma.letsgetknotty.project
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,9 +35,16 @@ import edu.rosehulman.samuelma.letsgetknotty.rowCounter.RowCounterAdapter
 import kotlinx.android.synthetic.main.dialog_add_gauge.view.*
 import kotlinx.android.synthetic.main.dialog_add_note.view.*
 import kotlinx.android.synthetic.main.dialog_add_row_counter.view.*
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 private const val ARG_PROJECT = "project"
+private const val ARG_UID = "UID"
+private const val RC_TAKE_PICTURE = 1
+private const val RC_CHOOSE_PICTURE = 2
 
 class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     private lateinit var project: Project
@@ -42,6 +55,8 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     private var uid : String = ""
     private lateinit var projectRef : DocumentReference
     private lateinit var root : View
+    private var currentPhotoPath = ""
+
     companion object {
         @JvmStatic
         fun newInstance(pro: Project, u: String?) =
@@ -279,5 +294,123 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         val gaugeTextView = root.findViewById<TextView>(R.id.project_gauge)
         gaugeTextView.text = gauge
     }
+
+    override fun showPictureDialog() {
+        val builder = AlertDialog.Builder(context!!)
+        builder.setTitle("Choose a photo source")
+        builder.setMessage("Would you like to take a new picture?\nOr choose an existing one?")
+        builder.setPositiveButton("Take Picture") { _, _ ->
+            launchCameraIntent()
+        }
+
+        builder.setNegativeButton("Choose Picture") { _, _ ->
+            launchChooseIntent()
+        }
+        builder.create().show()
+    }
+
+    // Everything camera- and storage-related is from
+    // https://developer.android.com/training/camera/photobasics
+    private fun launchCameraIntent() {
+        Log.d(Constants.TAG, "launchCameraIntent")
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            // Ensure that there's a camera activity to handle the intent
+            takePictureIntent.resolveActivity(activity!!.packageManager)?.also {
+                // Create the File where the photo should go
+                val photoFile: File? = try {
+                    createImageFile()
+                } catch (ex: IOException) {
+                    // Error occurred while creating the File
+                    null
+                }
+                // Continue only if the File was successfully created
+                photoFile?.also {
+                    // authority declared in manifest
+                    val photoURI: Uri = FileProvider.getUriForFile(
+                        context!!,
+                        "edu.rosehulman.samuelma.letsgetknotty",
+                        it
+                    )
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    startActivityForResult(takePictureIntent, RC_TAKE_PICTURE)
+                }
+            }
+        }
+    }
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        Log.d(Constants.TAG, "createImageFile")
+        // Create an image file name
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
+        val storageDir: File = activity!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
+        return File.createTempFile(
+            "JPEG_${timeStamp}_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
+        }
+    }
+
+    private fun launchChooseIntent() {
+        Log.d(Constants.TAG, "launchChooseIntent")
+        // https://developer.android.com/guide/topics/providers/document-provider
+        val choosePictureIntent = Intent(
+            Intent.ACTION_OPEN_DOCUMENT,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        )
+        choosePictureIntent.addCategory(Intent.CATEGORY_OPENABLE)
+        choosePictureIntent.type = "image/*"
+        startActivityForResult(choosePictureIntent, RC_CHOOSE_PICTURE)
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.d(Constants.TAG, "onActivityResult")
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                RC_TAKE_PICTURE -> {
+                    sendCameraPhotoToAdapter()
+                }
+                RC_CHOOSE_PICTURE -> {
+                    sendGalleryPhotoToAdapter(data)
+                }
+            }
+        }
+    }
+
+    private fun sendCameraPhotoToAdapter() {
+        Log.d(Constants.TAG, "sendCameraPhotoToAdapter")
+        addPhotoToGallery()
+        Log.d(Constants.TAG, "Sending to adapter this photo: $currentPhotoPath")
+        patternAdapter.addImage(currentPhotoPath)
+    }
+
+    private fun sendGalleryPhotoToAdapter(data: Intent?) {
+        Log.d(Constants.TAG, "sendGalleryPhotoToAdapter")
+        if (data != null && data.data != null) {
+            val location = data.data!!.toString()
+            patternAdapter.addImage(location)
+        }
+    }
+
+    // Works Not working on phone
+    private fun addPhotoToGallery() {
+        Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).also { mediaScanIntent ->
+            val f = File(currentPhotoPath)
+            mediaScanIntent.data = Uri.fromFile(f)
+            activity!!.sendBroadcast(mediaScanIntent)
+        }
+    }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(Constants.KEY_URL, currentPhotoPath)
+    }
+
 
 }
