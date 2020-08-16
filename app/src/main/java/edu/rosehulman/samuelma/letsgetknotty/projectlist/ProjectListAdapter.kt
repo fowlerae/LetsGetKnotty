@@ -129,9 +129,9 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
                 if (position < 0) {
                     add(Project(name, image))
                 } else {
-                    edit(position, name)
+                    edit(position, name, image)
                 }
-            },1000)
+            },2000)
 
 
         }
@@ -146,8 +146,9 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
         projectsRef.add(project)
     }
 
-    private fun edit(position: Int, name : String) {
+    private fun edit(position: Int, name : String, image : String) {
         projects[position].name = name
+        projects[position].imageUrl = image
         projectsRef.document(projects[position].id).set(projects[position])
     }
 
