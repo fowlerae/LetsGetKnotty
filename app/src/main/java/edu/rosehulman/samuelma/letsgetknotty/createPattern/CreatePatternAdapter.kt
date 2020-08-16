@@ -13,7 +13,7 @@ import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.project.Project
 
-class CreatePatternAdapter(val context: Context, uid: String, project: Project, pattern: Pattern) :
+class CreatePatternAdapter(val context: Context, uid: String, project: Project, val pattern: Pattern) :
     RecyclerView.Adapter<CreatePatternViewHolder>() {
     val rectangles = ArrayList<Grid>()
     private val gridRef = FirebaseFirestore
@@ -25,6 +25,14 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         .collection(Constants.PATTERNS_COLLECTION)
         .document(pattern.id)
         .collection(Constants.GRID_COLLECTION)
+    private val patternRef = FirebaseFirestore
+        .getInstance()
+        .collection(Constants.USERS_COLLECTION)
+        .document(uid)
+        .collection(Constants.PROJECTS_COLLECTION)
+        .document(project.id)
+        .collection(Constants.PATTERNS_COLLECTION)
+
     var color: Int = Color.BLACK
     var stitch: Int? = null
 
@@ -89,10 +97,14 @@ class CreatePatternAdapter(val context: Context, uid: String, project: Project, 
         gridRef.add(grid)
     }
 
-    fun deleteGrid() {
-        for (position in 0 until rectangles.size) {
-            remove(position)
-        }
+//    fun deleteGrid() {
+//        for (position in 0 until rectangles.size) {
+//            remove(position)
+//        }
+//    }
+//
+    fun removePattern() {
+        patternRef.document(pattern.id).delete()
     }
 
     private fun remove(position: Int) {

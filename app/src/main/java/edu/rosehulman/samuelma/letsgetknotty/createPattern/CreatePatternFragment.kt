@@ -83,7 +83,7 @@ class CreatePatternFragment: Fragment() {
         }
         val cancelButton : Button = view.findViewById(R.id.cancel_created_pattern_button)
         cancelButton.setOnClickListener {
-            adapter.deleteGrid()
+            adapter.removePattern()
             switchToProjectFragment()
         }
         val stitchButton : ImageButton = view.findViewById(R.id.choose_stitch_button)
