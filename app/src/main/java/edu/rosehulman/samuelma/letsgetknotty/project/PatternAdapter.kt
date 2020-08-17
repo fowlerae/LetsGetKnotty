@@ -22,6 +22,7 @@ import edu.rosehulman.samuelma.letsgetknotty.BitmapUtils
 import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
+import edu.rosehulman.samuelma.letsgetknotty.rowCounter.WidgetService
 import kotlinx.android.synthetic.main.dialog_add_pattern.view.*
 import java.io.ByteArrayOutputStream
 import kotlin.math.abs
@@ -204,6 +205,7 @@ class PatternAdapter(
     fun selectPattern(position: Int) {
         patterns[position].lastTouched = Timestamp.now()
         patternsRef.document(patterns[position].id).set(patterns[position])
+
         listener?.onPatternSelected(patterns[position])
     }
 
@@ -215,6 +217,7 @@ class PatternAdapter(
         fun onPatternSelected(pattern: Pattern)
         fun onAddPatternSelected(pattern: Pattern)
         fun showPictureDialog()
+        fun restartService()
     }
 
     fun addImage(localPath: String) {

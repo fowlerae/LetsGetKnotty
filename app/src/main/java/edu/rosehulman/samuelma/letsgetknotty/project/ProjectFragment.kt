@@ -27,11 +27,12 @@ import edu.rosehulman.samuelma.letsgetknotty.Constants
 import edu.rosehulman.samuelma.letsgetknotty.R
 import edu.rosehulman.samuelma.letsgetknotty.createPattern.CreatePatternFragment
 import edu.rosehulman.samuelma.letsgetknotty.note.Note
-import edu.rosehulman.samuelma.letsgetknotty.rowCounter.RowCounter
 import edu.rosehulman.samuelma.letsgetknotty.note.NoteAdapter
 import edu.rosehulman.samuelma.letsgetknotty.pattern.Pattern
 import edu.rosehulman.samuelma.letsgetknotty.pattern.PatternFragment
+import edu.rosehulman.samuelma.letsgetknotty.rowCounter.RowCounter
 import edu.rosehulman.samuelma.letsgetknotty.rowCounter.RowCounterAdapter
+import edu.rosehulman.samuelma.letsgetknotty.rowCounter.WidgetService
 import kotlinx.android.synthetic.main.dialog_add_gauge.view.*
 import kotlinx.android.synthetic.main.dialog_add_note.view.*
 import kotlinx.android.synthetic.main.dialog_add_row_counter.view.*
@@ -307,6 +308,11 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
             launchChooseIntent()
         }
         builder.create().show()
+    }
+
+    override fun restartService() {
+        activity!!.startService(Intent(activity, WidgetService::class.java))
+
     }
 
     // Everything camera- and storage-related is from
