@@ -62,7 +62,6 @@ class PatternAdapter(
                 }
             }
 
-        Log.d(Constants.TAG, "added snapshot listner to pattern adapter")
     }
 
     private fun processSnapshotChanges(querySnapshot: QuerySnapshot) {
