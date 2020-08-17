@@ -311,6 +311,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     }
 
     override fun restartService() {
+        activity!!.stopService(Intent(activity, WidgetService::class.java))
         activity!!.startService(Intent(activity, WidgetService::class.java))
 
     }
