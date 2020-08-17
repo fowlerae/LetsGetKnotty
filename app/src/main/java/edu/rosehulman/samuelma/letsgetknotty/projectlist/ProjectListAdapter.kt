@@ -167,6 +167,7 @@ class ProjectListAdapter(val context: Context, uid: String, var listener: OnProj
 
     fun selectProject(position: Int) {
         projects[position].lastTouched = Timestamp.now()
+        projectsRef.document(projects[position].id).set(projects[position])
         listener?.onProjectSelected(projects[position])
     }
 
