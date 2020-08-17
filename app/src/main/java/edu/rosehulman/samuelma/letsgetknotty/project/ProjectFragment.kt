@@ -222,7 +222,7 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
     fun showAddGauge() {
         val builder = context?.let { AlertDialog.Builder(it) }
         if (builder != null) {
-            builder.setTitle("Add Row Counter")
+            builder.setTitle("Add Gauge")
             val view = LayoutInflater.from(context).inflate(R.layout.dialog_add_gauge, null, false)
             builder.setView(view)
             builder.setPositiveButton(android.R.string.ok) { _, _ ->
