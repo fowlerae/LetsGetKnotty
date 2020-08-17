@@ -30,6 +30,7 @@ data class Pattern(
         fun fromSnapshot(snapshot: DocumentSnapshot): Pattern {
             val pattern = snapshot.toObject(Pattern::class.java)!!
             Log.d(Constants.TAG, "Pattern: $pattern")
+            pattern.lastTouched = Timestamp.now()
             pattern.id = snapshot.id
             return pattern
         }
