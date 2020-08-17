@@ -310,12 +310,6 @@ class ProjectFragment : Fragment(), PatternAdapter.OnPatternSelectedListener{
         builder.create().show()
     }
 
-    override fun restartService() {
-        activity!!.stopService(Intent(activity, WidgetService::class.java))
-        activity!!.startService(Intent(activity, WidgetService::class.java))
-
-    }
-
     // Everything camera- and storage-related is from
     // https://developer.android.com/training/camera/photobasics
     private fun launchCameraIntent() {
