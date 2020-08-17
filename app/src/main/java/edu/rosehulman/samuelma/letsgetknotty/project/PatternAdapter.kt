@@ -203,6 +203,7 @@ class PatternAdapter(
 
     fun selectPattern(position: Int) {
         patterns[position].lastTouched = Timestamp.now()
+        patternsRef.document(patterns[position].id).set(patterns[position])
         listener?.onPatternSelected(patterns[position])
     }
 
@@ -217,9 +218,6 @@ class PatternAdapter(
     }
 
     fun addImage(localPath: String) {
-        // TODO: You'll want to wait to add this to Firetore until after you have a Storage download URL.
-        // Move this line of code there.
-        //thumbnailRef.add(Thumbnail(localPath))
         ImageRescaleTask(localPath).execute()
     }
 
