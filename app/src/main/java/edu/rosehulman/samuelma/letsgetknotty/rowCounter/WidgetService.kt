@@ -225,6 +225,7 @@ class WidgetService : Service() {
             rowCountersRef!!.document(counter!!.id).set(counter!!)
         }
 
+
     }
 
 }

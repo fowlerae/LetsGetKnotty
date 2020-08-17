@@ -217,7 +217,6 @@ class PatternAdapter(
         fun onPatternSelected(pattern: Pattern)
         fun onAddPatternSelected(pattern: Pattern)
         fun showPictureDialog()
-        fun restartService()
     }
 
     fun addImage(localPath: String) {
