@@ -202,6 +202,7 @@ class PatternAdapter(
     }
 
     fun selectPattern(position: Int) {
+        patterns[position].lastTouched = Timestamp.now()
         listener?.onPatternSelected(patterns[position])
     }
 
@@ -264,14 +265,4 @@ class PatternAdapter(
         }
     }
 
-    private fun removeImageFromStorageOnly(position: Int) {
-        val image = patterns[position].imageUrl
-        if(image != "https://firebasestorage.googleapis.com/v0/b/let-s-get-knotty-296d2.appspot.com/o/images%2F705735745717022433?alt=media&token=d28563b8-8adb-4895-80a6-08de1827f186"){
-            val ref = FirebaseStorage.getInstance().getReferenceFromUrl(patterns[position].imageUrl)
-            ref.delete().addOnFailureListener {
-                Log.d(Constants.TAG, "deleted image url: ${patterns[position].imageUrl}")
-            }
-        }
-
-    }
 }

@@ -25,7 +25,7 @@
     <string name="login">Login</string>
     <string name="add_pattern">Add Pattern</string>
     <string name="add_row_counter">Add Row Counter</string>
-    <string name="projects">Projects:</string>
+    <string name="projects">Projects</string>
     <string name="add_project">Add Project</string>
     <string name="note">Note:</string>
     <string name="add_note">Add Note</string>
@@ -54,7 +54,7 @@
     <string name="starting_value">Starting Value</string>
     <string name="login_button">Login Button</string>
     <string name="_0">0</string>
-    <string name="row_counter">Row Counter</string>
+    <string name="row_counter">Row Counter:</string>
     <string name="calculate_yards_required">Calculate Yards Required</string>
     <string name="calculate">Calculate</string>
     <string name="yards_per_skein">Yards Per Skein</string>
