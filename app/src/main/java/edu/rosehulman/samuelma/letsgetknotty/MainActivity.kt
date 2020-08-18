@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity(),
         initializeListeners()
     }
 
-    // TODO: add (and remove) an auth state listener upon start (and stop).
     override fun onStart() {
         super.onStart()
         auth.addAuthStateListener(authListener)
@@ -40,9 +39,6 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun initializeListeners() {
-        // TODO: Create an AuthStateListener that passes the UID
-        // to the MovieQuoteFragment if the user is logged in
-        // and goes back to the Splash fragment otherwise.
         // See https://firebase.google.com/docs/auth/users#the_user_lifecycle
         authListener = FirebaseAuth.AuthStateListener { auth ->
             val user = auth.currentUser
@@ -77,7 +73,6 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun launchLoginUI() {
-        // TODO: Build a login intent and startActivityForResult(intent, ...)
         // For details, see https://firebase.google.com/docs/auth/android/firebaseui#sign_in
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(),

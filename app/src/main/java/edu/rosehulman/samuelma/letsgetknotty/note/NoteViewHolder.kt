@@ -13,15 +13,6 @@ class NoteViewHolder(itemView: View, private val adapter: NoteAdapter): Recycler
     private val noteTextView: TextView = itemView.findViewById(R.id.note_description)
     private var cardView: CardView = itemView.note_card_view
 
-    init {
-//        itemView.setOnClickListener {
-//            adapter.selectPattern(adapterPosition)
-//        }
-//        itemView.setOnLongClickListener{
-//            this.adapter.showAddEditDialog(adapterPosition)
-//            true
-//        }
-    }
 
     fun bind(note: Note) {
         noteTextView.text = note.description

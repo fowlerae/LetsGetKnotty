@@ -23,7 +23,6 @@ class SimpleAppWidget : AppWidgetProvider() {
     ) {
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
-       //     updateAppWidget(context, appWidgetManager, appWidgetId)
             val intent = Intent(context.applicationContext, WidgetService::class.java)
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds)
             context.startService(intent)
